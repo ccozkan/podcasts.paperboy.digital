@@ -1,6 +1,6 @@
-class CreateFees < ActiveRecord::Migration[6.1]
+class CreateFeeds < ActiveRecord::Migration[6.1]
   def change
-    create_table :fees do |t|
+    create_table :feeds do |t|
       t.string :rss_url
       t.string :external_id
       t.string :name

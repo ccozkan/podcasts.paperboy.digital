@@ -1,2 +1,0 @@
-class Fee < ApplicationRecord
-end
