@@ -1,4 +1,5 @@
 class Subscription < ApplicationRecord
   belongs_to :user
-  belongs_to :fee
+  belongs_to :feed
+  
 end
