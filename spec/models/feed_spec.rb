@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Feed, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'model consistency' do
+    it { is_expected.to have_many(:episodes) }
+  end
 end
