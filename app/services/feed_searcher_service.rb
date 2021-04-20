@@ -22,6 +22,7 @@ class FeedSearcherService
                  'provider': r['artistName'],
                  'name': r['trackName'],
                  'external_id': r['collectionId'].to_s
+                 'last_published_at': r['release_date']
                  }
       results << result
     end

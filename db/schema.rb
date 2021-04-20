@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_210412) do
+ActiveRecord::Schema.define(version: 2021_04_20_181724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,16 @@ ActiveRecord::Schema.define(version: 2021_04_12_210412) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "last_published_at"
     t.index ["external_id"], name: "index_feeds_on_external_id", unique: true
+  end
+
+  create_table "fees", force: :cascade do |t|
+    t.string "rss_url"
+    t.string "external_id"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "subscriptions", force: :cascade do |t|
