@@ -10,6 +10,8 @@ gem 'sass-rails', '>= 6'
 gem 'devise'
 gem 'haml'
 gem 'haml-rails'
+gem 'sidekiq'
+gem 'sidekiq-cron'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -18,7 +20,6 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'spring-commands-rspec'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 4.0.2'
   gem 'shoulda-matchers', '~> 4.0'
   gem 'factory_bot'
