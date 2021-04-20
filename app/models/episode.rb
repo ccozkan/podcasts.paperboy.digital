@@ -1,3 +1,3 @@
 class Episode < ApplicationRecord
-  belongs_to :subscription
+  belongs_to :feed
 end
