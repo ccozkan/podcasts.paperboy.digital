@@ -10,6 +10,8 @@ gem 'sass-rails', '>= 6'
 gem 'devise'
 gem 'haml'
 gem 'haml-rails'
+gem 'httparty'
+gem 'feedjira'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 
