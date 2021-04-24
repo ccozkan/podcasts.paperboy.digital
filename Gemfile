@@ -14,6 +14,7 @@ gem 'httparty'
 gem 'feedjira'
 gem 'sidekiq'
 gem 'sidekiq-cron'
+gem 'will_paginate', '~> 3.1.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
