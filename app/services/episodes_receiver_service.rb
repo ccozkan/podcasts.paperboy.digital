@@ -1,4 +1,4 @@
-class EpisodesRetrieverService
+class EpisodesReceiverService
   def initialize(rss_url)
     @rss_url = rss_url
   end
@@ -9,7 +9,7 @@ class EpisodesRetrieverService
     if response.success?
       xml = response.payload.body
       episodes = Feedjira.parse(xml, parser: Feedjira::Parser::ITunesRSS)
-                   .entries.sort_by(&:published).reverse!
+                   .entries.sort_by(&:published).reverse
       format_response(episodes)
     end
   end
@@ -23,7 +23,7 @@ class EpisodesRetrieverService
                  'external_id': e.entry_id,
                  'published_at': e.published,
                  'title': e.title,
-                 'summary': e.summary
+                 'summary': e.itunes_summary,
                }
       results << result
     end
