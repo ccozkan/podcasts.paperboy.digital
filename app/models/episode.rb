@@ -3,6 +3,7 @@ class Episode < ApplicationRecord
 
   validates_presence_of :external_id
   validates_uniqueness_of :external_id
+  validates_presence_of :audio_url
 
   def self.this_week_time_period
     last_week = self.last_week_time_period
