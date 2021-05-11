@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
-  get '/search' => 'pages#search'
+  get '/search' => 'search_feeds#index'
   resources :subscriptions, only: [:index, :create]
 end
