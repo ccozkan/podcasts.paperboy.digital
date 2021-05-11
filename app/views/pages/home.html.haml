@@ -1,2 +1,29 @@
-%h1 Pages#home
-%p Find me in app/views/pages/home.html.haml
+%body
+  .page-wrap
+    %h2 newsletter for your subscribed podcasts
+    %br/
+    .box
+      = image_tag("paperboy_700.png", size: '300x300', class:"mb-4")
+    %br/
+
+    %h2
+      - if current_user
+        = link_to 'dashboard'
+        |
+        = link_to 'sign out', destroy_user_session_path
+      - else
+        = link_to 'sign in', new_user_session_path
+        |
+        = link_to 'sign up', new_user_registration_path
+
+    %p delivered weekly on wednesdays
+
+    %br/
+
+    %p.mt-5.mb-3.text-muted
+      = link_to 'source code', 'https://github.com/ccozkan/podcasts.paperboy.digital'
+      |
+      = link_to 'author', 'https://ozkan.cc'
+
+      %br/
+      © 2021
