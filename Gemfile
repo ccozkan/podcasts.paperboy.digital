@@ -37,6 +37,7 @@ end
 
 group :development do
   gem 'listen', '~> 3.3'
+  gem 'html2haml'
 end
 
 group :test do

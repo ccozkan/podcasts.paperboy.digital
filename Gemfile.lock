@@ -327,6 +327,7 @@ DEPENDENCIES
   feedjira
   haml
   haml-rails
+  html2haml
   httparty
   listen (~> 3.3)
   omniauth
