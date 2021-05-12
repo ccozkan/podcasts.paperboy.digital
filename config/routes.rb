@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  get 'porch/index'
-  get 'dashboard/index'
-
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
 
   root 'pages#home'
 
+  get '/about' => 'pages#about'
   get '/search' => 'search_feeds#index'
-  resources :subscriptions, only: [:index, :create]
+  get '/dashboard' => 'dashboard#index'
+  get '/porch' => 'porch#index'
+
+  resources :subscriptions, only: [:create]
 end
