@@ -1,0 +1,21 @@
+.container
+  %div{:style => "text-align: center;"}
+    %h2 subscriptions
+  %hr/
+
+  - if @items.exists?
+    - @items.each do |item|
+      %div{:style => "width: 100%; overflow: hidden; align-items: center;"}
+        %div{:style => "width: 600px; float: left; text-align: center;"}
+          = image_tag item.pic_url, class: "img-thumbnail", size: "200x200"
+        %div{:style => "margin-left: 6px;"}
+          %h4
+            = item.name
+          %h5
+            = item.provider
+  - else
+    %h3
+      You don't have any subscriptions yet :/
+  %br/
+
+!= pagy_nav(@pagy)

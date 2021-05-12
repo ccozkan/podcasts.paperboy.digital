@@ -1,0 +1,28 @@
+.container
+  %div{:style => "text-align: center;"}
+    %h1 🚲 WELCOME TO PORCH 🗞
+    %h4 where paperboy throws your weekly episodes
+    %p
+      = Episode.last_week_time_period[:starting_at].to_s + '--' + Episode.last_week_time_period[:ending_at].to_s
+%hr/
+
+- unless @items.blank?
+  - @items.each do |item|
+    %div{:style => "width: 100%; overflow: hidden; align-items: center;"}
+      %div{:style => "width: 600px; float: left; text-align: center;"}
+        = image_tag item.feed.pic_url, class: "img-thumbnail", size: "200x200"
+      %div{:style => "margin-left: 6px;"}
+        %h3
+          = item.feed.name
+        %h4
+          = item.summary
+        %h5
+          = link_to 'listen/download', item.audio_url, target: :_blank
+        %h5
+          = item.published_at
+- else
+  %h3
+    You don't have any new episodes yet :/
+%br/
+
+!= pagy_nav(@pagy) unless @items.blank?
