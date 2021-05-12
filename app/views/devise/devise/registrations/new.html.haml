@@ -1,0 +1,14 @@
+.page-wrap
+  %h2 Sign up
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .field
+      = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'e-mail address'
+      .field
+        = f.password_field :password, autocomplete: "new-password", placeholder: "password"
+      .field
+        = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "confirmation"
+    = f.submit "Sign up"
+    %br/
+    .actions
+      = render "devise/shared/links"
