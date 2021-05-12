@@ -1,11 +1,5 @@
-require 'will_paginate/array'
-
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
-
-  def index
-    @subscriptions = current_user.subscriptions.paginate(page: params[:page])
-  end
 
   def create
     feed = Feed.find_by(external_id: permitted_params[:external_id]) || Feed.new(permitted_params)
@@ -23,9 +17,13 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def destroy
+    feed = Feed.find_by(id: permitted_params[:id])
+  end
+
   private
 
   def permitted_params
-    params.permit(:external_id, :name, :pic_url, :rss_url, :provider)
+    params.permit(:external_id, :name, :pic_url, :rss_url, :provider, :id)
   end
 end
