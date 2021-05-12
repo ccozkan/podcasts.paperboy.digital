@@ -1,6 +1,6 @@
 class Feed < ApplicationRecord
-  has_many :episodes
-  has_many :subscriptions
+  has_many :episodes, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
   has_many :users, through: :subscriptions
 
   validates_presence_of :external_id
