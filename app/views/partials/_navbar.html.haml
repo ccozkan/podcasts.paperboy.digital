@@ -1,0 +1,26 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container-fluid
+    %a.navbar-brand{:href => "/"} 🎧🚲🗞
+    %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      - if current_user
+        %ul.navbar-nav
+          %li.nav-item
+            %a.nav-link.active{:href => "/"} Home
+          %li.nav-item
+            %a.nav-link.active{:href => "/porch"} Porch
+          %li.nav-item
+            %a.nav-link.active{:href => "/dashboard"} Dashboard
+          %li.nav-item
+            %a.nav-link.active{:href => "/search"} Search
+          %li.nav-item
+            %a.nav-link.active{:href => "/about"} About
+      - else
+        %ul.navbar-nav
+          %li.nav-item
+            %a.nav-link.active{:href => "/"} Home
+          %li.nav-item
+            %a.nav-link.active{:href => "/search"} Search
+          %li.nav-item
+            %a.nav-link.active{:href => "/about"} About
