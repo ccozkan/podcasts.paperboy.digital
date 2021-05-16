@@ -22,4 +22,6 @@ Rails.application.routes.draw do
 
   resources :subscriptions, only: [:create]
   resources :unsubscriptions, only: [:destroy], param: :feed_id
+
+  get '/check.txt', to: proc { [200, {}, ['it_works']] }
 end
