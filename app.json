@@ -1,0 +1,13 @@
+{
+  "name": "podcasts",
+  "description": "weekly digest for your subscribed podcasts",
+  "keywords": [
+    "dokku",
+    "rails"
+  ],
+  "scripts": {
+    "dokku": {
+      "postdeploy": "bundle exec rails db:migrate"
+    }
+  }
+}
