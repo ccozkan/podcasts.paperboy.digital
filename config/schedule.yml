@@ -1,0 +1,9 @@
+new_episodes_receiver_job:
+  cron: "30 12 * * WED"
+  class: "WeeklyDigestSenderWorker"
+  queue: weekly_digest_sender
+
+new_episodes_receiver_job:
+  cron: "0 * * * *"
+  class: "NewEpisodesReceiverWorker"
+  queue: new_episodes_receiver
