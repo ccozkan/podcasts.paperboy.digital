@@ -119,6 +119,7 @@ GEM
       html2haml (>= 1.0.1)
       railties (>= 5.1)
     hashie (4.1.0)
+    honeybadger (4.8.0)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)
@@ -324,6 +325,7 @@ DEPENDENCIES
   feedjira
   haml
   haml-rails
+  honeybadger (~> 4.0)
   html2haml
   httparty
   listen (~> 3.3)
