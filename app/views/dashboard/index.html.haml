@@ -13,6 +13,8 @@
             = item.name
           %h5
             = item.provider
+        = button_to 'unsubscribe', unsubscription_path(item.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'
+
   - else
     %h3
       You don't have any subscriptions yet :/

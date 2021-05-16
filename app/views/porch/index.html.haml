@@ -1,28 +1,46 @@
 .container
-  %div{:style => "text-align: center;"}
-    %h1 🚲 WELCOME TO PORCH 🗞
-    %h4 where paperboy throws your weekly episodes
-    %p
+  .row.text-align-center
+    .col-9
+      %h1 WELCOME TO THE PORCH
+      %h5 where paperboy throws your weekly episodes
+      %p
       = Episode.last_week_time_period[:starting_at].to_s + '--' + Episode.last_week_time_period[:ending_at].to_s
-%hr/
+      %hr/
+  .row.justify-center
+    .col-8
+      - unless @items.blank?
+        - @items.each_with_index do |item, index|
+          %h4
+            = item.title
+          %h5
+            = "by '#{item.feed.name}' @ #{item.published_at.to_formatted_s(:short)}"
+          = item.summary.html_safe
+          %h6
+            = link_to 'listen/download', item.audio_url, target: :_blank, class: 'link-success'
+          %hr
+      - else
+        %p
+          You don't have any new episodes yet :/
+          this is might be you haven't subscribed to any feeds, or your feeds episodes haven't received yet. Checkback after next half-an-hour.
+    %br/
 
-- unless @items.blank?
-  - @items.each do |item|
-    %div{:style => "width: 100%; overflow: hidden; align-items: center;"}
-      %div{:style => "width: 600px; float: left; text-align: center;"}
-        = image_tag item.feed.pic_url, class: "img-thumbnail", size: "200x200"
-      %div{:style => "margin-left: 6px;"}
-        %h3
-          = item.feed.name
-        %h4
-          = item.summary
-        %h5
-          = link_to 'listen/download', item.audio_url, target: :_blank
-        %h5
-          = item.published_at
-- else
-  %h3
-    You don't have any new episodes yet :/
-%br/
 
-!= pagy_nav(@pagy) unless @items.blank?
+
+-#   %div{:style => "text-align: center;"}
+
+-# - unless @items.blank?
+-#   - @items.each do |item|
+-#     %div{:style => "width: 100%; overflow: hidden; align-items: center;"}
+-#       %div{:style => "width: 600px; float: left; text-align: center;"}
+-#         = image_tag item.feed.pic_url, class: "img-thumbnail", size: "200x200"
+-#       %div{:style => "margin-left: 6px;"}
+-#         %h3
+-#           = item.feed.name
+-#         %h4
+-#           = item.summary.html_safe
+-#         %h5
+-#           = link_to 'listen/download', item.audio_url, target: :_blank
+-#         %h5
+-#           = item.published_at
+
+-# != pagy_nav(@pagy) unless @items.blank?
