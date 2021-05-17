@@ -14,7 +14,7 @@
             = item.title
           %h5
             = "by '#{item.feed.name}' @ #{item.published_at.to_formatted_s(:short)}"
-          = item.summary.html_safe
+          = item.summary.html_safe unless item.summary.nil?
           %h6
             = link_to 'listen/download', item.audio_url, target: :_blank, class: 'link-success'
           %hr
