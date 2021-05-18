@@ -107,6 +107,8 @@ GEM
       loofah (>= 2.3.1)
       sax-machine (>= 1.0)
     ffi (1.15.0)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     fugit (1.4.5)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.4)
@@ -326,6 +328,7 @@ DEPENDENCIES
   factory_bot
   factory_bot_rails
   feedjira
+  friendly_id
   haml
   haml-rails
   honeybadger (~> 4.0)

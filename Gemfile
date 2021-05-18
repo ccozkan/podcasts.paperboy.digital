@@ -23,6 +23,7 @@ gem 'pagy'
 gem "honeybadger", "~> 4.0"
 gem 'sidekiq'
 gem 'sidekiq-cron'
+gem 'friendly_id'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
