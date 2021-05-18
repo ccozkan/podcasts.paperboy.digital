@@ -4,19 +4,23 @@
       %h1 WELCOME TO THE PORCH
       %h5 where paperboy throws your weekly episodes
       %p
-      = Episode.last_week_time_period[:starting_at].to_s + '--' + Episode.last_week_time_period[:ending_at].to_s
+      = "#{Episode.last_week_time_period[:starting_at]} -- #{Episode.last_week_time_period[:ending_at]}"
       %hr/
+      %iframe{:src => "play/#{@items.second.slug}", name: 'episode_player', :style => "border:none;", :width => "100%", scrolling: 'no'}
   .row.justify-center
-    .col-8
+    .col-9
       - unless @items.blank?
         - @items.each_with_index do |item, index|
           %h4
             = item.title
           %h5
             = "by '#{item.feed.name}' @ #{item.published_at.to_formatted_s(:short)}"
-          = item.summary.html_safe unless item.summary.nil?
+          -# = item.summary.html_safe unless item.summary.nil?
           %h6
-            = link_to 'listen/download', item.audio_url, target: :_blank, class: 'link-success'
+            -# %audio{:controls => "", :preload => "auto", :src => "#{item.audio_url}"}
+            = link_to "listen", player_url(slug: item.slug), class: "btn btn-info", target: 'episode_player'
+            |
+            = link_to 'download', item.audio_url, target: :_blank, class: 'link-success', download: "ppd_#{item.slug}"
           %hr
       - else
         %p

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   get '/about' => 'pages#about'
+  get '/play/:slug' => 'play_episodes#show', as: 'player'
+
   get '/search' => 'search_feeds#index'
   get '/dashboard' => 'dashboard#index'
   get '/porch' => 'porch#index'
