@@ -2,7 +2,7 @@
 
 class FeedSearcherService
   def initialize(query)
-    @query = query
+    @query = ActiveSupport::Inflector.transliterate(query)
   end
 
   def call
@@ -22,6 +22,8 @@ class FeedSearcherService
                  'provider': r['artistName'],
                  'name': r['trackName'],
                  'external_id': r['collectionId'].to_s,
+                 'genres': r['genres'].delete('Podcasts') && r['genres'].join(' ~ '),
+                 'release_date': r['releaseDate'].split('T').first
                  }
       results << result
     end

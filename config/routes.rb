@@ -17,12 +17,14 @@ Rails.application.routes.draw do
 
   get '/about' => 'pages#about'
   get '/play/:slug' => 'play_episodes#show', as: 'player'
+  #put '/dismiss/:episode_id' => 'dismiss_episodes#update', as: 'dismiss'
 
   get '/search' => 'search_feeds#index'
   get '/dashboard' => 'dashboard#index'
   get '/porch' => 'porch#index'
 
   resources :subscriptions, only: [:create]
+  resources :dismiss_episodes, only: [:update], param: :episode_id
   resources :unsubscriptions, only: [:destroy], param: :feed_id
 
   get '/check.txt', to: proc { [200, {}, ['it_works']] }

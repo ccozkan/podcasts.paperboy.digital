@@ -2,5 +2,5 @@
   .row.text-align-left.align-items-left
     .col-9
       %audio{:controls => "", autoplay: '', :preload => "auto", :src => "#{@episode.audio_url}"}
-      %h4
+      %h2
         = @episode.title + ' / ' +  @episode.feed.name
