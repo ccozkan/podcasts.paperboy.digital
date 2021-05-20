@@ -22,8 +22,9 @@
             = link_to "listen", player_url(slug: item.slug), class: "btn btn-info", target: 'episode_player'
             |
             = link_to 'download', item.audio_url, target: :_blank, class: 'link-success', download: "ppd_#{item.slug}"
-            |
-            = link_to "dismiss", dismiss_episode_path(episode_id: item.id), class: 'btn btn-light', method: :put
+            %br
+            %br
+            = button_to "dismiss", dismiss_episode_path(episode_id: item.id), class: 'btn btn-light', method: :put
           %hr
       - else
         %p
