@@ -1,8 +1,14 @@
 class NewEpisodesReceiverWorker
   include Sidekiq::Worker
 
-  def perform(*args)
-    Feed.all.each do |feed|
+  def perform(feed_id = nil)
+    feeds = if feed_id.nil?
+              Feed.all
+            else
+              [Feed.find_by(id: feed_id)]
+            end
+
+    feeds.each do |feed|
       episodes = EpisodesReceiverService.new(feed.rss_url).call
       next if episodes.nil?
 
