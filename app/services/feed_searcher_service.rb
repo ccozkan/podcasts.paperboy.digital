@@ -6,7 +6,7 @@ class FeedSearcherService
   end
 
   def call
-    url = "https://itunes.apple.com/search?term=#{@query}&entity=podcast"
+    url = "https://itunes.apple.com/search?term=#{@query}&media=podcast"
     response = RequestMakerService.new(url).call
     format_response(response.payload) if response.success?
   end
