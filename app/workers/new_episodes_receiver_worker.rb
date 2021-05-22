@@ -10,9 +10,13 @@ class NewEpisodesReceiverWorker
 
     feeds.each do |feed|
       episodes = EpisodesReceiverService.new(feed.rss_url).call
-      next if episodes.nil?
 
-      episodes.each do |e|
+      unless episodes.success?
+        Honeybadger.notify(episodes.error)
+        next
+      end
+
+      episodes.payload.each do |e|
         next if e[:published_at] < Episode.last_week_time_period[:starting_at] || Episode.find_by(external_id: e[:external_id])
 
         params = e.merge(feed_id: feed.id)
