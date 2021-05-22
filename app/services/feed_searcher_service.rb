@@ -17,6 +17,8 @@ class FeedSearcherService
     results = []
     response = JSON.parse(response)
     response['results'].each do |r|
+      next if r['feedUrl'].nil?
+
       result = { 'rss_url': r['feedUrl'],
                  'pic_url': r['artworkUrl600'],
                  'provider': r['artistName'],
