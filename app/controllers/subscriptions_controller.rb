@@ -3,11 +3,7 @@ class SubscriptionsController < ApplicationController
 
   def create
     feed = Feed.find_by(external_id: permitted_params[:external_id]) || Feed.new(permitted_params)
-
-    unless feed.save
-      render json: feed.errors
-      return
-    end
+    feed.save!
 
     @subscription = Subscription.new(user_id: current_user.id, feed_id: feed.id)
     if @subscription.save
