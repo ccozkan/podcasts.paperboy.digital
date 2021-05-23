@@ -1,7 +1,7 @@
 .container
   .row.text-align-center
     .col-9
-      %h1 WELCOME TO THE PORCH
+      %h2 THE PORCH
       %h5 where paperboy throws your weekly episodes
       %p
       = "#{Episode.last_week_time_period[:starting_at]} -- #{Episode.last_week_time_period[:ending_at]}"
@@ -16,9 +16,7 @@
             = item.title
           %h5
             = "by '#{item.feed.name}' @ #{item.published_at.to_formatted_s(:short)}"
-          -# = item.summary.html_safe unless item.summary.nil?
           %h6
-            -# %audio{:controls => "", :preload => "auto", :src => "#{item.audio_url}"}
             = link_to "listen", player_url(slug: item.slug), class: "btn btn-info", target: 'episode_player'
             |
             = link_to 'download', item.audio_url, target: :_blank, class: 'link-success', download: "ppd_#{item.slug}"
@@ -27,28 +25,7 @@
             = button_to "dismiss", dismiss_episode_path(episode_id: item.id), class: 'btn btn-light', method: :put
           %hr
       - else
-        %p
-          You don't have any new episodes yet :/
-          this is might be you haven't subscribed to any feeds, or your feeds episodes haven't received yet. Checkback after next half-an-hour.
+        You don't have any new episodes.
+        This is because you haven't any feeds, or your feeds did not published new episodes between
+        = "#{Episode.last_week_time_period[:starting_at].to_s(:short)} and #{Episode.last_week_time_period[:ending_at].to_s(:short)}"
     %br/
-
-
-
--#   %div{:style => "text-align: center;"}
-
--# - unless @items.blank?
--#   - @items.each do |item|
--#     %div{:style => "width: 100%; overflow: hidden; align-items: center;"}
--#       %div{:style => "width: 600px; float: left; text-align: center;"}
--#         = image_tag item.feed.pic_url, class: "img-thumbnail", size: "200x200"
--#       %div{:style => "margin-left: 6px;"}
--#         %h3
--#           = item.feed.name
--#         %h4
--#           = item.summary.html_safe
--#         %h5
--#           = link_to 'listen/download', item.audio_url, target: :_blank
--#         %h5
--#           = item.published_at
-
--# != pagy_nav(@pagy) unless @items.blank?
