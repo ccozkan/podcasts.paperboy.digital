@@ -10,12 +10,13 @@ This newsletter is b.r.t.y.b.
 - @episodes.each do |item|
   = item.title
   = "by '#{item.feed.name}' @ #{item.published_at.to_formatted_s(:short)}"
+  %br
   = link_to "listen", player_url(slug: item.slug), class: "btn btn-info", target: 'episode_player'
   %hr
   %br
-
+%hr
 Click
 = link_to 'here', porch_url
-to see all of your digest
+to see all of your digest :^)
 
 
