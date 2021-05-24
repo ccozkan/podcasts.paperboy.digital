@@ -4,7 +4,7 @@ class WeeklyDigestSenderWorker
   def perform(*args)
     users = User.all
     users.each do |user|
-      user.send_weekly_digest(episodes)
+      user.send_weekly_digest
     end
   end
 end
