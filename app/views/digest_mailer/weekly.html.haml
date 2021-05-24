@@ -1,0 +1,21 @@
+%h4 Some of your podcasts from last week
+
+This newsletter is b.r.t.y.b.
+= link_to 'podcasts.paperboy.digital', root_url
+
+%br/
+%hr
+%br/
+
+- @episodes.each do |item|
+  = item.title
+  = "by '#{item.feed.name}' @ #{item.published_at.to_formatted_s(:short)}"
+  = link_to "listen", player_url(slug: item.slug), class: "btn btn-info", target: 'episode_player'
+  %hr
+  %br
+
+Click
+= link_to 'here', porch_url
+to see all of your digest
+
+
