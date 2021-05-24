@@ -19,7 +19,7 @@ class User < ApplicationRecord
   end
 
   def send_weekly_digest
-    DigestMailer.weekly_digest(self.id)
+    DigestMailer.weekly(self.id).deliver_later
   end
 
   # def last_weeks_episodes
