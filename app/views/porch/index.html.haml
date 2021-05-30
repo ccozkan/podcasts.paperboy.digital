@@ -13,7 +13,7 @@
       - unless @items.blank?
         - @items.each_with_index do |item, index|
           %h4
-            = item.title
+            = item.title.html_safe
           %h5
             = "by '#{item.feed.name}' @ #{item.published_at.to_formatted_s(:short)}"
           %h6
