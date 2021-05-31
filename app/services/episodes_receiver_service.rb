@@ -33,7 +33,6 @@ class EpisodesReceiverService
                  'external_id': e.entry_id,
                  'published_at': e.published,
                  'title': e.title,
-                 'summary': e.itunes_summary,
                }
       results << result
     end
