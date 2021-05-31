@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/dashboard' => 'dashboard#index'
   get '/porch' => 'porch#index'
 
+  resources :settings, only: [:index]
   resources :subscriptions, only: [:create]
   resources :dismiss_episodes, only: [:update], param: :episode_id
   resources :unsubscriptions, only: [:destroy], param: :feed_id
