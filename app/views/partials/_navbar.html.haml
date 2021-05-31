@@ -1,26 +1,30 @@
 %nav.navbar.navbar-expand-lg.navbar-light.bg-light
   .container-fluid
-    %a.navbar-brand{:href => "/"} 🎧🚲🗞
-    %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", :type => "button"}
+    %a.navbar-brand{href: "/"} 🎧🚲🗞
+    %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarTogglerNav", "data-bs-toggle" => "collapse", :type => "button"}
       %span.navbar-toggler-icon
     #navbarNav.collapse.navbar-collapse
       - if current_user
-        %ul.navbar-nav
+        %ul.navbar-nav.me-auto.mb-2.mb-lg-0
           %li.nav-item
-            %a.nav-link.active{:href => "/"} Home
+            %a.nav-link.active{href: "/"} Home
           %li.nav-item
-            %a.nav-link.active{:href => "/porch"} Porch
+            %a.nav-link.active{href: "/porch"} Porch
           %li.nav-item
-            %a.nav-link.active{:href => "/dashboard"} Dashboard
+            %a.nav-link.active{href: "/dashboard"} Dashboard
           %li.nav-item
-            %a.nav-link.active{:href => "/search"} Search
+            %a.nav-link.active{href: "/search"} Search
+
+        %ul.navbar-nav.mb-2.mb-lg-0.d-flex
+          %li.nav-item.d-flex
+            %a.nav-link.active{href: "/about"} About
           %li.nav-item
-            %a.nav-link.active{:href => "/about"} About
+            %a.nav-link.active{href: "/settings"} Settings
       - else
-        %ul.navbar-nav
+        %ul.navbar-nav.me-auto.mb-2.mb-lg-0
           %li.nav-item
-            %a.nav-link.active{:href => "/"} Home
+            %a.nav-link.active{href: "#"} Home
           %li.nav-item
-            %a.nav-link.active{:href => "/search"} Search
-          %li.nav-item
-            %a.nav-link.active{:href => "/about"} About
+            %a.nav-link.active{href: "/search"} Search
+          %li.nav-item.d-flex
+            %a.nav-link.active{href: "/about"} About
