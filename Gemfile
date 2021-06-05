@@ -11,6 +11,7 @@ gem 'sass-rails', '>= 6'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'omniauth-facebook'
 gem 'activerecord-session_store'
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 
