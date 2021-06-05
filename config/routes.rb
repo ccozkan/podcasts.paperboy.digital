@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   get '/about' => 'pages#about'
+  get '/privacy' => 'pages#privacy'
+
   get '/play/:slug' => 'play_episodes#show', as: 'player'
   #put '/dismiss/:episode_id' => 'dismiss_episodes#update', as: 'dismiss'
 
