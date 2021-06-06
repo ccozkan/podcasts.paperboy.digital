@@ -273,6 +273,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   config.omniauth :github, ENV['GITHUB_OAUTH_CLIENT_ID'], ENV['GITHUB_OAUTH_CLIENT_SECRET'], scope: 'user:email'
   config.omniauth :facebook, ENV['FACEBOOK_OAUTH_CLIENT_ID'], ENV['FACEBOOK_OAUTH_CLIENT_SECRET'], scope: 'email'
+  config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH_CLIENT_ID'], ENV['GOOGLE_OAUTH_CLIENT_SECRET'], scope: 'userinfo.email'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

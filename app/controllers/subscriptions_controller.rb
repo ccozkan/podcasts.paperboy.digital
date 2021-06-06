@@ -2,20 +2,11 @@ class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    feed = Feed.find_by(external_id: permitted_params[:external_id]) || Feed.new(permitted_params)
-    feed.save!
+    feed = Feed.find_or_create_from_data(permitted_params)
 
     @subscription = Subscription.new(user_id: current_user.id, feed_id: feed.id)
-    if @subscription.save
-      redirect_to dashboard_path, notice: 'Subscribed!'
-    else
-      render json: @subscription.errors
-    end
-  end
 
-  def destroy
-    subscription = Subscription.find_by(user_id: current_user.id, )
-    feed = Feed.find_by(id: permitted_params[:id])
+    redirect_to dashboard_path, notice: 'Subscribed!' if @subscription.save!
   end
 
   private
