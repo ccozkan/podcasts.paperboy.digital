@@ -1,4 +1,4 @@
-[[https://travis-ci.org/ccozkan/podcasts.paperboy.digital][https://travis-ci.org/ccozkan/showhn.paperboy.digital.svg?branch=master]]
+[[https://travis-ci.org/ccozkan/podcasts.paperboy.digital][https://travis-ci.org/ccozkan/podcasts.paperboy.digital.svg?branch=master]]
 [[https://codecov.io/gh/ccozkan/podcasts.paperboy.digital/branch/master/graph/badge.svg]]
 
 work-in-progress https://github.com/ccozkan/podcasts.paperboy.digital/projects/1
