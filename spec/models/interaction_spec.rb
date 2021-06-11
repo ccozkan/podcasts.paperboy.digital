@@ -2,8 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Interaction, type: :model do
   let!(:user) { create(:user) }
-  let!(:feed) { create(:feed) }
-  let!(:episode) { create(:episode, feed_id: feed.id) }
+  let(:feed) { create(:feed) }
+  let(:episode) { create(:episode, feed_id: feed.id) }
+
+  before do
+    allow_any_instance_of(Feed).to receive(:catch_up_episodes).and_return(true)
+    episode
+  end
 
   describe 'model consistency' do
     let!(:interaction) { create(:interaction, user_id: user.id, episode_id: episode.id)}
