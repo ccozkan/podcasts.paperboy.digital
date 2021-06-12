@@ -29,3 +29,5 @@
         This is because you haven't subscribed to feeds, or your feeds did not published new episodes between
         = "#{Episode.last_week_time_period[:starting_at].to_s(:short)} and #{Episode.last_week_time_period[:ending_at].to_s(:short)}"
     %br/
+
+= pagy_nav(@pagy).html_safe
