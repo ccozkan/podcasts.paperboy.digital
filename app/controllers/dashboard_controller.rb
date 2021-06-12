@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
-  include Pagy::Backend
-
   before_action :authenticate_user!
+
+  include Pagy::Backend
 
   def index
     subscribed_feeds = current_user.feeds
