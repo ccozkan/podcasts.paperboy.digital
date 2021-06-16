@@ -6,26 +6,32 @@ class FeedSearcherService
   end
 
   def call
-    url = "https://itunes.apple.com/search?term=#{@query}&media=podcast"
     response = RequestMakerService.new(url).call
-    format_response(response.payload) if response.success?
+    return response unless response.success?
+
+    format_payload(response.payload)
   end
 
   private
 
-  def format_response(response)
-    results = []
-    response = JSON.parse(response)
-    response['results'].each do |r|
-      next if r['feedUrl'].nil?
+  def url
+    "https://itunes.apple.com/search?term=#{@query}&media=podcast"
+  end
 
-      result = { 'rss_url': r['feedUrl'],
-                 'pic_url': r['artworkUrl600'],
-                 'provider': r['artistName'],
-                 'name': r['trackName'],
-                 'external_id': r['collectionId'].to_s,
-                 'genres': r['genres'].delete('Podcasts') && r['genres'].join(' ~ '),
-                 'release_date': r['releaseDate'].split('T').first
+  def format_payload(payload)
+    data = JSON.parse(payload)
+
+    results = []
+    data['results'].each do |feed|
+      next if feed['feedUrl'].nil?
+
+      result = { 'rss_url': feed['feedUrl'],
+                 'pic_url': feed['artworkUrl600'],
+                 'provider': feed['artistName'],
+                 'name': feed['trackName'],
+                 'external_id': feed['collectionId'].to_s,
+                 'genres': feed['genres'].delete('Podcasts') && feed['genres'].join(' ~ '),
+                 'release_date': feed['releaseDate'].split('T').first
                  }
       results << result
     end
