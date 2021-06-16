@@ -22,7 +22,7 @@
 
         %br
         %br
-        = button_to 'sign out', destroy_user_session_path, method: :delete
+        = link_to 'sign out', destroy_user_session_path, method: :delete
       - else
         = link_to 'about', about_path
         |
