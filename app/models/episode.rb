@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: episodes
+#
+#  id           :bigint           not null, primary key
+#  external_id  :string
+#  audio_url    :string
+#  title        :string
+#  published_at :datetime
+#  feed_id      :bigint           not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  slug         :string
+#  duration     :string
+#
 class Episode < ApplicationRecord
   belongs_to :feed
 

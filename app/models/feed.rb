@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: feeds
+#
+#  id               :bigint           not null, primary key
+#  rss_url          :string
+#  pic_url          :string
+#  external_id      :string
+#  provider         :string
+#  name             :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  last_check_error :text
+#
 class Feed < ApplicationRecord
   has_many :episodes, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
