@@ -1,23 +1,20 @@
-This newsletter is b.r.t.y.b.
-= link_to 'podcasts.paperboy.digital', root_url
-%br/
-Click
-= link_to 'here', porch_url
-to see all of your digest :^)
+%h4
+  You've got total
+  = @new_episodes_size
+  new episodes🎉, here are the some of them!
 
-%h4 Some of your podcasts from last week
+%p
+  Click
+  = link_to 'here', porch_url
+  to check out all of your digest 👀😊
 
-%br/
-%hr
-%br/
-
-- @episodes.each do |item|
-  = item.title
+- @random_episodes.each do |item|
+  %hr
+  = item.title.html_safe
   = "by '#{item.feed.name}' @ #{item.published_at.to_formatted_s(:short)}"
   %br
-  = link_to "listen", player_url(slug: item.slug), class: "btn btn-info", target: 'episode_player'
-  %hr
-  %br
+  = link_to "listen", player_url(slug: item.slug), target: 'episode_player'
 %hr
 
+= render 'partials/mail_footer'
 
