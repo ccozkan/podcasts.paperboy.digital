@@ -7,9 +7,7 @@ class RequestMakerService
 
   def call
     result = HTTParty.get(@url)
-  rescue HTTParty::Error => e
-    OpenStruct.new({ success?: false, error: e })
-  rescue SocketError => e
+  rescue StandardError => e
     OpenStruct.new({ success?: false, error: e })
   else
     OpenStruct.new({ success?: true, payload: result })
