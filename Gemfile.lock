@@ -66,6 +66,9 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    annotate (3.1.1)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 14.0)
     ast (2.4.2)
     bcrypt (3.1.16)
     builder (3.2.4)
@@ -344,6 +347,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-session_store
+  annotate
   byebug
   codecov
   devise
