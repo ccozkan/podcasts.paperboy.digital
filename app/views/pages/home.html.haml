@@ -1,6 +1,6 @@
 .container
   .row.text-center.justify-content-center
-    %h2 your personal digest for your subscribed podcasts
+    %h2 your personal digest for your favorite podcasts
     %br/
     .box
       = image_tag("paperboy_700.png", class: 'img-rounded', width: '300')
@@ -19,18 +19,17 @@
         |
         = link_to 'about', about_path
         |
-
-        %br
         %br
         = link_to 'sign out', destroy_user_session_path, method: :delete
+
       - else
         = link_to 'about', about_path
         |
         = link_to 'search', search_path
+        |
         = link_to 'sign in', new_user_session_path
         |
         = link_to 'sign up', new_user_registration_path
-
 
     %br/
     %br/
@@ -41,9 +40,7 @@
       = link_to 'hey@paperboy.digital', 'mailto:hey@paperboy.digital'
       |
       = link_to 'author', 'https://ozkan.cc'
-
       %br/
       = link_to 'privacy policy', privacy_path
-
       %br/
       © 2021
