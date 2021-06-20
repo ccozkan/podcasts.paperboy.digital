@@ -8,7 +8,7 @@ class SearchFeedsController < ApplicationController
                        []
                      end
     @already_subscribed = current_user.feeds.pluck(:external_id) if current_user
-    @pagy_a, @items = pagy_array(search_results)
+    @pagy, @items = pagy_array(search_results)
   end
 
   private
