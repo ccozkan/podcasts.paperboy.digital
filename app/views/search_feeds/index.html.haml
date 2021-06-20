@@ -25,5 +25,5 @@
 
         = button_to "subscribe", { controller: :subscriptions, action: :create, external_id: item[:external_id], name: item[:name], pic_url: item[:pic_url], rss_url: item[:rss_url], provider: item[:provider]  }, method: :post, type: 'submit', class: 'btn btn-primary', disabled: @already_subscribed&.include?(item[:external_id])
 
-= pagy_nav(@pagy_a).html_safe
+= pagy_nav(@pagy_a).html_safe if @pagy_a.pages > 1
 
