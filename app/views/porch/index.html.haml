@@ -29,4 +29,4 @@
         = "#{Episode.last_week_time_period[:starting_at].to_s(:short)} and #{Episode.last_week_time_period[:ending_at].to_s(:short)}"
     %br/
 
-= pagy_nav(@pagy).html_safe if @pagy.pages > 1
+= render 'partials/page_navigation'
