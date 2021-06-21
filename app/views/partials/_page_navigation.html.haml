@@ -1,10 +1,7 @@
 
-.container
-  .row.justify-content-center
-    .col-9
-      %br/
-      - if @pagy && @pagy.pages > 1
-        = pagy_nav(@pagy).html_safe
-      - else
-        %br/
-      %br/
+%br/
+- if @pagy && @pagy.pages > 1
+  = pagy_nav(@pagy).html_safe
+- else
+  %br/
+%br/
