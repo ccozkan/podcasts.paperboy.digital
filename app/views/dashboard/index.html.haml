@@ -1,19 +1,19 @@
 .container
-  %div{:style => "text-align: center;"}
-    %h2 subscriptions
+  %h2 subscriptions
   %hr/
 
-  - if @items.exists?
+  - if @items.present?
     - @items.each do |item|
-      %div{:style => "width: 100%; overflow: hidden; align-items: center;"}
-        %div{:style => "width: 600px; float: left; text-align: center;"}
+      .row
+        .col
           = image_tag item.pic_url, class: "img-thumbnail", size: "200x200"
-        %div{:style => "margin-left: 6px;"}
+        .col
           %h4
             = item.name
           %h5
-            = item.provider
-        = button_to 'unsubscribe', unsubscription_path(item.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'
+            ="by #{item.provider}"
+          = button_to 'unsubscribe', unsubscription_path(item.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'
+      %br
 
   - else
     %h3

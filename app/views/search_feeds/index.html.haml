@@ -1,28 +1,28 @@
-
 .container
   %h2 search
   = form_tag(search_path, method: :get) do
     = text_field_tag(:query, params[:query])
   %hr/
 
-- if !@items.blank?
-  - @items.each do |item|
-    %div{:style => "width: 100%; overflow: hidden; align-items: center;"}
-      %div{:style => "width: 600px; float: left; text-align: center;"}
-        = image_tag item[:pic_url], class: "img-thumbnail", size: "200x200"
-      %div{:style => "margin-left: 6px;"}
-        %h4
-          = item[:name]
-        %h5
-          = item[:provider]
+  - if @items.present?
+    - @items.each do |item|
+      .row
+        .col
+          = image_tag item[:pic_url], class: "img-thumbnail", size: "200x200"
+        .col
+          %h4
+            = item[:name]
+          %h5
+            = item[:provider]
+          %br
+          %h6
+            = item[:genres]
+          %h6
+            last published at
+            = item[:release_date]
+          = button_to "subscribe", { controller: :subscriptions, action: :create, external_id: item[:external_id], name: item[:name], pic_url: item[:pic_url], rss_url: item[:rss_url], provider: item[:provider]  }, method: :post, type: 'submit', class: 'btn btn-primary', disabled: @already_subscribed&.include?(item[:external_id])
+      %br
 
-        %br
-        %h6
-          = item[:genres]
-        %h6
-          last published at @
-          = item[:release_date]
-
-        = button_to "subscribe", { controller: :subscriptions, action: :create, external_id: item[:external_id], name: item[:name], pic_url: item[:pic_url], rss_url: item[:rss_url], provider: item[:provider]  }, method: :post, type: 'submit', class: 'btn btn-primary', disabled: @already_subscribed&.include?(item[:external_id])
+  %br/
 
 = render 'partials/page_navigation'
