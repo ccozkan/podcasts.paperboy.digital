@@ -4,7 +4,8 @@
   %h6
     where paperboy throws your weekly episodes
   %h5
-    = "#{@items.size} NEW EPISODES!"
+    - if @pagy.present?
+      = "#{@pagy.count} NEW EPISODES!"
   %h6
     = "#{Episode.last_week_time_period[:starting_at]} -- #{Episode.last_week_time_period[:ending_at]}"
 
