@@ -13,11 +13,6 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def destroy
-    subscription = Subscription.find_by(user_id: current_user.id, )
-    feed = Feed.find_by(id: permitted_params[:id])
-  end
-
   private
 
   def permitted_params
