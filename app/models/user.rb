@@ -27,6 +27,8 @@ class User < ApplicationRecord
   has_many :feeds, through: :subscriptions
   has_many :episodes, through: :interactions
 
+  include NewRecordInformable
+
   def self.find_or_create_from_provider_data(provider_data)
     user = where(provider: provider_data.provider,
                  uid: provider_data.uid).first_or_initialize
