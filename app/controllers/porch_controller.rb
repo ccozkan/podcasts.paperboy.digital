@@ -5,10 +5,10 @@ class PorchController < ApplicationController
 
   def index
     last_episodes = current_user.last_weeks_episodes
-    if last_episodes.blank?
-      @items = []
-    else
+    if last_episodes.present?
       @pagy, @items = pagy(last_episodes)
+    else
+      @items = []
     end
   end
 end

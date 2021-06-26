@@ -20,7 +20,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable,
-         :omniauthable, omniauth_providers: [:github, :facebook, :google_oauth2]
+         :omniauthable, omniauth_providers: %i[github facebook google_oauth2]
 
   has_many :subscriptions, dependent: :destroy
   has_many :interactions, dependent: :destroy
@@ -42,7 +42,7 @@ class User < ApplicationRecord
   end
 
   def send_weekly_digest
-    DigestMailer.weekly(self.id).deliver_later
+    DigestMailer.weekly(id).deliver_later
   end
 
   def last_weeks_episodes

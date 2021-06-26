@@ -21,7 +21,7 @@ class Feed < ApplicationRecord
   validates_uniqueness_of :external_id
   validates_presence_of :rss_url
 
-  after_commit :catch_up_episodes, on: :create
+  after_create_commit :catch_up_episodes
 
   def catch_up_episodes
     NewEpisodesReceiverWorker.perform_async(self.id)
