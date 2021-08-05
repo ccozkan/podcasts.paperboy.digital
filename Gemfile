@@ -47,7 +47,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '~> 3.3'
+  gem 'listen', '~> 3.6'
   gem 'html2haml'
   gem 'annotate'
 end
