@@ -39,7 +39,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'spring-commands-rspec'
   gem 'rspec-rails', '~> 4.0.2'
-  gem 'shoulda-matchers', '~> 4.0'
+  gem 'shoulda-matchers', '~> 5.0'
   gem 'factory_bot'
   gem 'factory_bot_rails'
   gem 'timecop'
@@ -53,7 +53,7 @@ group :development do
 end
 
 group :test do
-  gem 'shoulda-matchers', '~> 4.0'
+  gem 'shoulda-matchers', '~> 5.0'
   gem 'codecov', require: false
 end
 
