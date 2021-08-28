@@ -34,6 +34,8 @@ class EpisodesReceiverService
                  'published_at': e.published,
                  'title': e.title,
                }
+      next if result.include?(nil)
+
       results << result
     end
     results
