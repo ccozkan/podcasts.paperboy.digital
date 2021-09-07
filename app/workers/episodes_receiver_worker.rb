@@ -1,4 +1,4 @@
-class NewEpisodesReceiverWorker
+class EpisodesReceiverWorker
   include Sidekiq::Worker
 
   def perform(feed_id = nil)
@@ -18,7 +18,7 @@ class NewEpisodesReceiverWorker
       end
 
       episodes.payload.each do |e|
-        next if e[:published_at] < Episode.last_week_time_period[:starting_at] || Episode.find_by(external_id: e[:external_id])
+        next if Episode.find_by(external_id: e[:external_id])
 
         params = e.merge(feed_id: feed.id)
         new_episode = Episode.create!(params)

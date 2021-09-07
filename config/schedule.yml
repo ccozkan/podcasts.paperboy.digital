@@ -4,5 +4,5 @@ weekly_digest_sender_worker:
 
 new_episodes_receiver_job:
   cron: "0 * * * *"
-  class: "NewEpisodesReceiverWorker"
+  class: "EpisodesReceiverWorker"
 

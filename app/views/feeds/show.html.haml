@@ -1,0 +1,40 @@
+.container
+  %h2
+    old episodes
+  %h4
+    = @feed.name
+  %h5
+    = @feed.provider
+
+  .row
+    .col-12
+      %hr/
+      %iframe{src: "", name: 'episode_player', style: "border:none;", width: "100%", scrolling: 'no'}
+      %hr/
+
+  - if @items.present?
+    - @items.each do |item|
+      %br
+
+      .row
+        %h4
+          = "#{item.title.html_safe}"
+        %h5
+          = "by '#{item.feed.name}' @ #{item.published_at.strftime('%Y-%m-%d')}"
+        %h6
+          = link_to "listen", player_url(slug: item.slug), class: "btn btn-info", target: 'episode_player'
+          |
+          = link_to 'download', item.audio_url, target: :_blank, class: 'link-success', download: "ppd_#{item.slug}"
+          |
+          = link_to "dismiss", dismiss_episode_path(episode_id: item.id), class: 'btn btn-light', method: :put
+      %br
+      %hr
+
+  - else
+    .row
+      .col-12
+        This feed does not have any episodes :/
+
+  .row
+    .col
+      = render 'partials/page_navigation'

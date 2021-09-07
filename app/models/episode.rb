@@ -11,7 +11,6 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  slug         :string
-#  duration     :string
 #
 class Episode < ApplicationRecord
   belongs_to :feed
@@ -21,6 +20,8 @@ class Episode < ApplicationRecord
   validates_presence_of :audio_url
 
   has_many :interactions, dependent: :destroy
+
+  default_scope { order(published_at: :desc) }
 
   extend FriendlyId
   friendly_id :title, use: :slugged

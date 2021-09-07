@@ -3,7 +3,7 @@ class DismissEpisodesController < ApplicationController
 
   def update
     Interaction.dismiss_an_episode(permitted_params[:episode_id], current_user.id)
-    redirect_to porch_path
+    redirect_to request.referrer
   end
 
   private
