@@ -6,12 +6,15 @@
     - @items.each do |item|
       .row
         .col
-          = image_tag item.pic_url, class: "img-thumbnail", size: "200x200"
+          = image_tag item.pic_url, class: "img-thumbnail", size: "190x190"
         .col
           %h4
             = item.name
           %h5
             ="by #{item.provider}"
+          = link_to 'old episodes', feed_path(item.slug), method: :get, class: 'btn btn-info'
+          %br
+          %br
           = button_to 'unsubscribe', unsubscription_path(item.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'
       %br
 
