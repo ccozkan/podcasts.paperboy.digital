@@ -11,6 +11,7 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  last_check_error :text
+#  slug             :string
 #
 class Feed < ApplicationRecord
   has_many :episodes, dependent: :destroy
@@ -23,7 +24,10 @@ class Feed < ApplicationRecord
 
   after_create_commit :catch_up_episodes
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   def catch_up_episodes
-    NewEpisodesReceiverWorker.perform_async(self.id)
+    EpisodesReceiverWorker.perform_async(self.id)
   end
 end
