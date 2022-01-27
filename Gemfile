@@ -38,7 +38,7 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'spring-commands-rspec'
-  gem 'rspec-rails', '~> 5.0.2'
+  gem 'rspec-rails', '~> 5.1.0'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'factory_bot'
   gem 'factory_bot_rails'
