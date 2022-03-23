@@ -30,4 +30,10 @@ class Feed < ApplicationRecord
   def catch_up_episodes
     EpisodesReceiverWorker.perform_async(self.id)
   end
+
+  def find_or_create_from_params(params)
+    feed = Feed.find_by(external_id: params[:external_id]) || Feed.new(params)
+    feed.save!
+    feed
+  end
 end

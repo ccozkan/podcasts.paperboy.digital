@@ -2,8 +2,7 @@ class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    feed = Feed.find_by(external_id: permitted_params[:external_id]) || Feed.new(permitted_params)
-    feed.save!
+    feed = Feed.find_or_create_from_params(permitted_params)
 
     @subscription = Subscription.new(user_id: current_user.id, feed_id: feed.id)
     if @subscription.save

@@ -52,4 +52,7 @@ class User < ApplicationRecord
            .where(feed_id: subscriptions.pluck(:feed_id))
            .includes(:feed)
   end
+
+  def starred_episodes
+  end
 end
