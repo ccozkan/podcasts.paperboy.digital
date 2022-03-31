@@ -29,7 +29,7 @@ gem 'feedjira'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 
-gem "honeybadger", "~> 4.11"
+gem "honeybadger", "~> 4.12"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

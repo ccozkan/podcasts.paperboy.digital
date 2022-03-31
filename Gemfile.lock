@@ -125,7 +125,7 @@ GEM
       html2haml (>= 1.0.1)
       railties (>= 5.1)
     hashie (5.0.0)
-    honeybadger (4.11.0)
+    honeybadger (4.12.0)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)
@@ -351,7 +351,7 @@ DEPENDENCIES
   friendly_id
   haml
   haml-rails
-  honeybadger (~> 4.11)
+  honeybadger (~> 4.12)
   html2haml
   httparty
   listen (~> 3.7)
