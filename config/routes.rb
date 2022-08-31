@@ -30,6 +30,4 @@ Rails.application.routes.draw do
   resources :feeds, only: [:show], param: :slug
   resources :dismiss_episodes, only: [:update], param: :episode_id
   resources :unsubscriptions, only: [:destroy], param: :feed_id
-
-  get '/check.txt', to: proc { [200, {}, ['it_works']] }
 end
