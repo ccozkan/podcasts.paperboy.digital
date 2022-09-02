@@ -25,11 +25,11 @@ class EpisodesReceiverService
   private
 
   def format_response(response)
+    results = []
     # TODO: handle blank response better and inform user that url is problematic
     # raise StandardError.new('Response is blank, might be wrong or outdated url') if response.blank?
-    return if response.blank?
+    return results if response.blank?
 
-    results = []
     response.each do |e|
       result = { 'audio_url': e.enclosure_url,
                  'external_id': e.entry_id,
