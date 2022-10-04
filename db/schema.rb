@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[6.1].define(version: 2021_09_07_120417) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_10_04_221640) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,10 +18,10 @@ ActiveRecord::Schema[6.1].define(version: 2021_09_07_120417) do
     t.string "external_id"
     t.string "audio_url"
     t.string "title"
-    t.datetime "published_at"
+    t.datetime "published_at", precision: nil
     t.bigint "feed_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "slug"
     t.index ["external_id"], name: "index_episodes_on_external_id", unique: true
     t.index ["feed_id"], name: "index_episodes_on_feed_id"
@@ -35,8 +34,8 @@ ActiveRecord::Schema[6.1].define(version: 2021_09_07_120417) do
     t.string "external_id"
     t.string "provider"
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.text "last_check_error"
     t.string "slug"
     t.index ["external_id"], name: "index_feeds_on_external_id", unique: true
@@ -58,8 +57,8 @@ ActiveRecord::Schema[6.1].define(version: 2021_09_07_120417) do
     t.bigint "user_id", null: false
     t.bigint "episode_id", null: false
     t.boolean "dismissed", default: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["episode_id"], name: "index_interactions_on_episode_id"
     t.index ["user_id"], name: "index_interactions_on_user_id"
   end
@@ -67,8 +66,8 @@ ActiveRecord::Schema[6.1].define(version: 2021_09_07_120417) do
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
@@ -76,8 +75,8 @@ ActiveRecord::Schema[6.1].define(version: 2021_09_07_120417) do
   create_table "subscriptions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "feed_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["feed_id"], name: "index_subscriptions_on_feed_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
@@ -86,18 +85,19 @@ ActiveRecord::Schema[6.1].define(version: 2021_09_07_120417) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "provider", limit: 50, default: "", null: false
     t.string "uid", limit: 500, default: "", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email", "provider"], name: "index_users_on_email_and_provider", unique: true
+    t.index ["email"], name: "index_users_on_email"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

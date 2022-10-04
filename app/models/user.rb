@@ -27,6 +27,8 @@ class User < ApplicationRecord
   has_many :feeds, through: :subscriptions
   has_many :episodes, through: :interactions
 
+  validates_uniqueness_of :email, scope: :provider
+
   include NewRecordInformable
 
   def self.find_or_create_from_provider_data(provider_data)
