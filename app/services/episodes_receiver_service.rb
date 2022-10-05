@@ -1,5 +1,5 @@
-require 'feedbag'
-require 'feedjira'
+require "feedbag"
+require "feedjira"
 
 class EpisodesReceiverService
   class UrlIsNotFeed < StandardError; end
@@ -43,9 +43,8 @@ class EpisodesReceiverService
       result = { 'audio_url': e.enclosure_url,
                  'external_id': e.entry_id,
                  'published_at': e.published,
-                 'title': e.title,
-               }
-      next if result.values.include?(nil)
+                 'title': e.title }
+      next if result.value? nil
 
       results << result
     end
