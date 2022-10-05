@@ -1,4 +1,8 @@
+require 'feedbag'
+require 'feedjira'
+
 class EpisodesReceiverService
+
   def initialize(rss_url)
     @rss_url = rss_url
   end
@@ -6,12 +10,22 @@ class EpisodesReceiverService
   def call
     response = RequestMakerService.new(@rss_url).call
 
+  #   return response unless response.success?
+
+  # rescue StandartError => e
+  # else
+  # end
+
+
     if response.success?
       begin
         xml = response.payload.body
-        episodes = Feedjira.parse(xml, parser: Feedjira::Parser::ITunesRSS)
-                   .entries.sort_by(&:published).reverse
+        episodes = parse_response(xml)
+
+        raise UrlIsNotFeed unless verify_rss_url
+
         data = format_response(episodes)
+
       rescue StandardError => e
         OpenStruct.new({ success?: false, error: e })
       else
@@ -22,14 +36,20 @@ class EpisodesReceiverService
     end
   end
 
+  class UrlIsNotFeed < StandardError; end
+
   private
+
+  def parse_response(xml)
+    Feedjira.parse(xml, parser: Feedjira::Parser::ITunesRSS).entries.sort_by(&:published).reverse
+  end
+
+  def verify_rss_url
+    Feedbag.feed? @rss_url
+  end
 
   def format_response(response)
     results = []
-    # TODO: handle blank response better and inform user that url is problematic
-    # raise StandardError.new('Response is blank, might be wrong or outdated url') if response.blank?
-    return results if response.blank?
-
     response.each do |e|
       result = { 'audio_url': e.enclosure_url,
                  'external_id': e.entry_id,

@@ -10,7 +10,9 @@ class EpisodesReceiverWorker
 
     feeds.each do |feed|
       episodes = EpisodesReceiverService.new(feed.rss_url).call
-      feed.update(last_check_error: episodes.error)
+
+      feed.update(last_check_error: episodes.error,
+                  healthy: !episodes.error.present?)
 
       unless episodes.success?
         Honeybadger.notify(episodes.error)
