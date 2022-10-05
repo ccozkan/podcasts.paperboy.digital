@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe EpisodesReceiverService, type: :service do
   let(:valid_feed_url) { 'https://feeds.feedburner.com/ReverberationRadio'}
   let(:not_feed_url) { 'https://google.com' }
-  let(:invalid_url) { 'asdasdasd.asdasd' }
+  let(:invalid_url) { 'invalid.url.hahaha' }
 
   describe 'when valid feed url' do
     let(:subject) { EpisodesReceiverService.new(valid_feed_url).call }
@@ -23,6 +23,7 @@ RSpec.describe EpisodesReceiverService, type: :service do
       expect(subject.payload.present?).to eq false
       expect(subject.error.present?).to eq true
       expect(subject.error.class).to eq EpisodesReceiverService::UrlIsNotFeed
+      expect(subject.error.class).to be < StandardError
     end
   end
 
@@ -33,7 +34,7 @@ RSpec.describe EpisodesReceiverService, type: :service do
       expect(subject.success?).to eq false
       expect(subject.payload.present?).to eq false
       expect(subject.error.present?).to eq true
-      expect(subject.error.class).not_to eq EpisodesReceiverService::UrlIsNotFeed
+      expect(subject.error.class).to be < StandardError
     end
   end
 end
