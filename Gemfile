@@ -23,8 +23,9 @@ gem 'haml-rails'
 gem 'friendly_id'
 gem 'pagy'
 
-gem 'httparty'
-gem 'feedjira'
+gem 'httparty', require: false
+gem 'feedjira', require: false
+gem 'feedbag', require: false
 
 gem 'sidekiq'
 gem 'sidekiq-cron'
@@ -34,6 +35,8 @@ gem "honeybadger", "~> 4.12"
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rubocop'
+  gem 'rubocop-rails'
+  gem 'rubocop-performance'
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-rails'
@@ -56,6 +59,5 @@ group :test do
   gem 'shoulda-matchers', '~> 5.2'
   gem 'codecov', require: false
 end
-
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

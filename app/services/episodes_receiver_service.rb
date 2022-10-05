@@ -1,42 +1,50 @@
+require "feedbag"
+require "feedjira"
+
 class EpisodesReceiverService
+  class UrlIsNotFeed < StandardError; end
+
   def initialize(rss_url)
     @rss_url = rss_url
   end
 
   def call
     response = RequestMakerService.new(@rss_url).call
+    return response unless response.success?
 
-    if response.success?
-      begin
-        xml = response.payload.body
-        episodes = Feedjira.parse(xml, parser: Feedjira::Parser::ITunesRSS)
-                   .entries.sort_by(&:published).reverse
-        data = format_response(episodes)
-      rescue StandardError => e
-        OpenStruct.new({ success?: false, error: e })
-      else
-        OpenStruct.new({ success?: true, payload: data })
-      end
-    else
-      response
-    end
+    raise UrlIsNotFeed unless verify_rss_url
+
+    data = handle_successfull_response(response)
+  rescue StandardError => e
+    OpenStruct.new({ success?: false, error: e })
+  else
+    OpenStruct.new({ success?: true, payload: data })
   end
 
   private
 
-  def format_response(response)
-    results = []
-    # TODO: handle blank response better and inform user that url is problematic
-    # raise StandardError.new('Response is blank, might be wrong or outdated url') if response.blank?
-    return results if response.blank?
+  def handle_successfull_response(response)
+    xml = response.payload.body
+    episodes = parse_xml(xml)
+    format_episodes(episodes)
+  end
 
-    response.each do |e|
+  def parse_xml(xml)
+    Feedjira.parse(xml, parser: Feedjira::Parser::ITunesRSS).entries.sort_by(&:published).reverse
+  end
+
+  def verify_rss_url
+    Feedbag.feed? @rss_url
+  end
+
+  def format_episodes(episodes)
+    results = []
+    episodes.each do |e|
       result = { 'audio_url': e.enclosure_url,
                  'external_id': e.entry_id,
                  'published_at': e.published,
-                 'title': e.title,
-               }
-      next if result.values.include?(nil)
+                 'title': e.title }
+      next if result.value? nil
 
       results << result
     end
