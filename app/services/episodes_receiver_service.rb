@@ -2,6 +2,7 @@ require 'feedbag'
 require 'feedjira'
 
 class EpisodesReceiverService
+  class UrlIsNotFeed < StandardError; end
 
   def initialize(rss_url)
     @rss_url = rss_url
@@ -10,6 +11,7 @@ class EpisodesReceiverService
   def call
     response = RequestMakerService.new(@rss_url).call
     return response unless response.success?
+
     raise UrlIsNotFeed unless verify_rss_url
 
     data = handle_successfull_response(response)
@@ -18,8 +20,6 @@ class EpisodesReceiverService
   else
     OpenStruct.new({ success?: true, payload: data })
   end
-
-  class UrlIsNotFeed < StandardError; end
 
   private
 
