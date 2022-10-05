@@ -9,36 +9,25 @@ class EpisodesReceiverService
 
   def call
     response = RequestMakerService.new(@rss_url).call
+    return response unless response.success?
+    raise UrlIsNotFeed unless verify_rss_url
 
-  #   return response unless response.success?
-
-  # rescue StandartError => e
-  # else
-  # end
-
-
-    if response.success?
-      begin
-        xml = response.payload.body
-        episodes = parse_response(xml)
-
-        raise UrlIsNotFeed unless verify_rss_url
-
-        data = format_response(episodes)
-
-      rescue StandardError => e
-        OpenStruct.new({ success?: false, error: e })
-      else
-        OpenStruct.new({ success?: true, payload: data })
-      end
-    else
-      response
-    end
+    data = handle_successfull_response(response)
+  rescue StandardError => e
+    OpenStruct.new({ success?: false, error: e })
+  else
+    OpenStruct.new({ success?: true, payload: data })
   end
 
   class UrlIsNotFeed < StandardError; end
 
   private
+
+  def handle_successfull_response(response)
+    xml = response.payload.body
+    episodes = parse_response(xml)
+    format_response(episodes)
+  end
 
   def parse_response(xml)
     Feedjira.parse(xml, parser: Feedjira::Parser::ITunesRSS).entries.sort_by(&:published).reverse
