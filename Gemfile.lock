@@ -111,6 +111,8 @@ GEM
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.0)
+    feedbag (1.0.0)
+      nokogiri (~> 1.8, >= 1.8.2)
     feedjira (3.2.1)
       loofah (>= 2.3.1)
       sax-machine (>= 1.0)
@@ -376,6 +378,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot
   factory_bot_rails
+  feedbag
   feedjira
   friendly_id
   haml

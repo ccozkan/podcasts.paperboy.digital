@@ -23,8 +23,9 @@ gem 'haml-rails'
 gem 'friendly_id'
 gem 'pagy'
 
-gem 'httparty'
-gem 'feedjira'
+gem 'httparty', require: false
+gem 'feedjira', require: false
+gem 'feedbag', require: false
 
 gem 'sidekiq'
 gem 'sidekiq-cron'
