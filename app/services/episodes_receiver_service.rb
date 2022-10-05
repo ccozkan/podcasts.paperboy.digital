@@ -25,11 +25,11 @@ class EpisodesReceiverService
 
   def handle_successfull_response(response)
     xml = response.payload.body
-    episodes = parse_response(xml)
-    format_response(episodes)
+    episodes = parse_xml(xml)
+    format_episodes(episodes)
   end
 
-  def parse_response(xml)
+  def parse_xml(xml)
     Feedjira.parse(xml, parser: Feedjira::Parser::ITunesRSS).entries.sort_by(&:published).reverse
   end
 
@@ -37,9 +37,9 @@ class EpisodesReceiverService
     Feedbag.feed? @rss_url
   end
 
-  def format_response(response)
+  def format_episodes(episodes)
     results = []
-    response.each do |e|
+    episodes.each do |e|
       result = { 'audio_url': e.enclosure_url,
                  'external_id': e.entry_id,
                  'published_at': e.published,
