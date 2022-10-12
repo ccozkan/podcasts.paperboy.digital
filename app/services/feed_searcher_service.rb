@@ -13,7 +13,7 @@ class FeedSearcherService
   rescue StandardError => e
     ServiceResponse.new(error: e)
   else
-    ServiceResponse.new(payload: data)
+    ServiceResponse.new(payload: result)
   end
 
   private
