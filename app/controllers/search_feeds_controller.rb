@@ -3,7 +3,7 @@ class SearchFeedsController < ApplicationController
 
   def index
     search_results = if permitted_params[:query]
-                       FeedSearcherService.new(permitted_params[:query]).call
+                       retrieve_search_results
                      else
                        []
                      end
@@ -12,6 +12,12 @@ class SearchFeedsController < ApplicationController
   end
 
   private
+
+  def retrieve_search_results
+    # TODO: inform user if something goes wrong, instead of returning []
+    service = FeedSearcherService.new(permitted_params[:query]).call
+    service.success? ? service.payload : []
+  end
 
   def permitted_params
     params.permit(:query)
