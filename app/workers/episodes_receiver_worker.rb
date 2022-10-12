@@ -32,7 +32,6 @@ class EpisodesReceiverWorker
       end
     end
 
-
     end_time = Time.now.to_i
     elapsed_time = end_time - start_time
     Rails.logger.info("~~ EpisodesReceiverService has ended. Took #{elapsed_time} seconds ~~")
