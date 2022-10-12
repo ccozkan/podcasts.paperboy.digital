@@ -9,7 +9,11 @@ class FeedSearcherService
     response = RequestMakerService.new(url).call
     return response unless response.success?
 
-    format_payload(response.payload)
+    result = format_payload(response.payload)
+  rescue StandardError => e
+    ServiceResponse.new(error: e)
+  else
+    ServiceResponse.new(payload: data)
   end
 
   private

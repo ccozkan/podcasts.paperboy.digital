@@ -14,11 +14,11 @@ class EpisodesReceiverService
 
     raise UrlIsNotFeed unless verify_rss_url
 
-    data = handle_successfull_response(response)
+    result = handle_successfull_response(response)
   rescue StandardError => e
-    OpenStruct.new({ success?: false, error: e })
+    ServiceResponse.new(error: e)
   else
-    OpenStruct.new({ success?: true, payload: data })
+    ServiceResponse.new(payload: result)
   end
 
   private
