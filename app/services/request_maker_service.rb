@@ -8,8 +8,8 @@ class RequestMakerService
   def call
     result = HTTParty.get(@url)
   rescue StandardError => e
-    OpenStruct.new({ success?: false, error: e })
+    ServiceResponse.new(error: e)
   else
-    OpenStruct.new({ success?: true, payload: result })
+    ServiceResponse.new(payload: result)
   end
 end
