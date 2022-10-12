@@ -11,7 +11,6 @@ class SearchFeedsController < ApplicationController
   private
 
   def retrieve_search_results
-    # TODO: inform user if something goes wrong, instead of returning []
     service = FeedSearcherService.new(permitted_params[:query]).call
 
     if service.success?
