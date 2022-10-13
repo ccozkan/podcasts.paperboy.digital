@@ -11,12 +11,12 @@ class ServiceResponse
   end
 
   def success?
-    !!@payload && !@error
+    !!payload && !error
   end
 
   private
 
   def inconsistent?
-    @payload && @error || !@payload && !@error
+    payload && error || !payload && !error
   end
 end
