@@ -5,7 +5,7 @@ ruby '3.1.0'
 
 gem 'rails', '~> 7.0.3.1'
 gem 'pg', '~> 1.4'
-gem 'puma', '~> 5.6'
+gem 'puma', '~> 6.0'
 gem 'sass-rails', '>= 6'
 gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'turbolinks', '~> 5.2.0'
