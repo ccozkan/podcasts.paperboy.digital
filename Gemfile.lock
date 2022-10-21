@@ -113,7 +113,7 @@ GEM
     faraday-net_http (3.0.0)
     feedbag (1.0.0)
       nokogiri (~> 1.8, >= 1.8.2)
-    feedjira (3.2.1)
+    feedjira (3.2.2)
       loofah (>= 2.3.1)
       sax-machine (>= 1.0)
     ffi (1.15.5)
@@ -180,7 +180,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.8)
+    nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oauth2 (2.0.9)
