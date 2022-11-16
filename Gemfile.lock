@@ -117,7 +117,7 @@ GEM
       loofah (>= 2.3.1)
       sax-machine (>= 1.0)
     ffi (1.15.5)
-    friendly_id (5.4.2)
+    friendly_id (5.5.0)
       activerecord (>= 4.0.0)
     fugit (1.7.1)
       et-orbi (~> 1, >= 1.2.7)
