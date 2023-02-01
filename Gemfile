@@ -30,7 +30,7 @@ gem 'feedbag', require: false
 gem 'sidekiq'
 gem 'sidekiq-cron'
 
-gem "honeybadger", "~> 4.12"
+gem "honeybadger", "~> 5.1"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
