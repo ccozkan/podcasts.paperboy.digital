@@ -44,7 +44,6 @@ group :development, :test do
   gem "rubocop"
   gem "rubocop-performance"
   gem "rubocop-rails"
-  gem "shoulda-matchers", "~> 5.2"
   gem "spring-commands-rspec"
   gem "timecop"
 end
