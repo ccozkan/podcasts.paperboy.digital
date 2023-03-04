@@ -27,7 +27,7 @@ gem 'httparty', require: false
 gem 'feedjira', require: false
 gem 'feedbag', require: false
 
-gem 'sidekiq'
+gem "sidekiq", '<7'
 gem 'sidekiq-cron'
 
 gem "honeybadger", "~> 4.12"

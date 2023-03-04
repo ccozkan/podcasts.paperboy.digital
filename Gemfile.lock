@@ -413,7 +413,7 @@ DEPENDENCIES
   rubocop-rails
   sass-rails (>= 6)
   shoulda-matchers (~> 5.2)
-  sidekiq
+  sidekiq (< 7)
   sidekiq-cron
   spring-commands-rspec
   sprockets-rails
