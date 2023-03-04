@@ -48,10 +48,10 @@ class User < ApplicationRecord
   end
 
   def last_weeks_episodes
-    Episode.where('published_at > ?', Episode.last_week_time_period[:starting_at])
-           .where('published_at < ?', Episode.last_week_time_period[:ending_at])
-           .where.not(id: interactions.where(dismissed: true).pluck(:episode_id))
-           .where(feed_id: subscriptions.pluck(:feed_id))
-           .includes(:feed)
+    Episode.where("published_at > ?", Episode.last_week_time_period[:starting_at]).
+      where("published_at < ?", Episode.last_week_time_period[:ending_at]).
+      where.not(id: interactions.where(dismissed: true).pluck(:episode_id)).
+      where(feed_id: subscriptions.pluck(:feed_id)).
+      includes(:feed)
   end
 end

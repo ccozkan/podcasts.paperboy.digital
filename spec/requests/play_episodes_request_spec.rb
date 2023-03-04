@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "PlayEpisodes", type: :request do
   let(:episode) { create(:episode) }

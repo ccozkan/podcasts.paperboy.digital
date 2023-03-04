@@ -27,18 +27,18 @@ class Episode < ApplicationRecord
   friendly_id :title, use: :slugged
 
   def self.this_week_time_period
-    last_week = self.last_week_time_period
+    last_week = last_week_time_period
     {
       starting_at: last_week[:starting_at] + 7.days,
-      ending_at: last_week[:ending_at] + 7.days
+      ending_at: last_week[:ending_at] + 7.days,
     }
   end
 
   def self.last_week_time_period
     starting_at = Date.tomorrow.prev_occurring(:wednesday).beginning_of_day - 7.days + 12.hours
     {
-      starting_at: starting_at,
-      ending_at: starting_at + 7.days
+      starting_at:,
+      ending_at: starting_at + 7.days,
     }
   end
 end

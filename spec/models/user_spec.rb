@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
-  describe 'model consistency' do
+  describe "model consistency" do
     it { is_expected.to have_many(:subscriptions).dependent(:destroy) }
     it { is_expected.to have_many(:interactions).dependent(:destroy) }
     it { is_expected.to have_many(:feeds).through(:subscriptions) }
@@ -9,20 +9,20 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_uniqueness_of(:email).scoped_to(:provider) }
   end
 
-  describe '.find_or_create_from_provider_data' do
-    let!(:provider_data) { OmniAuth::AuthHash.new(provider: 'github', uid: 'abc123xyz', info: OmniAuth::AuthHash.new(email: 'jamesbond@double-o-seven.com')) }
+  describe ".find_or_create_from_provider_data" do
+    let!(:provider_data) { OmniAuth::AuthHash.new(provider: "github", uid: "abc123xyz", info: OmniAuth::AuthHash.new(email: "jamesbond@double-o-seven.com")) }
 
-    context 'when new user' do
-      it 'creates a new user' do
-        expect(User.find_by(email: 'jamesbond@double-o-seven.com')).to eq nil
+    context "when new user" do
+      it "creates a new user" do
+        expect(User.find_by(email: "jamesbond@double-o-seven.com")).to eq nil
         user = User.find_or_create_from_provider_data(provider_data)
 
         expect(user.class).to eq User
-        expect(User.find_by(email: 'jamesbond@double-o-seven.com')).not_to eq nil
-        expect(User.find_by(email: 'jamesbond@double-o-seven.com').confirmed?).to eq true
+        expect(User.find_by(email: "jamesbond@double-o-seven.com")).not_to eq nil
+        expect(User.find_by(email: "jamesbond@double-o-seven.com").confirmed?).to eq true
       end
 
-      it 'creates a new user when same email is used for email-pwd user' do
+      it "creates a new user when same email is used for email-pwd user" do
         prev_user = create(:user, email: provider_data.info.email)
         user = User.find_or_create_from_provider_data(provider_data)
 
@@ -31,8 +31,8 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'when not new user' do
-      it 'when previous user is created from oauth' do
+    context "when not new user" do
+      it "when previous user is created from oauth" do
         user_from_first_run = User.find_or_create_from_provider_data(provider_data)
         user_from_second_run = User.find_or_create_from_provider_data(provider_data)
 
