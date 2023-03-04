@@ -25,6 +25,6 @@ class OmniauthController < ApplicationController
   end
 
   def find_or_create_user
-    @user = User.find_or_create_from_provider_data(request.env['omniauth.auth'])
+    @user = User.find_or_create_from_provider_data(request.env["omniauth.auth"])
   end
 end

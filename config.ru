@@ -3,7 +3,6 @@
 require_relative "config/environment"
 require_relative "app/lib/rack/health_check"
 
-
 run Rails.application
 Rails.application.load_server
 

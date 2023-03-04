@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Episode, type: :model do
-  describe 'model consistency' do
+  describe "model consistency" do
     let(:feed) { create(:feed) }
     let(:episode) { create(:episode, feed_id: feed.id) }
 

@@ -7,7 +7,7 @@ class SubscriptionsController < ApplicationController
 
     @subscription = Subscription.new(user_id: current_user.id, feed_id: feed.id)
     if @subscription.save
-      redirect_to dashboard_path, notice: 'Subscribed!'
+      redirect_to dashboard_path, notice: "Subscribed!"
     else
       render json: @subscription.errors
     end

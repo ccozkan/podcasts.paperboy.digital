@@ -28,6 +28,6 @@ class Feed < ApplicationRecord
   friendly_id :name, use: :slugged
 
   def catch_up_episodes
-    EpisodesReceiverWorker.perform_async(self.id)
+    EpisodesReceiverWorker.perform_async(id)
   end
 end

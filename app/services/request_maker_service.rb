@@ -1,4 +1,4 @@
-require 'httparty'
+require "httparty"
 
 class RequestMakerService
   def initialize(url)

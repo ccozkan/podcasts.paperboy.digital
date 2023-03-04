@@ -8,7 +8,7 @@ module Rack
       [
         health_status == "OK" ? 200 : 503,
         { "Content-Type" => "application/json" },
-        [health_status]
+        [health_status],
       ]
     end
 
