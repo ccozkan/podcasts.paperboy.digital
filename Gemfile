@@ -30,7 +30,7 @@ gem "httparty", require: false
 gem "sidekiq", "<7"
 gem "sidekiq-cron"
 
-gem "honeybadger", "~> 4.12"
+gem "honeybadger", "~> 5.2"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
