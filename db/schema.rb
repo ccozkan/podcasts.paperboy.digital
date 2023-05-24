@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_133050) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_24_215006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,7 +60,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_133050) do
     t.boolean "dismissed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "listen_it_latered_at"
     t.index ["episode_id"], name: "index_interactions_on_episode_id"
+    t.index ["user_id", "episode_id"], name: "index_interactions_on_user_id_and_episode_id", unique: true
     t.index ["user_id"], name: "index_interactions_on_user_id"
   end
 

@@ -14,7 +14,28 @@ class Interaction < ApplicationRecord
   belongs_to :episode
   validates_uniqueness_of :user_id, scope: :episode_id
 
-  def self.dismiss_an_episode(episode_id, user_id)
-    Interaction.create!(dismissed: true, episode_id:, user_id:)
+  class << self
+    def dismiss!(episode_id, user_id)
+      find_or_initialize_interaction(episode_id, user_id)
+      @interaction.dismissed = true
+      @interaction.save!
+    end
+
+    def toggle_from_listen_it_later!(episode_id, user_id)
+      find_or_initialize_interaction(episode_id, user_id)
+      @interaction.listen_it_latered_at = if @interaction.listen_it_latered_at?
+                                           nil
+                                         else
+                                           @interaction.listen_it_latered_at = Time.current
+                                         end
+      @interaction.save!
+    end
+
+    private
+
+    def find_or_initialize_interaction(episode_id, user_id)
+      @interaction = Interaction.find_or_initialize_by(episode_id: episode_id,
+                                                      user_id: user_id)
+    end
   end
 end

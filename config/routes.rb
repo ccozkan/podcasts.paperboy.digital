@@ -29,5 +29,6 @@ Rails.application.routes.draw do
   resources :subscriptions, only: [:create]
   resources :feeds, only: [:show], param: :slug
   resources :dismiss_episodes, only: [:update], param: :episode_id
+  resources :listen_it_later_episodes, only: [:index, :update], param: :episode_id, path: :later
   resources :unsubscriptions, only: [:destroy], param: :feed_id
 end

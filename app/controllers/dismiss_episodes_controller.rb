@@ -2,7 +2,7 @@ class DismissEpisodesController < ApplicationController
   before_action :authenticate_user!
 
   def update
-    Interaction.dismiss_an_episode(permitted_params[:episode_id], current_user.id)
+    Interaction.dismiss!(permitted_params[:episode_id], current_user.id)
     redirect_to request.referer
   end
 
