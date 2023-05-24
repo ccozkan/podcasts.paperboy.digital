@@ -1,13 +1,6 @@
 .container
   %h2
-    porch
-  %h6
-    where paperboy throws your weekly episodes
-  %h5
-    - if @pagy.present?
-      = "#{@pagy.count} NEW EPISODES!"
-  %h6
-    = "#{Episode.last_week_time_period[:starting_at]} -- #{Episode.last_week_time_period[:ending_at]}"
+    starred episodes
 
   .row
     .col-12
@@ -29,9 +22,7 @@
           |
           = link_to 'download', item.audio_url, target: :_blank, class: 'link-success', download: "ppd_#{item.slug}"
           |
-          = link_to "dismiss", dismiss_episode_path(episode_id: item.id), class: 'btn btn-light', method: :put
-          |
-          = link_to "star", star_episode_path(episode_id: item.id), class: 'btn btn-light', method: :put
+          = link_to "unstar", star_episode_path(episode_id: item.id), class: 'btn btn-light', method: :put
       %br
       %hr
 

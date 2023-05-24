@@ -54,4 +54,12 @@ class User < ApplicationRecord
       where(feed_id: subscriptions.pluck(:feed_id)).
       includes(:feed)
   end
+
+  def starred_episodes
+    # interactions.where.not(starred_at: nil).order(starred_at: :desc)
+    Episode.
+      where(id: interactions.where.not(starred_at: nil).order(starred_at: :desc).pluck(:episode_id)).
+      where(feed_id: subscriptions.pluck(:feed_id)).
+      includes(:feed)
+  end
 end
