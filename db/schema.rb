@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_133050) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_24_214738) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_133050) do
     t.boolean "dismissed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "starred_at"
     t.index ["episode_id"], name: "index_interactions_on_episode_id"
     t.index ["user_id"], name: "index_interactions_on_user_id"
   end
@@ -96,9 +97,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_133050) do
     t.datetime "updated_at", null: false
     t.string "provider", limit: 50, default: "", null: false
     t.string "uid", limit: 500, default: "", null: false
+    t.string "porch_feed_token"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email", "provider"], name: "index_users_on_email_and_provider", unique: true
     t.index ["email"], name: "index_users_on_email"
+    t.index ["porch_feed_token"], name: "index_users_on_porch_feed_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

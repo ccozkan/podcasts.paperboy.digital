@@ -23,4 +23,27 @@ RSpec.describe Interaction, type: :model do
       expect(user.interactions.first.dismissed).to eq true
     end
   end
+
+  describe ".star_or_unstar_an_episode" do
+    it "stars an episode" do
+      Interaction.star_or_unstar_an_episode!(episode.id, user.id)
+
+      expect(user.interactions.first.starred_at).not_to eq nil
+    end
+
+    it "unstar an episode" do
+      Interaction.star_or_unstar_an_episode!(episode.id, user.id)
+      Interaction.star_or_unstar_an_episode!(episode.id, user.id)
+
+      expect(user.interactions.first.starred_at).to eq nil
+    end
+
+    it "star and then unstar an episode" do
+      Interaction.star_or_unstar_an_episode!(episode.id, user.id)
+      Interaction.star_or_unstar_an_episode!(episode.id, user.id)
+      Interaction.star_or_unstar_an_episode!(episode.id, user.id)
+
+      expect(user.interactions.first.starred_at).not_to eq nil
+    end
+  end
 end
