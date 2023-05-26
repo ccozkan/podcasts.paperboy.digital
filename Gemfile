@@ -46,6 +46,7 @@ group :development, :test do
   gem "rubocop-rails"
   gem "spring-commands-rspec"
   gem "timecop"
+  gem "bullet"
 end
 
 group :development do
