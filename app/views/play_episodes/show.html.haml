@@ -1,6 +1,26 @@
 .container
   .row.text-align-left.align-items-left
     .col-9
-      %audio{:controls => "", autoplay: '', :preload => "auto", :src => "#{@episode.audio_url}"}
+      %audio{:id => "myAudio", :controls => "", autoplay: '', :preload => "auto", :src => "#{@episode.audio_url}"}
       %h2
         = @episode.title + ' / ' +  @episode.feed.name
+      %p
+        Playback position:
+      %span#demo
+      %button#btn Fast forward
+
+:javascript
+  // Get the audio element with id="myAudio"
+  var aud = document.getElementById("myAudio");
+  var btn = document.getElementById("btn").addEventListener('click', fastForward)
+  // Assign an ontimeupdate event to the audio element, and execute a function if the current playback position has changed
+  aud.ontimeupdate = function() {myFunction()};
+
+  function myFunction() {
+  // Display the current position of the audio in a p element with id="demo"
+  document.getElementById("demo").innerHTML = aud.currentTime;
+  }
+  function fastForward() {
+  aud.currentTime += 15;
+  document.getElementById("demo").innerHTML = aud.currentTime;
+  }
