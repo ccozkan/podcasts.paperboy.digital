@@ -26,6 +26,8 @@
           by
           = link_to item.feed.name, feed_path(item.feed.slug), method: :get
           = "@ #{item.published_at.to_formatted_s(:short)}"
+        %p
+          = item.try(:duration)
         %h6
           = link_to "listen", player_url(slug: item.slug), class: "btn btn-info", target: 'episode_player'
           |

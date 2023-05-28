@@ -43,6 +43,7 @@ class EpisodesReceiverService
       result = { 'audio_url': e.enclosure_url,
                  'external_id': e.entry_id,
                  'published_at': e.published,
+                 'duration': e.itunes_duration,
                  'title': e.title }
       next if result.value? nil
 

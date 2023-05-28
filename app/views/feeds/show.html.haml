@@ -21,6 +21,8 @@
           = "#{item.title.html_safe}"
         %h5
           = "by '#{item.feed.name}' @ #{item.published_at.strftime('%Y-%m-%d')}"
+        %p
+          = item.try(:duration)
         %h6
           = link_to "listen", player_url(slug: item.slug), class: "btn btn-info", target: 'episode_player'
           |
