@@ -4,7 +4,14 @@
     = text_field_tag(:query, params[:query])
   %hr/
 
-  - if @items.present?
+  - if @no_results_found
+    .row
+      .col
+        %h4
+          no results
+        %h5
+          no podcast found
+  - elsif @items.present?
     - @items.each do |item|
       .row
         .col

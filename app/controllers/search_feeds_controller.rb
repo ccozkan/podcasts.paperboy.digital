@@ -2,10 +2,15 @@ class SearchFeedsController < ApplicationController
   include Pagy::Backend
 
   def index
-    search_results = permitted_params[:query] ? retrieve_search_results : []
+    return unless permitted_params[:query]
 
-    @already_subscribed = current_user.feeds.pluck(:external_id) if current_user
-    @pagy, @items = pagy_array(search_results)
+    search_results = retrieve_search_results
+    if search_results.empty?
+      @no_results_found = true
+    else
+      @already_subscribed = current_user.feeds.pluck(:external_id) if current_user
+      @pagy, @items = pagy_array(search_results)
+    end
   end
 
   private
