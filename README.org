@@ -2,3 +2,5 @@
 [[https://codecov.io/gh/ccozkan/podcasts.paperboy.digital/branch/master/graph/badge.svg]]
 
 your personal digest for your favorite podcasts
+
+https://podcasts.paperboy.digital/about
