@@ -43,12 +43,19 @@ class EpisodesReceiverService
       result = { 'audio_url': e.enclosure_url,
                  'external_id': e.entry_id,
                  'published_at': e.published,
-                 'duration': e.itunes_duration,
+                 'duration': format_duration(e.itunes_duration),
                  'title': e.title }
       next if result.value? nil
 
       results << result
     end
     results
+  end
+
+  def format_duration(duration)
+    unless duration.include?(':')
+      t = duration.to_i
+      Time.at(t).utc.strftime("%H:%M:%S")
+    end
   end
 end
