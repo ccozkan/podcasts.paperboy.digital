@@ -2,9 +2,14 @@
   .row.text-align-left.align-items-left
     .col-9
       %audio{:id => "podcastAudio", :controls => "", autoplay: '', :preload => "auto", :src => "#{@episode.audio_url}"}
-      %button#fr_btn ⏪
-      %button#ff_btn ⏩
-      %h2
+
+      %button.btn.btn-primary{type: "submit", id: "fr_btn"}
+        %i.bi.bi-skip-backward
+        15s+
+      %button.btn.btn-primary{type: "submit", id: "ff_btn"}
+        15s-
+        %i.bi.bi-skip-forward
+      %p
         = @episode.title + ' / ' +  @episode.feed.name
 
 
