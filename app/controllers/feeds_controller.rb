@@ -5,7 +5,7 @@ class FeedsController < ApplicationController
 
   def show
     @feed = Feed.friendly.find_by(permitted_params)
-    episodes = Episode.where(feed_id: @feed.id).where.not(id: current_user.interactions.where(dismissed: true))
+    episodes = @feed.episodes
 
     if episodes.present?
       @pagy, @items = pagy(episodes)
