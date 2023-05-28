@@ -14,13 +14,14 @@ class EpisodesReceiverWorker
     Rails.logger.info("~~ running for #{feeds.count} feeds")
 
     feeds.each do |feed|
+      Rails.logger.info("~~ running for #{feed.id} id feed")
       episodes = EpisodesReceiverService.new(feed.rss_url).call
 
       feed.update(last_check_error: episodes.error,
                   healthy: !episodes.error.present?)
 
       unless episodes.success?
-        Honeybadger.notify(episodes.error)
+        Honeybadger.notify("not process stopping error: " + episodes.error)
         next
       end
 
