@@ -21,7 +21,7 @@ class EpisodesReceiverWorker
                   healthy: !episodes.error.present?)
 
       unless episodes.success?
-        Honeybadger.notify("not process stopping error: " + episodes.error)
+        Honeybadger.notify("not process stopping error: #{episodes.error}")
         next
       end
 
