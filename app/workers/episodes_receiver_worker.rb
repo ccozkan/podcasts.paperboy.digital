@@ -1,7 +1,7 @@
 class EpisodesReceiverWorker
   include Sidekiq::Worker
 
-  def perform(feed_id = nil)
+  def perform(feed_id = nil, backfill = false)
     Rails.logger.info('~~ EpisodesReceiverService has started ~~')
     start_time = Time.now.to_i
 
@@ -24,11 +24,17 @@ class EpisodesReceiverWorker
         next
       end
 
-      episodes.payload.each do |e|
-        next if Episode.find_by(external_id: e[:external_id])
+      episodes.payload.each do |episode_remote|
+        episode = Episode.find_by(external_id: episode_remote[:external_id])
+        next if episode && !backfill
 
-        params = e.merge(feed_id: feed.id)
-        new_episode = Episode.create!(params)
+        params = episode_remote.merge(feed_id: feed.id)
+
+        if backfill
+          episode.update!(params)
+        else
+          Episode.create!(params)
+        end
       end
     end
 
