@@ -31,7 +31,7 @@ class EpisodesReceiverWorker
 
         params = episode_remote.merge(feed_id: feed.id)
 
-        if backfill
+        if episode && backfill
           episode.update!(params)
         else
           Episode.create!(params)
