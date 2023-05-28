@@ -1,4 +1,4 @@
 [[https://github.com/ccozkan/podcasts.paperboy.digital/workflows/deploy/badge.svg]]
 [[https://codecov.io/gh/ccozkan/podcasts.paperboy.digital/branch/master/graph/badge.svg]]
 
-https://podcasts.paperboy.digital/about
+your personal digest for your favorite podcasts
