@@ -18,24 +18,15 @@
 
     <script src="https://www.googletagmanager.com/gtag/js?id=G-DS0KMLBF6M"></script>
     <script>
-      
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-DS0KMLBF6M');
-
-
-    </script>
-    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-
-
-    <script>
-     const player = new Plyr('#player');
     </script>
   </head>
   <body style="background-color: #EEE8D5;">
     <%= render 'partials/navbar', formats: [:html] %>
-    <%= render 'partials/player', formats: [:html] %>
+    <%= render partial: 'partials/player', formats: [:html], locals: { episode: @episode } if @episode %>
 
     <p class="notice">
       <%= notice %>

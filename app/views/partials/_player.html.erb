@@ -1,5 +1,21 @@
-<div data-controller="audio" class="footer fixed-bottom">
-    <audio id="player" controls>
-        <source src="https://stitcher.simplecastaudio.com/1f63112c-076a-4aa7-8021-e8cbcdb2cafe/episodes/857e067f-27c5-47e9-9cb0-91e1a3b9e904/audio/128/default.mp3?aid=rss_feed&awCollectionId=1f63112c-076a-4aa7-8021-e8cbcdb2cafe&awEpisodeId=857e067f-27c5-47e9-9cb0-91e1a3b9e904&feed=azy33G8_" type="audio/mp3" />
-    </audio>
+<div class="footer fixed-bottom bg-dark text-center">
+    <div class="text-info">
+        <h4> <%= episode.title %> </h4>
+        by
+        <h5 class="text-warning"> <%= episode.feed.name %>
+    </div>
+
+    <button class="btn btn-primary" id="fr_btn" type="submit">
+        <i class="bi bi-skip-backward"></i>
+        15s-
+    </button>
+    <button class="btn btn-primary" id="ff_btn" type="submit">
+        15s+
+        <i class="bi bi-skip-forward"></i>
+    </button>
+    <div data-controller="audio">
+        <audio id="player" controls>
+            <source src="<%= episode.audio_url %>" type="audio/mp3" />
+        </audio>
+    </div>
 </div>
