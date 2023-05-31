@@ -68,3 +68,5 @@ gem "turbo-rails", "~> 1.4"
 
 # Use Redis for Action Cable
 gem "redis", "~> 4.0"
+
+gem "stimulus-rails", "~> 1.2"

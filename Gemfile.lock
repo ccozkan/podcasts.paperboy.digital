@@ -357,6 +357,8 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stimulus-rails (1.2.1)
+      railties (>= 6.0.0)
     strscan (3.0.4)
     temple (0.8.2)
     thor (1.2.1)
@@ -431,6 +433,7 @@ DEPENDENCIES
   sidekiq-cron
   spring-commands-rspec
   sprockets-rails
+  stimulus-rails (~> 1.2)
   timecop
   turbo-rails (~> 1.4)
   turbolinks (~> 5.2.0)
