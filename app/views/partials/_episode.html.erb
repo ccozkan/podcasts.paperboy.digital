@@ -1,0 +1,34 @@
+<br/>
+<div class="row">
+  <h4>
+    <%= "#{item.title.html_safe}" %>
+  </h4>
+  <h5>
+    by
+    <%= link_to item.feed.name, feed_path(item.feed.slug), method: :get %>
+    <%= "@ #{item.published_at.to_formatted_s(:short)}" %>
+  </h5>
+  <p>
+    <%= item.try(:duration) %>
+  </p>
+      <div class="row">
+          <div data-controller="audio" data-audio-url-value="<%= item.audio_url %>" class="col-sm float-left">
+              <button data-action="click->audio#change" class="btn btn-primary">
+                  play
+              </button>
+          </div>
+
+          <div class="col-sm float-left">
+              <%= button_to "later", listen_it_later_episode_path(episode_id: item.id), class: 'btn btn-light', method: :put %>
+          </div>
+          <div class="col-sm float-right">
+              <%= button_to 'download', item.audio_url, target: :_blank, class: 'btn btn-success', download: "ppd_#{item.slug}" %>
+          </div>
+
+          <div class="col-sm float-right">
+              <%= button_to "dismiss", dismiss_episode_path(episode_id: item.id), class: 'btn btn-light', method: :put %>
+          </div>
+      </div>
+</div>
+<br/>
+<hr/>
