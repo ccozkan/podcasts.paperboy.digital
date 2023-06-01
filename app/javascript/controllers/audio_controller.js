@@ -14,10 +14,6 @@ export default class extends Controller {
     next(event) {
         var aud = document.getElementById("player");
         aud.src = this.urlValue;
-      // console.log(aud);
-      // fetch(this.urlValue).then(
-      //     aud.src = "https://chrt.fm/track/GF1E57/traffic.megaphone.fm/TAMC2111426415.mp3?updated=1685311924"
-      // );
-        // player.play();
+        aud.play();
     }
 }

@@ -1,4 +1,4 @@
-<div class="footer fixed-bottom bg-dark text-center">
+<div class="footer fixed-bottom bg-dark text-center" data-turbo-permanent>
     <div class="text-info">
         <h4> <%= try(:episode).try(:title) %> </h4>
     </div>
@@ -7,12 +7,12 @@
         <i class="bi bi-skip-backward"></i>
         15s-
     </button>
-    <button class="btn btn-primary" id="ff_btn" type="submit">
-        15s+
-        <i class="bi bi-skip-forward"></i>
-    </button>
     <div data-controller="audio">
-        <audio id="player" controls data-audio-target="player">
+        <button class="btn btn-primary" id="ff_btn" type="submit">
+            15s+
+            <i class="bi bi-skip-forward"></i>
+        </button>
+        <audio id="player" controls data-turbo-permanent data-target="player">
             <source src="<%= try(:episode).try(:audio_url) %>" type="audio/mp3" class="player-source" />
         </audio>
     </div>
