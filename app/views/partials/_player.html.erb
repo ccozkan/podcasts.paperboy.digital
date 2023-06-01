@@ -1,19 +1,29 @@
-<div class="footer fixed-bottom bg-dark text-center" data-turbo-permanent>
-    <div class="text-info">
-        <h4> <%= try(:episode).try(:title) %> </h4>
-    </div>
+<div class="footer fixed-bottom bg-dark">
+    <div class="mt-2 mb-2" id="sticky-player">
+        <div class="row">
+            <div class="col-8">
+                <audio
+                    controls
+                    id="player"
+                    data-turbo-permanent
+                    src=""
+                    Your browser does not support the
+                    <code>audio</code> element.
+                </audio>
+            </div>
 
-    <button class="btn btn-primary" id="fr_btn" type="submit">
-        <i class="bi bi-skip-backward"></i>
-        15s-
-    </button>
-    <div data-controller="audio">
-        <button class="btn btn-primary" id="ff_btn" type="submit">
-            15s+
-            <i class="bi bi-skip-forward"></i>
-        </button>
-        <audio id="player" controls data-turbo-permanent="" data-target="player">
-            <source src="https://stream.radioparadise.com/aac-64" type="audio/mp3" class="player-source" />
-        </audio>
+            <div class="col-4">
+                <div data-controller="audio">
+                    <button class="btn btn-primary" type="submit" data-action="click->audio#fastForward">
+                        +15secs
+                    </button>
+                    <button class="btn btn-primary" type="submit" data-action="click->audio#fastReverse">
+                        -15secs
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+

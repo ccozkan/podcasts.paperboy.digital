@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-import Plyr from "plyr";
+// import Plyr from "plyr";
 
 export default class extends Controller {
     static values = {
@@ -7,15 +7,23 @@ export default class extends Controller {
     }
 
     initialize() {
-        this.player = new Plyr('#player');
+        // this.player = new Plyr('#player');
+        this.player = document.getElementById("player");
         console.log(this.urlValue);
     }
 
-    next(event) {
+    change(event) {
+        // this.player.source = this.urlValue;
+        // this.player.play();
         this.player.src = this.urlValue;
         this.player.play();
-        // var aud = document.getElementById("player");
-        // aud.src = this.urlValue;
-        // aud.play();
+    }
+
+    fastForward() {
+        this.player.currentTime += 15;
+    }
+
+    fastReverse() {
+        this.player.currentTime -= 15;
     }
 }

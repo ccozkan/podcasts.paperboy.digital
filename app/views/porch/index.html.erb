@@ -32,11 +32,8 @@
         </p>
         <h6>
           <div data-controller="audio" data-audio-url-value="<%= item.audio_url %>">
-                <button data-action="click->audio#next">nxt</button>
-            </div>
-          <button class="btn btn-secondary" id="glisten" type="submit">
-          listen
-          </button>
+                <button data-action="click->audio#change">nxt</button>
+          </div>
           |
           <%= link_to 'download', item.audio_url, target: :_blank, class: 'link-success', download: "ppd_#{item.slug}" %>
           |
