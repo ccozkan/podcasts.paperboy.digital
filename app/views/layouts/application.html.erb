@@ -26,7 +26,7 @@
   </head>
   <body style="background-color: #EEE8D5;">
     <%= render 'partials/navbar', formats: [:html] %>
-    <%= render partial: 'partials/player', formats: [:html], locals: { episode: @episode } if @episode %>
+    <%= render partial: 'partials/player', formats: [:html] %>
 
     <p class="notice">
       <%= notice %>

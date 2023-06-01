@@ -31,7 +31,7 @@
           <%= item.try(:duration) %>
         </p>
         <h6>
-          <div data-controller="audio" data-loader-audio-url="<%= item.audio_url %>">
+          <div data-controller="audio" data-audio-url-value="/<%= item.audio_url %>">
                 <button data-action="click->audio#next">nxt</button>
             </div>
           <button class="btn btn-secondary" id="glisten" type="submit">
