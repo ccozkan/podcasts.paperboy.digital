@@ -2,12 +2,6 @@
   %h2
     listen-it-later episodes
 
-  .row
-    .col-12
-      %hr/
-      %iframe{src: "", name: 'episode_player', style: "border:none;", width: "100%", scrolling: 'no'}
-      %hr/
-
   - if @items.present?
     - @items.each do |item|
       = render partial: 'partials/episode', locals: { item: item }
