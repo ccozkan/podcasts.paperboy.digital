@@ -14,11 +14,13 @@
 
             <div class="col-4">
                 <div data-controller="audio">
-                    <button class="btn btn-primary" type="submit" data-action="click->audio#fastForward">
-                        +15secs
-                    </button>
                     <button class="btn btn-primary" type="submit" data-action="click->audio#fastReverse">
-                        -15secs
+                        -15s
+                        <i class="fa-solid fa-backward-fast"></i>
+                    </button>
+                    <button class="btn btn-primary btn-mm" type="submit" data-action="click->audio#fastForward">
+                        <i class="fa-solid fa-forward-fast"></i>
+                        +15s
                     </button>
                 </div>
             </div>
