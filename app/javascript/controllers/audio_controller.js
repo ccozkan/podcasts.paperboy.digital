@@ -6,24 +6,19 @@ export default class extends Controller {
         url: String
     }
 
-    initialize() {
-        // this.player = new Plyr('#player');
+    play() {
         this.player = document.getElementById("player");
-        console.log(this.urlValue);
-    }
-
-    change(event) {
-        // this.player.source = this.urlValue;
-        // this.player.play();
         this.player.src = this.urlValue;
         this.player.play();
     }
 
     fastForward() {
+        this.player = document.getElementById("player");
         this.player.currentTime += 15;
     }
 
     fastReverse() {
+        this.player = document.getElementById("player");
         this.player.currentTime -= 15;
     }
 }
