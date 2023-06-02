@@ -15,6 +15,7 @@
           <%= "#{Episode.last_week_time_period[:starting_at]} -- #{Episode.last_week_time_period[:ending_at]}" %>
       </h6>
   </div>
+  <hr/>
   <% if @items.present? %>
     <% @items.each do |item| %>
         <%= render partial: 'partials/episode', locals: { item: item, show_dismiss_button: true } %>
