@@ -1,0 +1,93 @@
+<nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="#">Bulma</a></li>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Components</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
+    </ul>
+</nav>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <%= image_tag("paperboy_700.png", width: '42', height: "42") %>
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+      <% if current_user %>
+          <div class="navbar-start">
+              <a class="navbar-item" href="/porch">Porch</a>
+              <a class="navbar-item" href="/later">Later</a>
+              <a class="navbar-item" href="/dashboard">Dashboard</a>
+              <a class="navbar-item" href="/search">Search</a>
+              <a class="navbar-item" href="/about">About</a>
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link">
+                      More
+                  </a>
+
+                  <div class="navbar-dropdown">
+                      <a class="navbar-item">
+                          About
+                      </a>
+                      <a class="navbar-item" href="/settings">Settings</a>
+                      <hr class="navbar-divider">
+                      <a class="navbar-item">
+                          Contact
+                      </a>
+                  </div>
+              </div>
+          </div>
+      <% else %>
+          <div class="navbar-start">
+              <a class="navbar-item" href="/">Home</a>
+              <a class="navbar-item" href="/search">Search</a>
+              <a class="navbar-item" href="/about">About</a>
+          </div>
+          <div class="navbar-end">
+              <div class="navbar-item">
+                  <div class="buttons">
+                      <%= link_to new_user_registration_path, class: 'button is-primary' do %>
+                          <strong>Sign up</strong>
+                      <% end %>
+
+                      <%= link_to new_user_session_path, class: 'button is-light' do %>
+                          Log in
+                      <% end %>
+                  </div>
+              </div>
+          </div>
+      <% end %>
+  </div>
+</nav>
+
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+
+     // Get all "navbar-burger" elements
+     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+     // Add a click event on each of them
+     $navbarBurgers.forEach( el => {
+         el.addEventListener('click', () => {
+
+             // Get the target from the "data-target" attribute
+             const target = el.dataset.target;
+             const $target = document.getElementById(target);
+
+             // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+             el.classList.toggle('is-active');
+             $target.classList.toggle('is-active');
+
+         });
+     });
+
+ });
+</script>
