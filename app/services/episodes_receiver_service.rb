@@ -45,11 +45,18 @@ class EpisodesReceiverService
                  'published_at': e.published,
                  'duration': format_duration(e.itunes_duration),
                  'title': e.title }
-      next if result.value? nil
+      next unless episode_valid?(result)
 
       results << result
     end
     results
+  end
+
+  def episode_valid?(hash)
+    not_required = %w(duration)
+    return false if hash.except(not_required).value? nil
+
+    true
   end
 
   def format_duration(duration)
