@@ -25,7 +25,6 @@
   <body>
       <!-- <body style="background-color: #EEE8D5;"> -->
       <%= render 'partials/new_navbar', formats: [:html] %>
-      <%= render partial: 'partials/player' %>
 
     <p class="notice">
       <%= notice %>
@@ -34,5 +33,7 @@
       <%= alert %>
     </p>
     <%= yield %>
+
+    <%= render partial: 'partials/new_player' %>
   </body>
 </html>

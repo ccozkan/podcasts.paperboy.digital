@@ -1,0 +1,20 @@
+<footer class="has-text-centered is-flex-align-items-flex-end mt-auto">
+    <div data-controller="audio">
+        <button class="button is-primary is-small" type="submit" data-action="click->audio#fastReverse">
+            -15s
+            <i class="fa-solid fa-backward-fast"></i>
+        </button>
+        <button class="button is-primary is-small" type="submit" data-action="click->audio#fastForward">
+            <i class="fa-solid fa-forward-fast"></i>
+            +15s
+        </button>
+    </div>
+    <audio
+        controls
+        id="player"
+        data-turbo-permanent
+        src="https://stream.radioparadise.com/aac-64">
+        Your browser does not support the
+        <code>audio</code> element.
+    </audio>
+</footer>
