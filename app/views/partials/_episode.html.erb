@@ -1,7 +1,7 @@
 <section class="section">
     <div class="container">
         <div class="columns">
-            <div class="column">
+            <div class="column is-one-fifth">
                 <figure class="image is-128x128">
                     <img class="is-rounded" src="<%= item.feed.pic_url %>">
                 </figure>
@@ -10,15 +10,16 @@
                 <h1 class="title is-5">
                     <%= "#{item.title.html_safe}" %>
                 </h1>
-                <p class="subtitle">
+                <p class="subtitle is-6">
                     by
                     <%= link_to item.feed.name, feed_path(item.feed.slug), method: :get %>
+                    <br>
                     <%= "@ #{item.published_at.to_formatted_s(:short)}" %>
+                    <br>
                     <%= item.try(:duration) %>
                 </p>
             </div>
-            <div class="column">
-            </div>
+            <div class="column is-two-fifths">
                 <div data-controller="audio" data-audio-url-value="<%= item.audio_url %>">
                     <div class="buttons">
                         <button data-action="click->audio#play" class="button is-primary">
@@ -30,11 +31,8 @@
                             <i class="fa-regular fa-clock"></i>
                             later
                         <% end %>
-
-                        <%= button_to item.audio_url, target: :_blank, class: 'button is-success is-small', download: "ppd_#{item.slug}" do %>
-                            <i class="fa-solid fa-download"></i>
-                        <% end %>
-
+                    </div>
+                    <div class="buttons">
                         <% if show_dismiss_button %>
                             <%= button_to dismiss_episode_path(episode_id: item.id), class: 'button is-danger is-small', data: { confirm: 'Are you sure?' }, method: :put do %>
                                 dismiss

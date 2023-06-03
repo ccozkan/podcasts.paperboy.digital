@@ -2,25 +2,37 @@
     <div class="container">
         <div class="columns">
             <div class="column">
-                <%= image_tag item[:pic_url], class: "img-thumbnail", size: "200x200" %>
+                <figure class="image is-128x128">
+                    <img class="is-square" src="<%= item[:pic_url] %>">
+                </figure>
             </div>
             <div class="column">
-                <h1 class="title is-4">
+                <h1 class="title is-5">
                     <%= item[:name] %>
                 </h1>
-                <p class="subtitle" >
+                <p class="subtitle is-6" >
+                    by
                     <%= item[:provider] %>
+                    <br>
 
-                </p>
-                <p class="subtitle" >
-                    <%= item[:genres] %>
-                </p>
-                <p class="subtitle" >
                     last published at
                     <%= item[:release_date] %>
                 </p>
-                <%= button_to "subscribe", { controller: :subscriptions, action: :create, external_id: item[:external_id], name: item[:name], pic_url: item[:pic_url], rss_url: item[:rss_url], provider: item[:provider]  }, method: :post, type: 'submit', class: 'button is-primary', disabled: @already_subscribed&.include?(item[:external_id]) %>
-            </div>
+                <p class="subtitle is-6" >
+
+                    <div class="buttons">
+                        <% item[:genres].split(' ~ ').each do |g| %>
+                            <%= button_to g, '/', class: 'button is-info is-small' %>
+                        <% end %>
+                    </div>
+                </p>
+                <div class="buttons">
+                    <%= button_to "subscribe", { controller: :subscriptions, action: :create, external_id: item[:external_id], name: item[:name], pic_url: item[:pic_url], rss_url: item[:rss_url], provider: item[:provider]  }, method: :post, type: 'submit', class: 'button is-primary', disabled: @already_subscribed&.include?(item[:external_id]) %>
+                    <% if @already_subscribed&.include?(item[:external_id]) %>
+                        <!-- TODO: add unsub button -->
+                    <% end %>
+                </div>
+                </div>
             <br/>
         </div>
     </div>
