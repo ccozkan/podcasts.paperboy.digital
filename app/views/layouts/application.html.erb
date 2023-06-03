@@ -12,8 +12,7 @@
     <%= javascript_importmap_tags %>
 
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" rel="stylesheet"></link>
-    <script crossorigin="anonymous" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
     <script src="https://www.googletagmanager.com/gtag/js?id=G-DS0KMLBF6M"></script>
     <script>
@@ -23,9 +22,10 @@
       gtag('config', 'G-DS0KMLBF6M');
     </script>
   </head>
-  <body style="background-color: #EEE8D5;">
-    <%= render 'partials/navbar', formats: [:html] %>
-    <%= render partial: 'partials/player' %>
+  <body>
+      <!-- <body style="background-color: #EEE8D5;"> -->
+      <%= render 'partials/new_navbar', formats: [:html] %>
+      <%= render partial: 'partials/player' %>
 
     <p class="notice">
       <%= notice %>
