@@ -17,14 +17,12 @@
                 <%= render partial: 'partials/episode', locals: { item: item, show_dismiss_button: true } %>
             <% end %>
         <% else %>
-            <div class="row">
-                <div class="col-12">
-                    You don't have any new episodes.
-                    <br/>
-                    This is because you haven't subscribed to feeds, or your feeds did not published new episodes between
-                    <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)} and #{Episode.last_week_time_period[:ending_at].to_s(:short)}" %>
-                    <br/>
-                </div>
+            <div class="col-12">
+                You don't have any new episodes.
+                <br/>
+                This is because you haven't subscribed to feeds, or your feeds did not published new episodes between
+                <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)} and #{Episode.last_week_time_period[:ending_at].to_s(:short)}" %>
+                <br/>
             </div>
         <% end %>
     </div>

@@ -1,0 +1,11 @@
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-half">
+        <% if @pagy && @pagy.pages > 1 %>
+            <%= pagy_bulma_nav(@pagy).html_safe %>
+        <% else %>
+            <br/>
+        <% end %>
+    </div>
+    <div class="column"></div>
+</div>

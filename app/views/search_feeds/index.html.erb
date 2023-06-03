@@ -1,0 +1,40 @@
+<section class="section">
+    <div class="container">
+        <h1 class="title is-2">
+            search
+        </h1>
+
+        <div class="columns">
+            <div class="column is-half">
+                <%= form_tag(search_path, method: :get) do %>
+                    <%= text_field_tag(:query, params[:query], class: "input is-primary") %>
+                <% end %>
+            </div>
+            <div class="column"></div>
+            <div class="column"></div>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+    </div>
+</section>
+<div class="container">
+  <% if @no_results_found %>
+    <div class="row">
+      <div class="col">
+        <h4>
+          no results
+        </h4>
+        <h5>
+          no podcast found
+        </h5>
+      </div>
+    </div>
+  <% elsif @items.present? %>
+    <% @items.each do |item| %>
+       <%= render partial: 'partials/search/feed', locals: { item: item } %>
+    <% end %>
+  <% end %>
+  <br/>
+</div>
+<%= render 'partials/page_navigation' %>

@@ -1,0 +1,29 @@
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <figure class="image is-128x128">
+                    <img class="is-rounded" src="<%= item.pic_url %>">
+                </figure>
+            </div>
+            <div class="column">
+                <h1 class="title is-4">
+                    <%= item.name %>
+                </h1>
+                <p class="subtitle">
+                    <%= "by #{item.provider}" %>
+                </p>
+                <div class="buttons">
+                    <%= link_to feed_path(item.slug), method: :get, class: 'button is-primary' do %>
+                        <i class="fa-thin fa-cassette-tape"></i>
+                        episodes
+                    <% end %>
+                    <%= button_to unsubscription_path(item.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-danger' do %>
+                        unsubscribe
+                    <% end %>
+                </div>
+            </div>
+            <br/>
+        </div>
+    </div>
+</section>
