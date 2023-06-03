@@ -61,3 +61,12 @@ group :test do
 end
 
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "importmap-rails", "~> 1.1"
+
+gem "turbo-rails", "~> 1.4"
+
+# Use Redis for Action Cable
+gem "redis", "~> 4.0"
+
+gem "stimulus-rails", "~> 1.2"

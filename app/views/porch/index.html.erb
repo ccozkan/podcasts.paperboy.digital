@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+      <h2>
+          porch
+      </h2>
+      <h6>
+          where paperboy throws your weekly episodes
+      </h6>
+      <h5>
+          <% if @pagy.present? %>
+              <%= "#{@pagy.count} NEW EPISODES!" %>
+          <% end %>
+      </h5>
+      <h6>
+          <%= "#{Episode.last_week_time_period[:starting_at]} -- #{Episode.last_week_time_period[:ending_at]}" %>
+      </h6>
+  </div>
+  <hr/>
+  <% if @items.present? %>
+    <% @items.each do |item| %>
+        <%= render partial: 'partials/episode', locals: { item: item, show_dismiss_button: true } %>
+    <% end %>
+  <% else %>
+    <div class="row">
+      <div class="col-12">
+        You don't have any new episodes.
+        <br/>
+        This is because you haven't subscribed to feeds, or your feeds did not published new episodes between
+        <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)} and #{Episode.last_week_time_period[:ending_at].to_s(:short)}" %>
+        <br/>
+      </div>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col">
+      <%= render 'partials/page_navigation' %>
+    </div>
+  </div>
+</div>
+

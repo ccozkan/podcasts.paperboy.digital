@@ -1,0 +1,31 @@
+<div class="footer fixed-bottom bg-dark">
+    <div class="mt-2 mb-2" id="sticky-player">
+        <div class="row">
+            <div class="col-8">
+                <audio
+                    controls
+                    id="player"
+                    data-turbo-permanent
+                    src="https://stream.radioparadise.com/aac-64">
+                    Your browser does not support the
+                    <code>audio</code> element.
+                </audio>
+            </div>
+
+            <div class="col-4">
+                <div data-controller="audio">
+                    <button class="btn btn-primary" type="submit" data-action="click->audio#fastReverse">
+                        -15s
+                        <i class="fa-solid fa-backward-fast"></i>
+                    </button>
+                    <button class="btn btn-primary btn-mm" type="submit" data-action="click->audio#fastForward">
+                        <i class="fa-solid fa-forward-fast"></i>
+                        +15s
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

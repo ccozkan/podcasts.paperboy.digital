@@ -1,0 +1,37 @@
+<div class="container">
+    <div data-controller="audio">
+        <audio id="player" controls>
+            <source src="https://stitcher.simplecastaudio.com/1f63112c-076a-4aa7-8021-e8cbcdb2cafe/episodes/857e067f-27c5-47e9-9cb0-91e1a3b9e904/audio/128/default.mp3?aid=rss_feed&awCollectionId=1f63112c-076a-4aa7-8021-e8cbcdb2cafe&awEpisodeId=857e067f-27c5-47e9-9cb0-91e1a3b9e904&feed=azy33G8_" type="audio/mp3" />
+        </audio>
+    </div>
+  <div class="row text-align-left align-items-left">
+    <div class="col-9">
+      <audio id="podcastAudio" preload="auto" src="<%= @episode.audio_url %>"></audio>
+      <button class="btn btn-primary" id="fr_btn" type="submit">
+        <i class="bi bi-skip-backward"></i>
+        15s+
+      </button>
+      <button class="btn btn-primary" id="ff_btn" type="submit">
+        15s-
+        <i class="bi bi-skip-forward"></i>
+      </button>
+      <p>
+        <%= @episode.title + ' / ' +  @episode.feed.name %>
+      </p>
+    </div>
+  </div>
+</div>
+<script>
+  var aud = document.getElementById("podcastAudio");
+  var ff_btn = document.getElementById("ff_btn").addEventListener('click', fastForward)
+  var fr_btn = document.getElementById("fr_btn").addEventListener('click', fastReverse)
+
+  function fastForward() {
+  aud.currentTime += 15;
+  }
+
+  function fastReverse() {
+  aud.currentTime -= 15;
+  }
+
+</script>

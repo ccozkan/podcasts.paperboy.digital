@@ -1,7 +1,7 @@
 class ServiceResponse
-  attr_reader :payload, :error
-
   class PayloadAndErrorPresenceInconsistency < StandardError; end
+
+  attr_reader :payload, :error
 
   def initialize(payload: nil, error: nil)
     @payload = payload
