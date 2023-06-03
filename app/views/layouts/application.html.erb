@@ -26,14 +26,35 @@
       <!-- <body style="background-color: #EEE8D5;"> -->
       <%= render 'partials/new_navbar', formats: [:html] %>
 
-    <p class="notice">
-      <%= notice %>
-    </p>
-    <p class="alert">
-      <%= alert %>
-    </p>
+      <% if notice %>
+          <div class="notification is-success">
+              <button class="delete"></button>
+              <%= notice %>
+          </div>
+      <% end %>
+
+      <% if alert %>
+          <div class="notification is-danger">
+              <button class="delete"></button>
+              <%= alert %>
+          </div>
+
+      <% end %>
+
     <%= yield %>
 
     <%#= render partial: 'partials/new_player' %>
   </body>
+
+  <script>
+   document.addEventListener('DOMContentLoaded', () => {
+       (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+           const $notification = $delete.parentNode;
+
+           $delete.addEventListener('click', () => {
+               $notification.parentNode.removeChild($notification);
+           });
+       });
+   });
+  </script>
 </html>
