@@ -4,7 +4,7 @@ class PorchController < ApplicationController
   include Pagy::Backend
 
   def index
-    last_episodes = current_user.last_weeks_episodes
+    last_episodes = current_user.porch_episodes
     if last_episodes.present?
       @pagy, @items = pagy(last_episodes)
     else
