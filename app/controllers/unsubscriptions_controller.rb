@@ -3,7 +3,7 @@ class UnsubscriptionsController < ApplicationController
 
   def destroy
     @subscription.destroy
-    redirect_to dashboard_path
+    redirect_to subscriptions_path
   end
 
   private
