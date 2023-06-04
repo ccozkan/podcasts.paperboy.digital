@@ -26,6 +26,10 @@ class Episode < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  def player_text
+    "#{title} ~ #{feed.name}"
+  end
+
   def self.this_week_time_period
     last_week = last_week_time_period
     {

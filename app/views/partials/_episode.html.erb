@@ -20,7 +20,7 @@
                 </p>
             </div>
             <div class="column is-two-fifths">
-                <div data-controller="audio" data-audio-url-value="<%= item.audio_url %>">
+                <div data-controller="audio" data-audio-url-value="<%= item.audio_url %>" data-audio-text-value="<%= item.player_text %>">
                     <div class="buttons">
                         <button data-action="click->audio#play" class="button is-primary">
                             <i class="fa-regular fa-circle-play"></i>
