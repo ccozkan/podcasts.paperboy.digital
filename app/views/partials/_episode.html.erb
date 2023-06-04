@@ -1,6 +1,6 @@
 <section class="section">
     <div class="container">
-        <div class="columns">
+        <div class="columns is-vcentered">
             <div class="column is-one-fifth">
                 <figure class="image is-128x128">
                     <img class="is-rounded" src="<%= item.feed.pic_url %>">
@@ -20,8 +20,7 @@
                 </p>
             </div>
             <div class="column is-two-fifths">
-                <div data-controller="audio" data-audio-url-value="<%= item.audio_url %>" data-audio-text-value="<%= item.player_text %>">
-                    <div class="buttons">
+                <div data-controller="audio" data-audio-url-value="<%= item.audio_url %>" data-audio-text-value="<%= item.player_text %>" class="buttons">
                         <button data-action="click->audio#play" class="button is-primary">
                             <i class="fa-regular fa-circle-play"></i>
                             play
@@ -32,7 +31,6 @@
                             later
                         <% end %>
                     </div>
-                    <div class="buttons">
                         <% if show_dismiss_button %>
                             <%= button_to dismiss_episode_path(episode_id: item.id), class: 'button is-danger is-small', data: { confirm: 'Are you sure?' }, method: :put do %>
                                 dismiss
@@ -40,7 +38,6 @@
                             <% end %>
                         <% end %>
                     </div>
-                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,23 @@
+<section class="section">
+    <div class="container">
+        <h2 class="title is-2">
+            listen-it-later episodes
+        </h2>
+        <hr/>
+    </div>
+    <div class="container">
+        <% if @items.present? %>
+            <% @items.each do |item| %>
+                <%= render partial: 'partials/episode', locals: { item: item, show_dismiss_button: false } %>
+            <% end %>
+        <% else %>
+            You don't have any episodes added to listen-it-later.
+            <br/>
+            <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)} and #{Episode.last_week_time_period[:ending_at].to_s(:short)}" %>
+            <br/>
+        <% end %>
+    </div>
+    <div class="container">
+        <%= render 'partials/page_navigation' %>
+    </div>
+</section>

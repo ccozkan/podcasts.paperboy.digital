@@ -1,6 +1,13 @@
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
+  include Pagy::Backend
+
+  def index
+    subscribed_feeds = current_user.feeds
+    @pagy, @items = pagy(subscribed_feeds)
+  end
+
   def create
     feed = Feed.find_by(external_id: permitted_params[:external_id]) || Feed.new(permitted_params)
     feed.save!
