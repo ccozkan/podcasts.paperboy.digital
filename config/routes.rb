@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get '/about' => 'pages#about'
   get '/privacy' => 'pages#privacy'
+  get '/loading' => 'pages#loading'
 
   get '/play/:slug' => 'play_episodes#show', as: 'player'
   #put '/dismiss/:episode_id' => 'dismiss_episodes#update', as: 'dismiss'

@@ -13,16 +13,10 @@
                 <%= render partial: 'partials/episode', locals: { item: item, show_dismiss_button: true } %>
             <% end %>
         <% else %>
-            <div class="row">
-                <div class="col-12">
-                    This feed does not have any episodes :/
-                </div>
-            </div>
+            This feed does not have any episodes🫤
         <% end %>
         <div class="row">
-            <div class="col">
-                <%= render 'partials/page_navigation' %>
-            </div>
+            <%= render 'partials/page_navigation' %>
         </div>
     </div>
 </section>

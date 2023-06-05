@@ -14,6 +14,10 @@ class FeedsController < ApplicationController
     end
   end
 
+  def redirect_to_please_wait_page
+    redirect_to '/loading'
+  end
+
   private
 
   def permitted_params
