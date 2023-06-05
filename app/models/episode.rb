@@ -30,6 +30,7 @@ class Episode < ApplicationRecord
     "#{title} ~ #{feed.name}"
   end
 
+  # move this to lib
   def self.this_week_time_period
     last_week = last_week_time_period
     {

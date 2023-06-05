@@ -1,15 +1,23 @@
 <section class="section">
     <div class="container">
-        <h1 class="title is-2">
+        <h1 class="title is-2 is-family-monospace">
+            🗞️
             porch
         </h1>
         <p class="subtitle">
-            updates daily, cleans up after two wednesdays
-            <br>
+            updates daily🌞, cleans up after two wednesdays🧹
         </p>
-        <p class="has-text-weight-bold">
+        <p class="subtitle is-6">
+            last updated at <%= @last_updated_at %>
+            <%= "#{(Date.today + 12.hours + 30.minutes).to_s(:short)}" %>
+            ~
+            🇬🇧time
+        </p>
+        <p>
+        </p>
+        <p class="subtitle">
             <% if @pagy.present? %>
-                <%= "#{@pagy.count} NEW EPISODES!" %>
+                <%= "#{@pagy.count} NEW EPISODES!🥳" %>
             <% end %>
         </p>
     </div>
@@ -20,11 +28,14 @@
                 <%= render partial: 'partials/episode', locals: { item: item, show_dismiss_button: true } %>
             <% end %>
         <% else %>
-            You don't have any new episodes.
-            <br/>
-            This is because you haven't subscribed to feeds, or your feeds did not published new episodes since
-            <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
-            <br/>
+            <h1 class="title is-5">
+                You don't have any new episodes📭
+
+            </h1>
+            <p class="subtitle is-6">
+                This is because you haven't subscribed to feeds, or your feeds did not published new episodes since
+                <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
+            </p>
         <% end %>
     </div>
     <div class="container">
