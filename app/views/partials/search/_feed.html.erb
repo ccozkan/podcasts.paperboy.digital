@@ -18,13 +18,8 @@
                     last published at
                     <%= item[:release_date] %>
                 </p>
-                <p class="subtitle is-6" >
-
-                    <div class="buttons">
-                        <% item[:genres].split(' ~ ').each do |g| %>
-                            <%= button_to g, '/', class: 'button is-info is-small' %>
-                        <% end %>
-                    </div>
+                <p>
+                    <%=  item[:genres].downcase %>
                 </p>
                 <div class="buttons">
                     <%= button_to "subscribe", { controller: :subscriptions, action: :create, external_id: item[:external_id], name: item[:name], pic_url: item[:pic_url], rss_url: item[:rss_url], provider: item[:provider]  }, method: :post, type: 'submit', class: 'button is-primary', disabled: @already_subscribed&.include?(item[:external_id]) %>
