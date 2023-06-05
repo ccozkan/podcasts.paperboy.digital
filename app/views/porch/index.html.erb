@@ -22,7 +22,7 @@
         </p>
     </div>
     <hr/>
-    <div class="container">
+    <div class="container"> 
         <% if @items.present? %>
             <% @items.each do |item| %>
                 <%= render partial: 'partials/episode', locals: { item: item, show_dismiss_button: true } %>

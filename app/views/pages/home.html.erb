@@ -1,4 +1,4 @@
-<section class="hero is-link is-fullheight-with-navbar">
+<section class="hero is-light is-fullheight-with-navbar">
     <div class="hero-body">
         <div class="columns is-vcentered is-grey-light">
             <div class="column">
@@ -7,87 +7,57 @@
                 </p>
                 <p class="subtitle">
                     your personal digest for your favorite podcasts
+                    ✌
                 </p>
-
                 <br>
-
                 <div class="container">
-                    za
+                    <h1 class="title is-family-monospace is-6">
+                    consume the internet in a minimalistic way
+                    🦥
+                    </h1>
+                    <p>
+                        💤 no push notifications, just weekly emails
+                        <br>
+                        📻 permanent player on the site
+                        <br>
+                        📼 add to listen it later list
+                        <br>
+                        🤙 cool website
+                        <br>
+                        💾open source
+                        <br>
+                    </p>
                 </div>
-                <p>
-                    💤 no push notifications, just optional weekly emails
-                    <br>
-                    📻 permanent player on the site
-                    <br>
-                    📼 listen it later list
-                    <br>
-                    🤙 cool website
-                </p>
-                <div class="buttons">
-                    <div class="button">
-                        <%= link_to 'sign in', new_user_session_path %>
-                    </div>
-                    <div class="button">
-                        <%= link_to 'sign up', new_user_registration_path %>
-                    </div>
+                <div class=="container">
+                    <% unless current_user %>
+                        <div class="buttons mt-4">
+                            <%= button_to 'sign in', new_user_session_path, class: "button is-primary" %>
+                            <%= button_to 'sign up', new_user_registration_path, class: "button is-secondary" %>
+                        </div>
+                    <% end %>
                 </div>
             </div>
             <div class="column">
                 <figure class="image is-grey-light">
-                    <%= image_tag("paperboy_700.png", class: 'img-rounded', width: '300') %>
+                    <%= image_tag("paperboy_700.png", class: 'img-rounded') %>
                 </figure>
             </div>
         </div>
     </div>
 </section>
 <section class="section">
-    <div class="container">
-    </div>
-</section>
-<div class="container">
-  <div class="row text-center justify-content-center">
-    <h2>your personal digest for your favorite podcasts</h2>
-    <br/>
-    <div class="box">
-      <%= image_tag("paperboy_700.png", class: 'img-rounded', width: '300') %>
-    </div>
-    <br/>
-    <br/>
-    <h3>delivered weekly on wednesdays</h3>
-    <h5>
-      <% if current_user %>
-        <%= link_to 'subscriptions', subscriptions_path %>
-        |
-        <%= link_to 'porch', porch_path %>
-        |
-        <%= link_to 'search', search_path %>
-        |
-        <%= link_to 'about', about_path %>
-        |
-        <br/>
-        <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'about', about_path %>
-        |
-        <%= link_to 'search', search_path %>
-        |
-        <%= link_to 'sign in', new_user_session_path %>
-        |
-        <%= link_to 'sign up', new_user_registration_path %>
-      <% end %>
-    </h5>
-    <br/>
-    <br/>
-    <p class="mt-5 mb-3 text-muted">
-      <%= link_to 'source code', 'https://github.com/ccozkan/podcasts.paperboy.digital' %>
-      |
-      <%= link_to 'ccozkan@tutanota.com', 'mailto:ccozkan@tutanota.com' %>
-      |
-      <%= link_to 'author', 'https://ozkan.cc' %>
-      <br/>
-      <%= link_to 'privacy policy', privacy_path %>
-      <br/>
-      021-2023
+    <p class="is-family-monospace">
+        delivering since 2021🚲
     </p>
-  </div>
-</div>
+    <p class="mt-5">
+        <%= link_to 'source code', 'https://github.com/ccozkan/podcasts.paperboy.digital' %>
+        |
+        <%= link_to 'ccozkan@tutanota.com', 'mailto:ccozkan@tutanota.com' %>
+        |
+        <%= link_to 'ccozkan@tutanota.com', 'mailto:ccozkan@tutanota.com' %>
+        |
+        <%= link_to 'author', 'https://ozkan.cc' %>
+    |
+    <br/>
+    </p>
+</section>
