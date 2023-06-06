@@ -3,15 +3,4 @@
 
 your personal digest for your favorite podcasts
 
-podcasts.paperboy.digital
-
-your personal digest for your favorite podcasts ✌
-
-consume the internet in a minimalistic way 🦥
-💤 no push notifications, just weekly emails
-📻 permanent player on the site
-📼 add to listen it later list
-🤙 cool website
-💾open source
-
-https://podcasts.paperboy.digital/
+https://podcasts.paperboy.digital
