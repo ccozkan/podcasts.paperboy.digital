@@ -1,16 +1,47 @@
-name: Podcasts Paperboy Digital tests
-on: [push, pull_request]
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
 jobs:
-  test:
+  Rubocop:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Ruby
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get -yqq install libsqlite3-dev sqlite3
+
+      - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1.0
           bundler-cache: true
+
+      - name: Run
+        run: bundle exec rubocop
+
+  Rspec:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get -yqq install libsqlite3-dev sqlite3
+
+      - name: Set up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.0
+          bundler-cache: true
+
       - name: Prepare test database
         run: bundle exec rails db:test:prepare
-      - name: Run tests
+
+      - name: Run
         run: bundle exec rspec
