@@ -51,7 +51,7 @@ class User < ApplicationRecord
     DigestMailer.weekly(id).deliver_later
   end
 
-  def porch_episodes
+  def digest_episodes
     Episode.where("published_at > ?", Episode.last_week_time_period[:starting_at]).
       where("published_at < ?", Episode.last_week_time_period[:ending_at]).
       where.not(id: interactions.where(dismissed: true).or(interactions.where.not(listen_it_latered_at: nil)).pluck(:episode_id)).
@@ -59,7 +59,7 @@ class User < ApplicationRecord
       includes(:feed)
   end
 
-  def digest_episodes
+  def porch_episodes
     Episode.where("published_at > ?", Episode.last_week_time_period[:starting_at]).
       where.not(id: interactions.where(dismissed: true).or(interactions.where.not(listen_it_latered_at: nil)).pluck(:episode_id)).
       where(feed_id: subscriptions.pluck(:feed_id)).
