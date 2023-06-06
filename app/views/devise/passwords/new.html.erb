@@ -7,8 +7,7 @@
                 <h2 class="title">
                     forgot your password?
                 </h2>
-                <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { "data-turbo": "false", method: :post }) do |f| %>
-                    <%= render "devise/shared/error_messages", resource: resource %>
+                <%= form_for(resource, as: resource_name, url: password_path(resource_name), data: { turbo: false }, html: { "data-turbo": "false", method: :post }) do |f| %>
                     <div class="field">
                         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input', placeholder: 'email' %>
                     </div>
