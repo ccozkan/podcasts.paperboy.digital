@@ -14,10 +14,6 @@
                         <%= f.password_field :password, autocomplete: "current-password", placeholder: 'password', class: 'input'%>
                     </div>
                     <% if devise_mapping.rememberable? %>
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            Remember me
-                        </label>
                         <div class="field">
                             <%= f.check_box :remember_me %>
                             <%= f.label :remember_me, class: 'checkbox' %>
