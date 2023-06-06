@@ -31,6 +31,10 @@ class User < ApplicationRecord
 
   include NewRecordInformable
 
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
+
   def self.find_or_create_from_provider_data(provider_data)
     user = where(provider: provider_data.provider,
                  uid: provider_data.uid).first_or_initialize

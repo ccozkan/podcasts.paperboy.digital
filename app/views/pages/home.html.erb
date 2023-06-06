@@ -31,8 +31,8 @@
                 <div class=="container">
                     <% unless current_user %>
                         <div class="buttons mt-4">
-                            <%= button_to 'sign in', new_user_session_path, class: "button is-primary" %>
-                            <%= button_to 'sign up', new_user_registration_path, class: "button is-secondary" %>
+                            <%= link_to 'sign in', new_user_session_path, class: "button is-primary" %>
+                            <%= link_to 'sign up', new_user_registration_path, class: "button is-secondary" %>
                         </div>
                     <% end %>
                 </div>
