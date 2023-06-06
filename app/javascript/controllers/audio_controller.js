@@ -15,7 +15,6 @@ export default class extends Controller {
         this.player = document.getElementById("player");
         this.player.src = this.urlValue;
         this.player.play();
-        this.updateText();
     }
 
     updateText() {

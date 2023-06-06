@@ -26,9 +26,3 @@ audio {
     height: 30px;
 }
 
-.centralAudioControl {
-    width:100%;
-    display:grid;
-    align-content:center;
-    justify-content: space-aroundd
-}
