@@ -1,7 +1,9 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar is-warning" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    <a class="navbar-item" href="/">
+        <figure class="image is-32x32">
+            <%= image_tag("paperboy_700.png", class: 'is-rounded') %>
+        </figure>
     </a>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -12,93 +14,55 @@
   </div>
 
   <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item">
-        Home
-      </a>
-
-      <a class="navbar-item">
-        Documentation
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">asd</a>
-    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
       <% if current_user %>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="/porch">Porch</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/later">Later</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/subscriptions">Subscriptions</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/search">Search</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/settings">Settings</a>
-          </li>
-        </ul>
+          <div class="navbar-start">
+              <a class="navbar-item" href="/porch">
+                  Porch🗞️
+              </a>
+              <a class="navbar-item" href="/later">
+                  Later📼
+              </a>
+              <a class="navbar-item" href="/subscriptions">Subscriptions
+                  🎙️
+              </a>
+              <a class="navbar-item" href="/search">Search🔍</a>
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link">
+                      More👇
+                  </a>
+
+                  <div class="navbar-dropdown">
+                      <a class="navbar-item" href="/about">
+                          About🚲️
+                      </a>
+                      <a class="navbar-item" href="/settings">Settings⚙️</a>
+                      <hr class="navbar-divider">
+                      <a class="navbar-item">
+                          Contact✏️
+                      </a>
+                  </div>
+              </div>
+          </div>
       <% else %>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/search">Search</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/about">About</a>
-          </li>
-        </ul>
+          <div class="navbar-start">
+              <a class="navbar-item" href="/">Home🏡</a>
+              <a class="navbar-item" href="/search">Search🔍</a>
+              <a class="navbar-item" href="/about">About🚲</a>
+          </div>
+          <div class="navbar-end">
+              <div class="navbar-item">
+                  <div class="buttons">
+                      <%= link_to new_user_registration_path, class: 'button is-primary' do %>
+                          <strong>Sign up</strong>
+                      <% end %>
+
+                      <%= link_to new_user_session_path, class: 'button is-light' do %>
+                          Log in
+                      <% end %>
+                  </div>
+              </div>
+          </div>
       <% end %>
-    </div>
   </div>
 </nav>

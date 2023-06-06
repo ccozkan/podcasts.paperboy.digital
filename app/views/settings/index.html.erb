@@ -2,6 +2,7 @@
     <div class="container">
         <h1 class="title is-2">
             settings
+            ⚙️
         </h1>
         <hr>
 
@@ -12,7 +13,7 @@
         <h1 class="title is-5">
             sign out
         </h1>
-        <%= button_to 'sign out', destroy_user_session_path, method: :delete, data: { turbo_confirm: "You will sign out, are you sure?" }, class: 'button is-link is-light' %>
+        <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'button is-link is-light' %>
         <hr>
 
         <h1 class="title is-5">

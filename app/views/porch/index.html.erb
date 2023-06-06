@@ -7,10 +7,12 @@
         <p class="subtitle">
             updates daily🌞, cleans up after two wednesdays🧹
         </p>
-        <p class="subtitle is-6">
-            last updated at <%= @last_updated_at %>
+        <p class="is-size-7">
+            last updated at
             <%= "#{(Date.today + 12.hours + 30.minutes).to_s(:short)}" %>
-            ~
+            <br>
+            showing posts published since
+            <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
             🇬🇧time
         </p>
         <p>

@@ -16,15 +16,11 @@
 
     <script src="https://www.googletagmanager.com/gtag/js?id=G-DS0KMLBF6M"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DS0KMLBF6M');
     </script>
   </head>
   <body>
       <!-- <body style="background-color: #EEE8D5;"> -->
-      <%= render 'partials/new_navbar', formats: [:html] %>
+      <%= render 'partials/navbar', formats: [:html] %>
 
       <% if notice %>
           <div class="notification is-success">
@@ -38,13 +34,9 @@
               <button class="delete"></button>
               <%= alert %>
           </div>
-
       <% end %>
 
       <%= yield %>
-      <%= render partial: 'partials/new_player' %>
+      <%= render partial: 'partials/player' %>
   </body>
-
-  <script>
-  </script>
 </html>
