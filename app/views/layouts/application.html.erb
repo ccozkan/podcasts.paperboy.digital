@@ -17,7 +17,7 @@
     <script src="https://www.googletagmanager.com/gtag/js?id=G-DS0KMLBF6M"></script>
     <script>
 // hamburger navbar
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbo:load', () => {
 
     // Get all "navbar-burger" elements
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // close notification
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbo:load', () => {
     (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
         const $notification = $delete.parentNode;
 
