@@ -43,7 +43,7 @@ require 'pagy/extras/array'
 
 # Bulma extra: Add nav, nav_js and combo_nav_js helpers and templates for Bulma pagination
 # See https://ddnexus.github.io/pagy/extras/bulma
-# require 'pagy/extras/bulma'
+require 'pagy/extras/bulma'
 
 # Foundation extra: Add nav, nav_js and combo_nav_js helpers and templates for Foundation pagination
 # See https://ddnexus.github.io/pagy/extras/foundation

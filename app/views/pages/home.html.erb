@@ -1,0 +1,61 @@
+<section class="hero is-light is-fullheight-with-navbar">
+    <div class="hero-body">
+        <div class="columns is-vcentered is-grey-light">
+            <div class="column">
+                <p class="title is-family-monospace">
+                    podcasts.paperboy.digital
+                </p>
+                <p class="subtitle">
+                    your personal digest for your favorite podcasts
+                    ✌
+                </p>
+                <br>
+                <div class="container">
+                    <h1 class="title is-family-monospace is-6">
+                    consume the internet in a minimalistic way
+                    🦥
+                    </h1>
+                    <p>
+                        💤 no push notifications, just weekly emails
+                        <br>
+                        📻 permanent player on the site
+                        <br>
+                        📼 add to listen it later list
+                        <br>
+                        🤙 cool website
+                        <br>
+                        💾open source
+                        <br>
+                    </p>
+                </div>
+                <div class=="container">
+                    <% unless current_user %>
+                        <div class="buttons mt-4">
+                            <%= button_to 'sign in', new_user_session_path, class: "button is-primary" %>
+                            <%= button_to 'sign up', new_user_registration_path, class: "button is-secondary" %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+            <div class="column">
+                <figure class="image is-grey-light">
+                    <%= image_tag("paperboy_700.png", class: 'img-rounded') %>
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <p class="is-family-monospace">
+        delivering since 2021🚲
+    </p>
+    <p class="mt-5">
+        <%= link_to 'source code', 'https://github.com/ccozkan/podcasts.paperboy.digital' %>
+        |
+        <%= link_to 'ccozkan@tutanota.com', 'mailto:ccozkan@tutanota.com' %>
+        |
+        <%= link_to 'author', 'https://ozkan.cc' %>
+    |
+    <br/>
+    </p>
+</section>

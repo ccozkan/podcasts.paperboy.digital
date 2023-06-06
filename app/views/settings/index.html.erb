@@ -1,0 +1,24 @@
+<section class="section" >
+    <div class="container">
+        <h1 class="title is-2">
+            settings
+            ⚙️
+        </h1>
+        <hr>
+
+        <h1 class="title is-5">
+            change my password
+        </h1>
+
+        <h1 class="title is-5">
+            sign out
+        </h1>
+        <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'button is-link is-light' %>
+        <hr>
+
+        <h1 class="title is-5">
+            dangerzone
+        </h1>
+        <%= button_to "delete my account!", registration_path(current_user), data: { turbo_confirm: "All your data will be deleted. This is irreversible. Are you sure?" }, method: :delete, class: 'button is-small is-danger is-light' %>
+    </div>
+</section>

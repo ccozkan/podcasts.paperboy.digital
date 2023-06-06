@@ -1,40 +1,46 @@
-<div class="container">
-  <div class="row">
-      <h2>
-          porch
-      </h2>
-      <h6>
-          where paperboy throws your weekly episodes
-      </h6>
-      <h5>
-          <% if @pagy.present? %>
-              <%= "#{@pagy.count} NEW EPISODES!" %>
-          <% end %>
-      </h5>
-      <h6>
-          <%= "#{Episode.last_week_time_period[:starting_at]} -- #{Episode.last_week_time_period[:ending_at]}" %>
-      </h6>
-  </div>
-  <hr/>
-  <% if @items.present? %>
-    <% @items.each do |item| %>
-        <%= render partial: 'partials/episode', locals: { item: item, show_dismiss_button: true } %>
-    <% end %>
-  <% else %>
-    <div class="row">
-      <div class="col-12">
-        You don't have any new episodes.
-        <br/>
-        This is because you haven't subscribed to feeds, or your feeds did not published new episodes between
-        <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)} and #{Episode.last_week_time_period[:ending_at].to_s(:short)}" %>
-        <br/>
-      </div>
+<section class="section">
+    <div class="container">
+        <h1 class="title is-2 is-family-monospace">
+            🗞️
+            porch
+        </h1>
+        <p class="subtitle">
+            updates daily🌞, cleans up after two wednesdays🧹
+        </p>
+        <p class="is-size-7">
+            last updated at
+            <%= "#{(Date.today + 12.hours + 30.minutes).to_s(:short)}" %>
+            <br>
+            showing posts published since
+            <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
+            🇬🇧time
+        </p>
+        <p>
+        </p>
+        <p class="subtitle">
+            <% if @pagy.present? %>
+                <%= "#{@pagy.count} NEW EPISODES!🥳" %>
+            <% end %>
+        </p>
     </div>
-  <% end %>
-  <div class="row">
-    <div class="col">
-      <%= render 'partials/page_navigation' %>
-    </div>
-  </div>
-</div>
+    <hr/>
+    <div class="container"> 
+        <% if @items.present? %>
+            <% @items.each do |item| %>
+                <%= render partial: 'partials/episode', locals: { item: item, show_dismiss_button: true } %>
+            <% end %>
+        <% else %>
+            <h1 class="title is-5">
+                You don't have any new episodes📭
 
+            </h1>
+            <p class="subtitle is-6">
+                This is because you haven't subscribed to feeds, or your feeds did not published new episodes since
+                <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
+            </p>
+        <% end %>
+    </div>
+    <div class="container">
+        <%= render 'partials/page_navigation' %>
+    </div>
+</section>

@@ -1,0 +1,21 @@
+<section class="section">
+    <div class="container">
+        <h1 class="title is-2">
+            subscriptions
+            🎙️
+        </h1>
+    </div>
+    <hr/>
+    <div class="container">
+        <% if @items.present? %>
+            <% @items.each do |item| %>
+                <%= render partial: 'partials/feed', locals: { item: item } %>
+            <% end %>
+        <% else %>
+            <h3>
+                You don't have any subscriptions yet :/
+            </h3>
+        <% end %>
+    </div>
+    <%= render 'partials/page_navigation' %>
+</section>

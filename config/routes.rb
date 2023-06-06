@@ -17,16 +17,16 @@ Rails.application.routes.draw do
 
   get '/about' => 'pages#about'
   get '/privacy' => 'pages#privacy'
+  get '/loading' => 'pages#loading'
 
   get '/play/:slug' => 'play_episodes#show', as: 'player'
   #put '/dismiss/:episode_id' => 'dismiss_episodes#update', as: 'dismiss'
 
   get '/search' => 'search_feeds#index'
-  get '/dashboard' => 'dashboard#index'
   get '/porch' => 'porch#index'
 
   resources :settings, only: [:index]
-  resources :subscriptions, only: [:create]
+  resources :subscriptions, only: [:index, :create]
   resources :feeds, only: [:show], param: :slug
   resources :dismiss_episodes, only: [:update], param: :episode_id
   resources :listen_it_later_episodes, only: [:index, :update], param: :episode_id, path: :later
