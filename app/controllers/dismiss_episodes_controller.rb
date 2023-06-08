@@ -3,10 +3,15 @@ class DismissEpisodesController < ApplicationController
 
   def update
     Interaction.dismiss!(permitted_params[:episode_id], current_user.id)
-    redirect_to request.referer
+    turbofy
   end
 
   private
+
+  def turbofy
+    render turbo_stream:
+             turbo_stream.remove("dismissable_episode")
+  end
 
   def permitted_params
     params.permit(:episode_id)

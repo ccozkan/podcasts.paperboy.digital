@@ -5,7 +5,7 @@ class FeedsController < ApplicationController
 
   def show
     @feed = Feed.friendly.find_by(permitted_params)
-    episodes = @feed.episodes
+    episodes = current_user.undismissed_episodes(@feed.id)
 
     if episodes.present?
       @pagy, @items = pagy(episodes)
