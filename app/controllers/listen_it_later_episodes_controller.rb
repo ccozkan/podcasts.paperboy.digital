@@ -20,6 +20,11 @@ class ListenItLaterEpisodesController < ApplicationController
 
   private
 
+  def turbofy
+    render turbo_stream:
+             turbo_stream.remove("_episode")
+  end
+
   def permitted_params
     params.permit(:episode_id)
   end

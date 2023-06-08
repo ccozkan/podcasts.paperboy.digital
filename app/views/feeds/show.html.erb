@@ -17,16 +17,10 @@
             </div>
             <div class="column">
                 <div class="buttons">
-                    <button data-action="click->audio#handleChange" class="button is-link">
-                        <i class="fa-regular fa-circle-play"></i>
-                        random episode
-                    </button>
                     <%= button_to unsubscription_path(@feed.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button is-danger' do %>
                         unsubscribe
                     <% end %>
                 </div>
-
-                <%= link_to "Dismissed Episodes", root_path, class: 'link' %>
                 </p>
             </div>
         </div>
