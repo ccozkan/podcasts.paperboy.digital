@@ -1,7 +1,8 @@
+<%= turbo_frame_tag "dismissable_episode" do %>
 <section class="section is-info">
     <div class="container">
         <div class="columns is-vcentered">
-            <% if with_image %>
+            <% if show_image %>
                 <div class="column is-one-fifth">
                     <figure class="image is-128x128">
                         <img class="is-rounded" src="<%= item.feed.pic_url %>">
@@ -42,3 +43,4 @@
         </div>
     </div>
 </section>
+<% end %>

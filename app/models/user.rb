@@ -72,4 +72,16 @@ class User < ApplicationRecord
       where(feed_id: subscriptions.pluck(:feed_id)).
       includes(:feed)
   end
+
+  def undismissed_episodes(feed_id)
+    Episode.where(feed_id:).joins(:interactions).
+      where(interactions: { user_id: id }).where.not(interactions: { dismissed: nil}).
+      includes([:feed])
+  end
+
+  def dismissed_episodes(feed_id)
+    Episode.where(feed_id:).joins(:interactions).
+      where(interactions: { user_id: id }).where(interactions: { dismissed: true} ).
+      includes([:feed])
+  end
 end
