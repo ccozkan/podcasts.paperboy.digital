@@ -15,7 +15,7 @@ class FeedsController < ApplicationController
   end
 
   def redirect_to_please_wait_page
-    redirect_to '/loading'
+    redirect_to "/loading"
   end
 
   private

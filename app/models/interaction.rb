@@ -24,18 +24,18 @@ class Interaction < ApplicationRecord
     def toggle_from_listen_it_later!(episode_id, user_id)
       find_or_initialize_interaction(episode_id, user_id)
       @interaction.listen_it_latered_at = if @interaction.listen_it_latered_at?
-                                           nil
-                                         else
-                                           @interaction.listen_it_latered_at = Time.current
-                                         end
+                                            nil
+                                          else
+                                            @interaction.listen_it_latered_at = Time.current
+                                          end
       @interaction.save!
     end
 
     private
 
     def find_or_initialize_interaction(episode_id, user_id)
-      @interaction = Interaction.find_or_initialize_by(episode_id: episode_id,
-                                                      user_id: user_id)
+      @interaction = Interaction.find_or_initialize_by(episode_id:,
+                                                       user_id:)
     end
   end
 end

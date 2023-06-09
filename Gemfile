@@ -33,6 +33,7 @@ gem "sidekiq-cron"
 gem "honeybadger", "~> 4.12"
 
 group :development, :test do
+  gem "bullet"
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "dotenv-rails"
   gem "factory_bot"
@@ -46,7 +47,6 @@ group :development, :test do
   gem "rubocop-rails"
   gem "spring-commands-rspec"
   gem "timecop"
-  gem "bullet"
 end
 
 group :development do
