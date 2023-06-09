@@ -15,9 +15,13 @@
                 </h1>
                 <p class="subtitle is-6">
                     by
-                    <%= link_to item.feed.name, feed_path(item.feed.slug) %>
+                    <%= link_to item.feed.name, feed_path(item.feed.slug), data: { turbo: false } %>
                     <br>
-                    <%= "@ #{item.published_at.to_formatted_s(:short)}" %>
+                    <% if show_short_date %>
+                        <%= "@ #{item.published_at.to_formatted_s(:short)}" %>
+                    <% else %>
+                        <%= "@ #{item.published_at.to_formatted_s(:long)}" %>
+                    <% end %>
                     <br>
                     <%= item.try(:duration) %>
                 </p>
@@ -28,7 +32,7 @@
                         <i class="fa-regular fa-circle-play"></i>
                         play
                     </button>
-                    <% if @listen_it_latereds&.include?(item.id) %>
+                    <% if @override_litl || @listen_it_latereds&.include?(item.id) %>
                             <%= button_to listen_it_later_episode_path(episode_id: item.id),class:"button is-dark", method: :put do %>
                                 un-later
                             <% end %>

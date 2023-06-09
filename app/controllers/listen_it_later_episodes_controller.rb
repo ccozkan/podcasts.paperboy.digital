@@ -10,6 +10,7 @@ class ListenItLaterEpisodesController < ApplicationController
 
   def index
     episodes = current_user.listen_it_later_episodes_ordered
+    @override_litl = true
 
     if episodes.present?
       @pagy, @items = pagy(episodes)

@@ -28,7 +28,7 @@
         <% if @items.present? %>
             <% @items.each do |item| %>
                 <%= turbo_frame_tag "interactable_porch_episode" do %>
-                    <%= render partial: 'partials/episode', locals: { item: item, show_dismiss_button: true, show_image: true } %>
+                    <%= render partial: 'partials/episode', locals: { item: item, show_dismiss_button: true, show_image: true, show_short_date: true } %>
                 <% end %>
             <% end %>
         <% else %>
