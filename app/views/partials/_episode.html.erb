@@ -23,20 +23,24 @@
                 </p>
             </div>
             <div class="column is-two-fifths">
-                <div data-controller="audio" data-audio-url-value="<%= item.audio_url %>" data-audio-text-value="<%= item.player_text %>" class="buttons">
-                        <button data-action="click->audio#handleChange" class="button is-primary">
-                            <i class="fa-regular fa-circle-play"></i>
-                            play
-                        </button>
-                        <%= button_to listen_it_later_episode_path(episode_id: item.id),class:"button is-info", method: :put do %>
-                            <i class="fa-regular fa-clock"></i>
-                            later
-                        <% end %>
+                <div data-controller="audio buttons" data-audio-url-value="<%= item.audio_url %>" data-audio-text-value="<%= item.player_text %>" class="buttons">
+                    <button data-action="click->audio#handleChange" class="button is-primary">
+                        <i class="fa-regular fa-circle-play"></i>
+                        play
+                    </button>
+                    <% if @listen_it_latereds&.include?(item.id) %>
+                            <%= button_to listen_it_later_episode_path(episode_id: item.id),class:"button is-dark", method: :put do %>
+                                un-later
+                            <% end %>
+                    <% else %>
+                            <%= button_to listen_it_later_episode_path(episode_id: item.id),class:"button is-warning", method: :put do %>
+                                listen-it-later
+                            <% end %>
+                    <% end %>
                 </div>
                 <% if show_dismiss_button %>
-                    <%= button_to dismiss_episode_path(episode_id: item.id), class: 'button is-danger is-small',  method: :put do %>
-                        dismiss
-                        <i class="fa-solid fa-trash"></i>
+                    <%= button_to dismiss_episode_path(episode_id: item.id), class: 'button is-link is-small is-light',  method: :put do %>
+                        archieve
                     <% end %>
                 <% end %>
             </div>

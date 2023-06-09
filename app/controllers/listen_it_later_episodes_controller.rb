@@ -9,7 +9,7 @@ class ListenItLaterEpisodesController < ApplicationController
   end
 
   def index
-    episodes = current_user.listen_it_later_episodes
+    episodes = current_user.listen_it_later_episodes_ordered
 
     if episodes.present?
       @pagy, @items = pagy(episodes)
