@@ -5,11 +5,11 @@
             porch
         </h1>
         <p class="subtitle">
-            updates daily🌞, cleans up after two wednesdays🧹
+            updates every wednesday🦦
         </p>
         <p class="is-size-7">
             last updated at
-            <%= "#{(Date.today + 12.hours + 30.minutes).to_s(:short)}" %>
+            <%= "#{Episode.last_week_time_period[:ending_at].to_s(:short)}" %>
             <br>
             showing posts published since
             <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
@@ -24,7 +24,7 @@
         </p>
     </div>
     <hr/>
-    <div class="container"> 
+    <div class="container">
         <% if @items.present? %>
             <% @items.each do |item| %>
                 <%= turbo_frame_tag "interactable_porch_episode" do %>
@@ -37,8 +37,10 @@
 
             </h1>
             <p class="subtitle is-6">
-                This is because you haven't subscribed to feeds, or your feeds did not published new episodes since
-                <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
+                This is because you haven't subscribed to any feeds, or your feeds did not published new episodes in the last wednesday-to-wednesday week
+            </p>
+            <p class="subtitle is-6">
+                Hmm or you interacted with all the episodes and now the porch is empty, in that case, good job 🤙🤙🤙
             </p>
         <% end %>
     </div>
