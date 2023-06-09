@@ -34,7 +34,7 @@
                         <% end %>
                 </div>
                 <% if show_dismiss_button %>
-                    <%= button_to dismiss_episode_path(episode_id: item.id), class: 'button is-danger is-small',  method: :put do %>
+                    <%= button_to dismiss_episode_path(episode_id: item.id), class: 'button is-danger is-small', method: :put do %>
                         dismiss
                         <i class="fa-solid fa-trash"></i>
                     <% end %>

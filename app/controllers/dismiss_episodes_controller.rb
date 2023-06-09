@@ -3,10 +3,21 @@ class DismissEpisodesController < ApplicationController
 
   def update
     Interaction.dismiss!(permitted_params[:episode_id], current_user.id)
+    turbofied_remove && return if request_is_from_porch?
+
     redirect_to request.referer
   end
 
   private
+
+  def turbofied_remove
+    render turbo_stream:
+             turbo_stream.remove("interactable_porch_episode")
+  end
+
+  def request_is_from_porch?
+    request.referer == porch_url
+  end
 
   def permitted_params
     params.permit(:episode_id)
