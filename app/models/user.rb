@@ -62,15 +62,19 @@ class User < ApplicationRecord
   def porch_episodes
     Episode.where("published_at > ?", Episode.last_week_time_period[:starting_at]).
       where("published_at < ?", Episode.last_week_time_period[:ending_at]).
-      where.not(id: interactions.where(dismissed: true).or(interactions.where.not(listen_it_latered_at: nil)).pluck(:episode_id)).
+      where.not(id: interactions.where(dismissed: true).pluck(:episode_id)).
       where(feed_id: subscriptions.pluck(:feed_id)).
       includes(:feed)
   end
 
-  def listen_it_later_episodes
+  def listen_it_later_episodes_ordered
     Episode.
       where(id: interactions.where.not(listen_it_latered_at: nil).order(listen_it_latered_at: :desc).pluck(:episode_id)).
       where(feed_id: subscriptions.pluck(:feed_id)).
       includes(:feed)
+  end
+
+  def listen_it_latereds_of(id_array)
+    interactions.where(episode_id: id_array).where.not(listen_it_latered_at: nil).pluck(:episode_id)
   end
 end

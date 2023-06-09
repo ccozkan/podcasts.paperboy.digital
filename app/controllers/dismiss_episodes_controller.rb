@@ -12,7 +12,7 @@ class DismissEpisodesController < ApplicationController
 
   def turbofied_remove
     render turbo_stream:
-             turbo_stream.remove("interactable_porch_episode")
+             turbo_stream.remove("interactable_porch_episode_#{permitted_params[:episode_id]}")
   end
 
   def request_is_from_porch?

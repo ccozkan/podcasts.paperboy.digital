@@ -1,4 +1,3 @@
-<%= turbo_frame_tag "dismissable_episode" do %>
 <section class="section is-info">
     <div class="container">
         <div class="columns is-vcentered">
@@ -17,30 +16,37 @@
                     by
                     <%= link_to item.feed.name, feed_path(item.feed.slug) %>
                     <br>
-                    <%= "@ #{item.published_at.to_formatted_s(:short)}" %>
+                    <% if show_short_date %>
+                        <%= "@ #{item.published_at.to_formatted_s(:short)}" %>
+                    <% else %>
+                        <%= "@ #{item.published_at.to_formatted_s(:long)}" %>
+                    <% end %>
                     <br>
                     <%= item.try(:duration) %>
                 </p>
             </div>
             <div class="column is-two-fifths">
-                <div data-controller="audio" data-audio-url-value="<%= item.audio_url %>" data-audio-text-value="<%= item.player_text %>" class="buttons">
-                        <button data-action="click->audio#handleChange" class="button is-primary">
-                            <i class="fa-regular fa-circle-play"></i>
-                            play
-                        </button>
-                        <%= button_to listen_it_later_episode_path(episode_id: item.id),class:"button is-info", method: :put do %>
-                            <i class="fa-regular fa-clock"></i>
-                            later
-                        <% end %>
+                <div data-controller="audio buttons" data-audio-url-value="<%= item.audio_url %>" data-audio-text-value="<%= item.player_text %>" class="buttons">
+                    <button data-action="click->audio#handleChange" class="button is-primary">
+                        <i class="fa-regular fa-circle-play"></i>
+                        play
+                    </button>
+                    <% if @override_litl || @listen_it_latereds&.include?(item.id) %>
+                            <%= button_to listen_it_later_episode_path(episode_id: item.id),class:"button is-dark", method: :put do %>
+                                un-later
+                            <% end %>
+                    <% else %>
+                            <%= button_to listen_it_later_episode_path(episode_id: item.id),class:"button is-warning", method: :put do %>
+                                listen-it-later
+                            <% end %>
+                    <% end %>
                 </div>
                 <% if show_dismiss_button %>
-                    <%= button_to dismiss_episode_path(episode_id: item.id), class: 'button is-danger is-small',  method: :put do %>
-                        dismiss
-                        <i class="fa-solid fa-trash"></i>
+                    <%= button_to dismiss_episode_path(episode_id: item.id), class: 'button is-link is-small is-light',  method: :put do %>
+                        archieve
                     <% end %>
                 <% end %>
             </div>
         </div>
     </div>
 </section>
-<% end %>
