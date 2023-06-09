@@ -1,16 +1,33 @@
 <section class="section">
     <div class="container">
-        <h2 class="title is-2">
-            <%= @feed.name %>
-        </h2>
-        <p class="subtitle">
-            by
-            <%= @feed.provider %>
-        </p>
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <figure class="image is-128x128">
+                    <img class="is-rounded" src="<%= @feed.pic_url %>">
+                </figure>
+            </div>
+            <div class="column is-pulled-left">
+                <h2 class="title is-2">
+                    <%= @feed.name %>
+                </h2>
+                <p class="subtitle">
+                    by
+                    <%= @feed.provider %>
+                </p>
+            </div>
+            <div class="column">
+                <div class="buttons">
+                    <%= button_to unsubscription_path(@feed.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button is-danger' do %>
+                        unsubscribe
+                    <% end %>
+                </div>
+                </p>
+            </div>
+        </div>
         <hr/>
         <% if @items.present? %>
             <% @items.each do |item| %>
-                <%= render partial: 'partials/episode', locals: { item: item, show_image: false, show_dismiss_button: true } %>
+                <%= render partial: 'partials/episode', locals: { item: item, show_dismiss_button: true, show_image: false } %>
             <% end %>
         <% else %>
             This feed does not have any episodes🫤
