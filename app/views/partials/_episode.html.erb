@@ -1,18 +1,21 @@
+<%= turbo_frame_tag "dismissable_episode" do %>
 <section class="section is-info">
     <div class="container">
         <div class="columns is-vcentered">
-            <div class="column is-one-fifth">
-                <figure class="image is-128x128">
-                    <img class="is-rounded" src="<%= item.feed.pic_url %>">
-                </figure>
-            </div>
+            <% if show_image %>
+                <div class="column is-one-fifth">
+                    <figure class="image is-128x128">
+                        <img class="is-rounded" src="<%= item.feed.pic_url %>">
+                    </figure>
+                </div>
+            <% end %>
             <div class="column">
                 <h1 class="title is-5">
                     <%= "#{item.title.html_safe}" %>
                 </h1>
                 <p class="subtitle is-6">
                     by
-                    <%= link_to item.feed.name, feed_path(item.feed.slug), method: :get %>
+                    <%= link_to item.feed.name, feed_path(item.feed.slug) %>
                     <br>
                     <%= "@ #{item.published_at.to_formatted_s(:short)}" %>
                     <br>
@@ -31,7 +34,7 @@
                         <% end %>
                 </div>
                 <% if show_dismiss_button %>
-                    <%= button_to dismiss_episode_path(episode_id: item.id), class: 'button is-danger is-small', data: { confirm: 'Are you sure?' }, method: :put do %>
+                    <%= button_to dismiss_episode_path(episode_id: item.id), class: 'button is-danger is-small',  method: :put do %>
                         dismiss
                         <i class="fa-solid fa-trash"></i>
                     <% end %>
@@ -40,3 +43,4 @@
         </div>
     </div>
 </section>
+<% end %>
