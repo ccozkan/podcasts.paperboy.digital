@@ -9,7 +9,7 @@
     <div class="container">
         <% if @items.present? %>
             <% @items.each do |item| %>
-                <%= render partial: 'partials/feed', locals: { item: item } %>
+                <%= render partial: 'partials/feed', locals: { item: item.feed } %>
             <% end %>
         <% else %>
             <h3>
