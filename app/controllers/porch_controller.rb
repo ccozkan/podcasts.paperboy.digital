@@ -5,7 +5,7 @@ class PorchController < ApplicationController
 
   def index
     last_episodes = current_user.porch_episodes
-    @listen_it_latereds = current_user.listen_it_later_interactions_plucked
+    @listen_it_latereds = current_user.listen_it_later_episode_ids_plucked
 
     if last_episodes.present?
       @pagy, @items = pagy(last_episodes)
