@@ -9,11 +9,10 @@ class ListenItLaterEpisodesController < ApplicationController
   end
 
   def index
-    episodes = current_user.listen_it_later_episodes_ordered
-    @override_litl = true
+    interactions = current_user.listen_it_later_interactions_ordered
 
-    if episodes.present?
-      @pagy, @items = pagy(episodes)
+    if interactions.present?
+      @pagy, @items = pagy(interactions)
     else
       @items = []
     end
