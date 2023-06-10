@@ -59,7 +59,7 @@ class EpisodesReceiverService
   end
 
   def format_duration(duration)
-    unless duration.include?(":")
+    unless duration&.includes?(":")
       t = duration.to_i
       Time.at(t).utc.strftime("%H:%M:%S")
     end
