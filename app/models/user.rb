@@ -74,7 +74,15 @@ class User < ApplicationRecord
       order(listen_it_latered_at: :desc)
   end
 
-  def listen_it_latereds_of(id_array)
-    interactions.where(episode_id: id_array).where.not(listen_it_latered_at: nil).pluck(:episode_id)
+  def listen_it_later_interactions_plucked
+    interactions.
+      where.not(listen_it_latered_at: nil).
+      pluck(:episode_id)
+  end
+
+  def subscriptions_ordered
+    subscriptions.
+      includes(:feed)
+      .order(created_at: :desc)
   end
 end

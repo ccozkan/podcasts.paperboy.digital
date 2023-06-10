@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
   include Pagy::Backend
 
   def index
-    subscribed_feeds = current_user.feeds
+    subscribed_feeds = current_user.ordered_subscribed_feeds
     @pagy, @items = pagy(subscribed_feeds)
   end
 
