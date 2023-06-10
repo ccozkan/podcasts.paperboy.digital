@@ -29,6 +29,14 @@ RSpec.describe User, type: :model do
         expect(prev_user).not_to eq user
         expect(prev_user.email).to eq user.email
       end
+
+      it "creates email-pwd user when same email is used for omniauth user" do
+        prev_user = User.find_or_create_from_provider_data(provider_data)
+        user = create(:user, email: provider_data.info.email)
+
+        expect(prev_user).not_to eq user
+        expect(prev_user.email).to eq user.email
+      end
     end
 
     context "when not new user" do

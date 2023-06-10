@@ -19,7 +19,7 @@
 #
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable,
+         :recoverable, :rememberable, :confirmable,
          :omniauthable, omniauth_providers: %i[github facebook google_oauth2]
 
   has_many :subscriptions, dependent: :destroy
@@ -27,13 +27,8 @@ class User < ApplicationRecord
   has_many :feeds, through: :subscriptions
   has_many :episodes, through: :interactions
 
-  validates_uniqueness_of :email, scope: :provider
-
   include NewRecordInformable
-
-  def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
-  end
+  include DeviseTweakable
 
   def self.find_or_create_from_provider_data(provider_data)
     user = where(provider: provider_data.provider,
