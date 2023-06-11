@@ -35,7 +35,7 @@ class User < ApplicationRecord
   before_save :set_defaults
 
   def set_defaults
-    self.provider = 'email' if provider.nil?
+    self.provider = "email" if provider.nil?
   end
 
   def self.find_or_create_from_provider_data(provider_data)
