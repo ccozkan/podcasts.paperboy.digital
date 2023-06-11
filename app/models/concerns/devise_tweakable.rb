@@ -6,7 +6,7 @@ module DeviseTweakable
     validates_format_of     :email, with: Devise.email_regexp
     validates_presence_of     :password, if: :password_required?
     validates_confirmation_of :password, if: :password_required?
-    validates_format_of     :email, with: Devise.email_regexp, allow_blank: true
+    validates_format_of :email, with: Devise.email_regexp, allow_blank: true
   end
 
   def email_required?
