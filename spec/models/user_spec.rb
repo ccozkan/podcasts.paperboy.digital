@@ -7,6 +7,8 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:feeds).through(:subscriptions) }
     it { is_expected.to have_many(:episodes).through(:interactions) }
     it { is_expected.to validate_uniqueness_of(:email).scoped_to(:provider) }
+    it { is_expected.to validate_presence_of(:password) }
+    it { is_expected.to validate_presence_of(:email) }
   end
 
   describe ".find_or_create_from_provider_data" do

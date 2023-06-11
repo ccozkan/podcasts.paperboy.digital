@@ -27,19 +27,26 @@ class User < ApplicationRecord
   has_many :feeds, through: :subscriptions
   has_many :episodes, through: :interactions
 
+  validates_uniqueness_of :email, case_sensitive: true, scope: :provider
+  validates_presence_of :provider
+
+  attribute :provider, default: "email"
+
   include NewRecordInformable
   include DeviseTweakable
 
-  def self.find_or_create_from_provider_data(provider_data)
-    user = where(provider: provider_data.provider,
-                 uid: provider_data.uid).first_or_initialize
-    if user.new_record?
-      user.email = provider_data.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.confirm
-      user.save!
+  class << self
+    def find_or_create_from_provider_data(provider_data)
+      user = where(provider: provider_data.provider,
+                   uid: provider_data.uid).first_or_initialize
+      if user.new_record?
+        user.email = provider_data.info.email
+        user.password = Devise.friendly_token[0, 20]
+        user.confirm
+        user.save!
+      end
+      user
     end
-    user
   end
 
   def send_weekly_digest
