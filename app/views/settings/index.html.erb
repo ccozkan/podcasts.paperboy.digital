@@ -4,8 +4,12 @@
             settings
             ⚙️
         </h1>
+        <p class="">
+            email: <%= current_user.email %>
+            <br>
+            signed in via: <%= current_user.provider %>
+        </p>
         <hr>
-        <%= current_user.id %>
 
         <h1 class="title is-5">
             change my password

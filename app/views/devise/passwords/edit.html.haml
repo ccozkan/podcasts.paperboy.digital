@@ -2,6 +2,7 @@
 = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
   = render "devise/shared/error_messages", resource: resource
   = f.hidden_field :reset_password_token
+  = f.hidden_field :provider, value: "email"
   .field
     = f.label :password, "New password"
     %br/

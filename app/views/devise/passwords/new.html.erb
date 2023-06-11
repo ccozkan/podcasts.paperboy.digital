@@ -10,6 +10,7 @@
                 <%= form_for(resource, as: resource_name, url: password_path(resource_name), data: { turbo: false }, html: { "data-turbo": "false", method: :post }) do |f| %>
                     <div class="field">
                         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input', placeholder: 'email' %>
+                        <%= f.hidden_field :provider, value: 'email' %>
                     </div>
                     <div class="actions buttons">
                         <%= f.submit "Send me reset password instructions", class: 'button' %>

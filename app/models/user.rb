@@ -30,6 +30,9 @@ class User < ApplicationRecord
   validates_uniqueness_of :email, case_sensitive: true, scope: :provider
   validates_presence_of :provider
 
+  AVAILABLE_PROVIDERS = %w(email github facebook google_oauth2).freeze
+  validates :provider, inclusion: { in: AVAILABLE_PROVIDERS }
+
   attribute :provider, default: "email"
 
   include NewRecordInformable
