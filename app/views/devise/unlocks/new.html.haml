@@ -3,6 +3,7 @@
   = render "devise/shared/error_messages", resource: resource
   .field
     = f.label :email
+    = f.hidden_field :provider, value: "email"
     %br/
     = f.email_field :email, autofocus: true, autocomplete: "email"
   .actions
