@@ -11,6 +11,7 @@
                         <br/>
                         <br/>
                         <%= f.password_field :password, autocomplete: "current-password", placeholder: 'password', class: 'input'%>
+                        <%= f.hidden_field :provider, value: 'email' %>
                     </div>
                     <% if devise_mapping.rememberable? %>
                         <div class="field">

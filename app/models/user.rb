@@ -27,8 +27,16 @@ class User < ApplicationRecord
   has_many :feeds, through: :subscriptions
   has_many :episodes, through: :interactions
 
+  validates_presence_of :provider
+
   include NewRecordInformable
   include DeviseTweakable
+
+  before_save :set_defaults
+
+  def set_defaults
+    self.provider = 'email' if provider.nil?
+  end
 
   def self.find_or_create_from_provider_data(provider_data)
     user = where(provider: provider_data.provider,
