@@ -23,45 +23,47 @@ class EpisodesReceiverService
 
   private
 
-  def handle_successfull_response(response)
-    xml = response.payload.body
-    episodes = parse_xml(xml)
-    format_episodes(episodes)
-  end
-
-  def parse_xml(xml)
-    Feedjira.parse(xml, parser: Feedjira::Parser::ITunesRSS).entries.sort_by(&:published).reverse
-  end
-
-  def verify_rss_url
-    Feedbag.feed? @rss_url
-  end
-
-  def format_episodes(episodes)
-    results = []
-    episodes.each do |e|
-      result = { 'audio_url': e.enclosure_url,
-                 'external_id': e.entry_id,
-                 'published_at': e.published,
-                 'duration': format_duration(e.itunes_duration),
-                 'title': e.title }
-      next unless valid?(result)
-
-      results << result
+    def handle_successfull_response(response)
+      xml = response.payload.body
+      episodes = parse_xml(xml)
+      format_episodes(episodes)
     end
-    results
-  end
 
-  def valid?(hash)
-    return false if hash.except(:duration).value? nil
-
-    true
-  end
-
-  def format_duration(duration)
-    unless duration&.include?(":")
-      t = duration.to_i
-      Time.at(t).utc.strftime("%H:%M:%S")
+    def parse_xml(xml)
+      Feedjira.parse(xml, parser: Feedjira::Parser::ITunesRSS).entries.sort_by(&:published).reverse
     end
-  end
+
+    def verify_rss_url
+      Feedbag.feed? @rss_url
+    end
+
+    def format_episodes(episodes)
+      results = []
+      episodes.each do |e|
+        result = { 'audio_url': e.enclosure_url,
+                   'external_id': e.entry_id,
+                   'published_at': e.published,
+                   'duration': format_duration(e.itunes_duration),
+                   'title': e.title,
+                   'summary': e.itunes_summary,
+                 }
+        next unless valid?(result)
+
+        results << result
+      end
+      results
+    end
+
+    def valid?(hash)
+      return false if hash.except(:duration, :summary).value? nil
+
+      true
+    end
+
+    def format_duration(duration)
+      unless duration&.include?(":")
+        t = duration.to_i
+        Time.at(t).utc.strftime("%H:%M:%S")
+      end
+    end
 end
