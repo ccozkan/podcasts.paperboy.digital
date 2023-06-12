@@ -12,11 +12,18 @@
                 </h2>
                 <p class="subtitle">
                     by
-                    <%= @episode.feed.name %>
+                    <%= link_to @episode.feed.name, feed_path(@episode.feed.slug) %>
                     <br>
                     at
                     <%= "@ #{@episode.published_at.to_formatted_s(:long)}" %>
                 </p>
+
+                <div data-controller="audio buttons" data-audio-url-value="<%= @episode.audio_url %>" data-audio-text-value="<%= @episode.player_text %>" class="buttons">
+                    <button data-action="click->audio#handleChange" class="button is-link">
+                        <i class="fa-regular fa-circle-play"></i>
+                        play
+                    </button>
+                </div>
             </div>
             <div class="column">
                 <div class="buttons">
@@ -27,7 +34,6 @@
                     <%= button_to listen_it_later_episode_path(episode_id: @episode.id),class:"button is-primary", method: :put do %>
                         listen-it-later
                     <% end %>
-
                 </div>
                 </p>
             </div>
