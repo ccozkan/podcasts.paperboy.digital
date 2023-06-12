@@ -1,8 +1,9 @@
 class SimpleEmail
   include ActiveModel::Model
 
-  attr_reader :from, :subject, :body
+  attr_accessor :from, :subject, :body
 
+  validates_presence_of :from
   validates_format_of :from, with: Devise.email_regexp
 
   validates_presence_of :subject
