@@ -44,7 +44,8 @@ class EpisodesReceiverService
                  'external_id': e.entry_id,
                  'published_at': e.published,
                  'duration': format_duration(e.itunes_duration),
-                 'title': e.title }
+                 'title': e.title,
+                 'summary': e.summary }
       next unless valid?(result)
 
       results << result
@@ -53,7 +54,7 @@ class EpisodesReceiverService
   end
 
   def valid?(hash)
-    return false if hash.except(:duration).value? nil
+    return false if hash.except(:duration, :summary).value? nil
 
     true
   end

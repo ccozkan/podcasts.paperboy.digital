@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_144923) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_12_193206) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_144923) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.string "duration"
+    t.text "summary"
     t.index ["external_id"], name: "index_episodes_on_external_id", unique: true
     t.index ["feed_id"], name: "index_episodes_on_feed_id"
     t.index ["slug"], name: "index_episodes_on_slug", unique: true

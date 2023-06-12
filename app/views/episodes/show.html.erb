@@ -1,0 +1,51 @@
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <figure class="image is-128x128">
+                    <img class="is-rounded" src="<%= @episode.feed.pic_url %>">
+                </figure>
+            </div>
+            <div class="column is-pulled-left">
+                <h2 class="title is-4">
+                    <%= @episode.title %>
+                </h2>
+                <p class="subtitle">
+                    by
+                    <%= @episode.feed.name %>
+                    <br>
+                    at
+                    <%= "@ #{@episode.published_at.to_formatted_s(:long)}" %>
+                </p>
+            </div>
+            <div class="column">
+                <div class="buttons">
+                    <%= button_to dismiss_episode_path(@episode.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button is-danger' do %>
+                        archieve
+                    <% end %>
+
+                    <%= button_to listen_it_later_episode_path(episode_id: @episode.id),class:"button is-primary", method: :put do %>
+                        listen-it-later
+                    <% end %>
+
+                </div>
+                </p>
+            </div>
+        </div>
+        <hr/>
+
+        <h1 class="title is-4">
+            summary
+        </h1>
+
+        <% if @episode.summary %>
+            <p class="subtitle">
+                <%= sanitize @episode.summary %>
+            </p>
+        <% else %>
+            <p class="subtitle">
+                No summary is found for this episode🥸
+            </p>
+        <% end %>
+    </div>
+</section>
