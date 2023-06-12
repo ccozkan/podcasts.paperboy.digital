@@ -4,21 +4,53 @@
             settings
             ⚙️
         </h1>
-        <p class="">
+        <hr>
+        <p class="subtitle">
             email: <%= current_user.email %>
             <br>
             signed in via: <%= current_user.provider %>
         </p>
+
+        <div class="buttons">
+            <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'button is-link is-light is-small' %>
+        </div>
         <hr>
 
-        <h1 class="title is-5">
-            change my password
-        </h1>
+        <div class="container">
+            <h1 class="title is-5">
+                change porch update period
+            </h1>
 
-        <h1 class="title is-5">
-            sign out
-        </h1>
-        <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'button is-link is-light' %>
+            wip
+            <%= form_with url: "/contact", method: :post, data: { turbo: false } do |form| %>
+                <div class="select is-multiple">
+                    <%= form.select :desired_attribute, ['zen-mode', 'fresh-daily', 'uncool-mode']%>
+                </div>
+                <%= form.submit "save", class: 'button is-link' %>
+            <% end %>
+
+            <br>
+            <p>
+                <span class="has-text-weight-semibold">
+                    zen-mode:
+                </span>
+                gets updated every wednesday, shows episodes from wednesday-wednesday (original paperboydigital mode)
+            </p>
+            <p>
+                <span class="has-text-weight-semibold">
+                    fresh-daily:
+                </span>
+                gets updated everyday, doesn't show episode if it's older than two 2 wednesdays
+            </p>
+            <p>
+                <span class="has-text-weight-semibold">
+                    uncool-mode
+                </span>
+                gets updated everyday, shows everything
+            </p>
+            </p>
+        </div>
+        <hr>
         <hr>
         <hr>
         <h1 class="title is-5">
