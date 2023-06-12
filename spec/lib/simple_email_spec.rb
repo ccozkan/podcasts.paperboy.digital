@@ -1,7 +1,7 @@
 require "rails_helper"
- 
+
 RSpec.describe SimpleEmail, type: :model do
-  let(:subject) { SimpleEmail.new( {'title': 'title', 'subject': 'subject', 'from': 'feedbacker@helloword.com' } ) }
+  let(:subject) { SimpleEmail.new({ 'title': "title", 'subject': "subject", 'from': "feedbacker@helloword.com" }) }
 
   describe "validations" do
     it do
