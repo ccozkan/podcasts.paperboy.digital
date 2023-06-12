@@ -20,8 +20,7 @@ class SimpleEmail
   def formatted
     { 'subject': @subject,
       'body': @body,
-      'from': @from
-    }.to_json
+      'from': @from }.to_json
   end
 
   def self.send_email(feedback)
