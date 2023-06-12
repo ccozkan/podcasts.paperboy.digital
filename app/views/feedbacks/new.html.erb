@@ -19,15 +19,12 @@
             <div class="column is-half">
                 <div class="control has-icons-left has-icons-right">
                     <%= form.text_field :subject, class: 'input is-link is-small', placeholder: 'subject' %>
-                    <span class="icon is-small is-left">
-                        <i class="fa fa-envelope"></i>
-                    </span>
                 </div>
             </div>
 
             <div class="column is-half">
                 <div class="control has-icons-left has-icons-right">
-                    <%= form.text_field :from, class: 'input is-link is-small', placeholder: 'subject', value: current_user.email %>
+                    <%= form.text_field :from, class: 'input is-link is-small', placeholder: 'email', value: current_user.try(:email) || '' %>
                     <span class="icon is-small is-left">
                         <i class="fa fa-envelope"></i>
                     </span>
