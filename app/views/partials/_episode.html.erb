@@ -24,6 +24,9 @@
                     <br>
                     <%= item.try(:duration) %>
                 </p>
+                <%= link_to episode_path(slug: item.slug),class:"button is-info", method: :put, data: { turbo: false } do %>
+                    details
+                <% end %>
             </div>
             <div class="column is-two-fifths">
                 <div data-controller="audio buttons" data-audio-url-value="<%= item.audio_url %>" data-audio-text-value="<%= item.player_text %>" class="buttons">
