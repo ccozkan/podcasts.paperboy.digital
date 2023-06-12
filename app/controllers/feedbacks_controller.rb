@@ -5,7 +5,7 @@ class FeedbacksController < ApplicationController
     email = SimpleEmail.new(permitted_params)
     if email.valid?
       SimpleEmail.send_email(email.formatted)
-      redirect_to root_path, notice: "thanks for the feedback:)"
+      redirect_to root_path, notice: "thank you for the feedback:)"
     else
       redirect_to contact_me_path, alert: email.errors.first.full_message
     end
