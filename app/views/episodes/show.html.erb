@@ -38,8 +38,14 @@
             summary
         </h1>
 
-        <p class="subtitle">
-            <%= sanitize @episode.summary %>
-        </p>
+        <% if @episode.summary %>
+            <p class="subtitle">
+                <%= sanitize @episode.summary %>
+            </p>
+        <% else %>
+            <p class="subtitle">
+                No summary is found for this episode🥸
+            </p>
+        <% end %>
     </div>
 </section>
