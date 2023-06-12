@@ -24,7 +24,7 @@
                     <br>
                     <%= item.try(:duration) %>
                 </p>
-                <%= link_to episode_path(slug: item.slug),class:"button is-info", method: :put, data: { turbo: false } do %>
+                <%= link_to episode_path(slug: item.slug),class:"button is-info", data: { turbo: false } do %>
                     details
                 <% end %>
             </div>
