@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get '/privacy' => 'pages#privacy'
   get '/loading' => 'pages#loading'
 
+  get '/contact' => 'feedbacks#new', as: 'contact_me'
+  post '/contact' => 'feedbacks#create'
+
   get '/play/:slug' => 'play_episodes#show', as: 'player'
   #put '/dismiss/:episode_id' => 'dismiss_episodes#update', as: 'dismiss'
 
