@@ -1,0 +1,43 @@
+<section class="section">
+    <div class="container">
+        <h1 class="title is-2 is-family-monospace">
+            📮
+            contact
+        </h1>
+
+        <p class="subtitle">
+            feel free contact me for bug reports, feature requests, or any feedback
+🐧
+
+        </p>
+    </div>
+    <hr/>
+
+    <%= form_with url: "/contact", method: :post, data: { turbo: false } do |form| %>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half">
+                <div class="control has-icons-left has-icons-right">
+                    <%= form.text_field :subject, class: 'input is-link is-small', placeholder: 'subject' %>
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-envelope"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="column is-half">
+                <div class="control has-icons-left has-icons-right">
+                    <%= form.text_field :from, class: 'input is-link is-small', placeholder: 'subject', value: current_user.email %>
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-envelope"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <textarea class="textarea is-primary" placeholder="message" name="body"></textarea>
+        <div class="buttons mt-5">
+            <%= form.submit "send", class: 'button is-link' %>
+        </div>
+    </div>
+    <% end %>
+</section>
