@@ -45,7 +45,7 @@ class EpisodesReceiverService
                    'published_at': e.published,
                    'duration': format_duration(e.itunes_duration),
                    'title': e.title,
-                   'summary': e.itunes_summary,
+                   'summary': e.summary,
                  }
         next unless valid?(result)
 
