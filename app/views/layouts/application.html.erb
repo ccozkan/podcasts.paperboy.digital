@@ -14,15 +14,19 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
-    <script src="https://www.googletagmanager.com/gtag/js?id=G-DS0KMLBF6M"></script>
     <script>
-// google gtag
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-DS0KMLBF6M');
-
+     var _paq = window._paq = window._paq || [];
+     _paq.push(['trackPageView']);
+     _paq.push(['enableLinkTracking']);
+     (function() {
+         var u="//analytics.zavodx.com/";
+         _paq.push(['setTrackerUrl', u+'matomo.php']);
+         _paq.push(['setSiteId', '3']);
+         var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+         g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+     })();
     </script>
+
   </head>
   <body>
       <!-- <body style="background-color: #EEE8D5;"> -->
