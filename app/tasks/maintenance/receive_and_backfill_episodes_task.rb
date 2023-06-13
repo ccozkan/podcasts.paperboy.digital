@@ -11,7 +11,7 @@ module Maintenance
       episodes = EpisodesReceiverService.new(feed.rss_url).call
 
       feed.update(last_check_error: episodes.error,
-                  healthy: !episodes.error.present?)
+                  healthy: episodes.error.blank?)
 
       unless episodes.success?
         Honeybadger.notify("not process stopping error: #{episodes.error}")
