@@ -2,13 +2,9 @@ require 'sidekiq/web'
 require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
-  scope :monitoring do
-    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_USERNAME"])) &
-        ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_PASSWORD"]))
-    end if Rails.env.production?
-
-    mount Sidekiq::Web, at: '/sidekiq'
+  authenticate :user, lambda { |u| u.admin?  } do
+    mount Sidekiq::Web => "/admin/sidekiq"
+    mount ActiveAnalytics::Engine, at: "/admin/analytics"
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
