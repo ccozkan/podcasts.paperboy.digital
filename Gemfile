@@ -73,3 +73,5 @@ gem "redis", "~> 4.0"
 gem "stimulus-rails", "~> 1.2"
 
 gem "active_analytics", "~> 0.2.1"
+
+gem "maintenance_tasks", "~> 2.1"
