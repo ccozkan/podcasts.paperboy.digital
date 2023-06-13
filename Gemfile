@@ -29,6 +29,7 @@ gem "httparty", require: false
 
 gem "sidekiq", "<8"
 gem "sidekiq-cron"
+gem "sidekiq-failures", "~> 1.0"
 
 gem "honeybadger", "~> 4.12"
 
