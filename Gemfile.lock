@@ -46,6 +46,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_analytics (0.2.1)
+      rails (>= 5.2.0)
     activejob (7.0.3.1)
       activesupport (= 7.0.3.1)
       globalid (>= 0.3.6)
@@ -385,6 +387,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_analytics (~> 0.2.1)
   activerecord-session_store
   annotate
   bullet

@@ -70,3 +70,5 @@ gem "turbo-rails", "~> 1.4"
 gem "redis", "~> 4.0"
 
 gem "stimulus-rails", "~> 1.2"
+
+gem "active_analytics", "~> 0.2.1"

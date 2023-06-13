@@ -90,4 +90,8 @@ class User < ApplicationRecord
       includes(:feed).
       order(created_at: :desc)
   end
+
+  def admin?
+    email == ENV["ADMIN_USER_EMAIL"]
+  end
 end
