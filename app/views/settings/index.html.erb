@@ -22,9 +22,9 @@
             </h1>
 
             wip
-            <%= form_with url: "/contact", method: :post, data: { turbo: false } do |form| %>
+            <%= form_with url: setting_path(id: current_user.id) , method: :put, data: { turbo: false } do |form| %>
                 <div class="select is-multiple">
-                    <%= form.select :desired_attribute, ['zen-mode', 'fresh-daily', 'uncool-mode']%>
+                    <%= form.select :porch_update_mode, ['zen-mode', 'fresh-daily', 'uncool-mode']%>
                 </div>
                 <%= form.submit "save", class: 'button is-link' %>
             <% end %>

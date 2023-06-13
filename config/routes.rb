@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get '/contact' => 'feedbacks#new', as: 'contact_me'
   post '/contact' => 'feedbacks#create'
+  # resources :feedbacks, only [:new, :create]
 
   get '/play/:slug' => 'play_episodes#show', as: 'player'
   #put '/dismiss/:episode_id' => 'dismiss_episodes#update', as: 'dismiss'
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
   get '/search' => 'search_feeds#index'
   get '/porch' => 'porch#index'
 
-  resources :settings, only: [:index]
+  resources :settings, only: [:index, :update]
   resources :subscriptions, only: [:index, :create]
   resources :feeds, only: [:show], param: :slug
   resources :episodes, only: [:show], param: :slug
