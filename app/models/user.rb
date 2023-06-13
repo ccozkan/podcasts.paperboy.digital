@@ -92,6 +92,6 @@ class User < ApplicationRecord
   end
 
   def admin?
-    email == ENV['ADMIN_USER_EMAIL']
+    email == ENV["ADMIN_USER_EMAIL"]
   end
 end
