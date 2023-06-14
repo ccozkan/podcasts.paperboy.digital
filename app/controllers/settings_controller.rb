@@ -5,7 +5,7 @@ class SettingsController < ApplicationController
 
   def update
   end
-
+# 
   private
 
   def post_params
