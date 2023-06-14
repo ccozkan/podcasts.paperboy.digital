@@ -28,7 +28,6 @@ module Maintenance
       end
     end
 
-    def count
-    end
+    def count; end
   end
 end
