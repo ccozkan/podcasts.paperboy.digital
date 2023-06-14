@@ -13,14 +13,10 @@ module Maintenance
       feed.update(last_check_error: episodes.error,
                   healthy: episodes.error.blank?)
 
-      unless episodes.success?
-        Honeybadger.notify("not process stopping error: #{episodes.error}")
-        return
-      end
+      return unless episodes.success?
 
       episodes.payload.each do |episode_remote|
         episode = Episode.find_by(external_id: episode_remote[:external_id])
-        return if episode
 
         params = episode_remote.merge(feed_id: feed.id)
 
@@ -33,8 +29,6 @@ module Maintenance
     end
 
     def count
-      # Optionally, define the number of rows that will be iterated over
-      # This is used to track the task's progress
     end
   end
 end
