@@ -19,16 +19,16 @@
     <div class="container">
     </div>
 </section>
+
 <div class="container">
   <% if @no_results_found %>
     <div class="row">
       <div class="col">
-        <h4>
-          no results
+        <h4 class="has-text-weight-semibold subtitle">
+          no results found for
+          <br>
+          <%= @query %>
         </h4>
-        <h5>
-          no podcast found
-        </h5>
       </div>
     </div>
   <% elsif @items.present? %>

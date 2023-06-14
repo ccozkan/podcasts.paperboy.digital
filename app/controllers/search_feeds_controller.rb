@@ -2,7 +2,8 @@ class SearchFeedsController < ApplicationController
   include Pagy::Backend
 
   def index
-    return unless permitted_params[:query]
+    @query = permitted_params[:query]
+    return unless @query
 
     search_results = retrieve_search_results
     if search_results.empty?

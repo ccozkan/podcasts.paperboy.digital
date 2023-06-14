@@ -14,7 +14,7 @@
                 </h1>
                 <p class="subtitle is-6">
                     by
-                    <%= link_to item.feed.name, feed_path(item.feed.slug), data: { turbo: false } %>
+                    <%= link_to item.feed.name, feed_path(item.feed.slug), data: { turbo_frame: "_top" } %>
                     <br>
                     <% if show_short_date %>
                         <%= "@ #{item.published_at.to_formatted_s(:short)}" %>
@@ -24,7 +24,7 @@
                     <br>
                     <%= item.try(:duration) %>
                 </p>
-                <%= link_to episode_path(slug: item.slug),class:"button is-info is-small", data: { turbo: false } do %>
+                <%= link_to episode_path(slug: item.slug),class:"button is-info is-small", data: { turbo_frame: "_top" } do %>
                     details
                 <% end %>
             </div>
