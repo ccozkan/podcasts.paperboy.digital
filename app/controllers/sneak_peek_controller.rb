@@ -1,8 +1,10 @@
 class SneakPeekController < ApplicationController
 
   def sneak_peekable
-    status = Feed.find_by(external_id: permitted_params[:feed_external_id])&.episodes.empty?
+    # status = Feed.find_by(external_id: permitted_params[:feed_external_id])&.episodes.empty?
+    status = true
 
+    sleep 5
     render json: { status: status }
   end
 
@@ -14,6 +16,7 @@ class SneakPeekController < ApplicationController
   end
 
   def loading
+    byebug
   end
 
   def show
@@ -22,6 +25,6 @@ class SneakPeekController < ApplicationController
   private
 
   def permitted_params
-    params.permit(:feed_external_id, :feed_rss_url)
+    params.permit(:external_id, :feed_rss_url)
   end
 end

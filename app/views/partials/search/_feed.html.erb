@@ -27,7 +27,7 @@
                         <!-- TODO: add unsub button -->
                     <% end %>
 
-                    <%= button_to 'zabamke', start_sneak_peeking_path(feed_rss_url: item[:rss_url], feed_external_id: item[:external_id]) %>
+                    <%= button_to 'zabamke', start_sneak_peeking_path(feed_rss_url: item[:rss_url], external_id: item[:external_id]) %>
 
                     <div data-controller="foobar" data-foobar-url-value="<%= item[:rss_url] %>">
                         <button data-action="click->foobar#sendPostRequest" class="button is-primary">

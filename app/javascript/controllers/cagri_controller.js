@@ -1,34 +1,47 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
+    static targets = ['output'];
     static values = {
-        url: String,
+        feedSlug: String,
+        feedExternalId: String,
     }
 
-    connect(){
+
+    connect() {
+        this.startInterval();
     }
 
-    sneakPeekable() {
-        const url = '/start-worker'; // Replace with the actual URL of your Rails controller action
+    startInterval() {
+        this.updateData(); // Perform the initial request immediately
+
+        this.interval = setInterval(() => {
+            this.updateData();
+        }, 1000); // Make the request every second, adjust as needed
+    }
+
+    stopInterval() {
+        clearInterval(this.interval);
+    }
+    updateData() {
+        const url = '/sneak-peekable'; // Replace with the actual path you want to request
         const params = {
-            url: String,
+            episode_external_id: 'value2',
         };
 
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-            },
-            body: JSON.stringify(params)
-        })
+        const queryString = new URLSearchParams(params).toString();
+        const requestUrl = url + '?' + queryString;
+
+        fetch(requestUrl)
             .then(response => response.json())
             .then(data => {
-                // Handle the response
-                console.log(data);
+                if (data.status === true) {
+                    window.location.href = '/redirect_path'; // Replace with the actual path you want to redirect to
+                } else {
+                    this.outputTarget.textContent = 'Response is false'; // Update the output with the response data (for testing purposes)
+                }
             })
             .catch(error => {
-                // Handle any errors
                 console.error(error);
             });
     }

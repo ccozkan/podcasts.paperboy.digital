@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   post '/start-worker' => 'background_processes#start_worker', as: 'start_worker'
   post '/check-worker' => 'background_processes#check_worker', as: 'check_worker'
 
-  post '/sneak-peekable' => 'sneak_peek#sneek_peekable'
+  get '/sneak-peekable/' => 'sneak_peek#sneak_peekable'
   post '/start-sneak-peeking' => 'sneak_peek#start_sneak_peeking', as: 'start_sneak_peeking'
   get '/sneaking-and-peeking' => 'sneak_peek#loading', as: 'sneaking_and_peeking'
   get '/sneak-peek/:episode_slug' => 'sneak_peek#show', as: 'sneak_peek'
