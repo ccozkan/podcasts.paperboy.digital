@@ -7,7 +7,7 @@ class EpisodesReceiverWorker
     start_time = Time.now.to_i
 
     feeds = if feed_id.nil?
-              Feed.all
+              Feed.where(id: Subscription.all.pluck(:feed_id).uniq)
             else
               [Feed.find_by(id: feed_id)]
             end
