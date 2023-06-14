@@ -2,6 +2,7 @@ require 'sidekiq/web'
 require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
+  get 'background_processes/controller'
   authenticate :user, lambda { |u| u.admin?  } do
     mount MaintenanceTasks::Engine => "/admin/maintenance-tasks"
     mount Sidekiq::Web => "/admin/sidekiq"
@@ -24,6 +25,17 @@ Rails.application.routes.draw do
 
   get '/search' => 'search_feeds#index'
   get '/porch' => 'porch#index'
+
+  get '/loading' => 'loading#loading'
+  get '/loading-complete' => 'loading#complete'
+
+  post '/start-worker' => 'background_processes#start_worker', as: 'start_worker'
+  post '/check-worker' => 'background_processes#check_worker', as: 'check_worker'
+
+  post '/sneak-peekable' => 'sneak_peek#sneek_peekable'
+  post '/start-sneak-peeking' => 'sneak_peek#start_sneak_peeking', as: 'start_sneak_peeking'
+  get '/sneaking-and-peeking' => 'sneak_peek#loading', as: 'sneaking_and_peeking'
+  get '/sneak-peek/:episode_slug' => 'sneak_peek#show', as: 'sneak_peek'
 
   resources :settings, only: [:index]
   resources :subscriptions, only: [:index, :create]

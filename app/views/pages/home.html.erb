@@ -18,7 +18,21 @@
                     subscribe to your podcasts and consume them at your pace
                     🦥
                 </p>
-                <br>
+
+                <%= button_to start_worker_path(foo: 42) %>
+
+                <div data-controller="foobar" data-foobar-url-value="https://ozkanc.cc">
+                    <button data-action="click->foobar#sendPostRequest" class="button is-primary">
+                        kaboom
+                    </button>
+                </div>
+
+                <div data-controller="sneakPeek" data-sneak-peak-url-value="https://ozkanc.cc">
+                    <button data-action="click->sneakPeek#startSneakPeeking" class="button is-primary">
+                        kabooms
+                    </button>
+                </div>
+
                 <div class="container">
                     <p>
                         💤 no push notifications, just weekly emails
