@@ -1,6 +1,5 @@
 class BackgroundProcessesController < ApplicationController
   def start_worker
-    byebug
     FeedPeekerWorker.perform_async # add rss_url
     render json: { message: 'Background process started' }
   end

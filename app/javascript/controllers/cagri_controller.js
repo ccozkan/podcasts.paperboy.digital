@@ -1,10 +1,8 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-    static targets = ['output'];
     static values = {
-        feedSlug: String,
-        feedExternalId: String,
+        externalId: String,
     }
 
 
@@ -26,23 +24,24 @@ export default class extends Controller {
     updateData() {
         const url = '/sneak-peekable'; // Replace with the actual path you want to request
         const params = {
-            episode_external_id: 'value2',
+            external_id: this.externalIdValue,
         };
 
         const queryString = new URLSearchParams(params).toString();
-        const requestUrl = url + '?' + queryString;
+        const requestUrl = url + '?external_id=' + queryString;
 
         fetch(requestUrl)
             .then(response => response.json())
             .then(data => {
-                if (data.status === true) {
-                    window.location.href = '/redirect_path'; // Replace with the actual path you want to redirect to
-                } else {
+                if (data.status === false) {
                     this.outputTarget.textContent = 'Response is false'; // Update the output with the response data (for testing purposes)
+                } else {
+                    window.location.href = '/sneak-peek?external_id=' + this.externalIdValue;
                 }
             })
             .catch(error => {
                 console.error(error);
             });
+
     }
 }
