@@ -5,7 +5,14 @@ class FeedsController < ApplicationController
 
   def show
     @feed = Feed.friendly.find_by(permitted_params)
-    episodes = @feed.episodes
+    @query = params[:query]
+
+    episodes = if @query.present?
+                 @feed.episodes.where("title ILIKE ?",
+                                      "%#{@query}%")
+               else
+                 @feed.episodes
+               end
 
     if episodes.present?
       @pagy, @items = pagy(episodes)
