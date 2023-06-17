@@ -95,7 +95,7 @@ class User < ApplicationRecord
     subscriptions.
       includes(:feed).
       where(feed_id:
-              feeds.where("name LIKE ?",
+              feeds.where("name ILIKE ?",
                           "%#{query}%").pluck(:id))
   end
 

@@ -4,9 +4,9 @@ class SubscriptionsController < ApplicationController
   include Pagy::Backend
 
   def index
-    query = params[:query]
-    subscribed_feeds = if query.present?
-                         current_user.subscriptions_search(query)
+    @query = params[:query]
+    subscribed_feeds = if @query
+                         current_user.subscriptions_search(@query)
                        else
                          current_user.subscriptions_ordered
                        end
