@@ -5,16 +5,35 @@
             🎙️
         </h1>
     </div>
-    <%= form_with(url: subscriptions_path, method: "GET") do |form| %>
-        <%= form.text_field :query %>
-        <%= form.submit 'Search', name: nil %>
+    <br>
+    <%= form_with(url: subscriptions_path, method: :get) do |form| %>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-one-quarter">
+                <div class="control has-icons-left has-icons-right">
+                    <%= form.text_field :query, class: 'input is-info is-small', placeholder: 'search' %>
+                    <span class="icon is-small is-left">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="column is-half">
+                <div class="buttons">
+                    <%= form.submit 'search', name: nil, class: 'button is-info is-small' %>
+                </div>
+            </div>
+        </div>
+    </div>
     <% end %>
+    </div>
     <hr/>
     <div class="container">
         <% if @items.present? %>
             <% @items.each do |item| %>
                 <%= render partial: 'partials/feed', locals: { item: item.feed } %>
             <% end %>
+        <% elsif @query %>
+            You dont have any subscriptions with name <%= @query %>
         <% else %>
             <h3>
                 You don't have any subscriptions yet :/
