@@ -91,6 +91,14 @@ class User < ApplicationRecord
       order(created_at: :desc)
   end
 
+  def subscriptions_search(query)
+    subscriptions.
+      includes(:feed).
+      where(feed_id:
+              feeds.where("name LIKE ?",
+                          "%#{query}%").pluck(:id))
+  end
+
   def admin?
     email == ENV["ADMIN_USER_EMAIL"]
   end

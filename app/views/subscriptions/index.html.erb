@@ -5,6 +5,10 @@
             🎙️
         </h1>
     </div>
+    <%= form_with(url: subscriptions_path, method: "GET") do |form| %>
+        <%= form.text_field :query %>
+        <%= form.submit 'Search', name: nil %>
+    <% end %>
     <hr/>
     <div class="container">
         <% if @items.present? %>
