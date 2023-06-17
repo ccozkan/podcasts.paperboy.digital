@@ -27,6 +27,7 @@
     <% end %>
     </div>
     <hr/>
+    <%= link_to 'clear', subscriptions_path if @query.present? %>
     <div class="container">
         <% if @items.present? %>
             <% @items.each do |item| %>
