@@ -33,15 +33,12 @@ class User < ApplicationRecord
   validate :preference_porch_update_interval_has_valid_value
 
   AVAILABLE_PROVIDERS = %w(email github facebook google_oauth2).freeze
-  # TODO: move preferebces to lib and use activerecod validations
-  DEFAULT_PREFERENCES = {
-    porch_update_interval_mode: "zen_mode",
-  }
-
   validates :provider, inclusion: { in: AVAILABLE_PROVIDERS }
 
   attribute :provider, default: "email"
-  attribute :preferences, default: DEFAULT_PREFERENCES
+
+  # TODO: move preferebces to lib and use activerecod validations
+  attribute :preferences, default: { porch_update_interval_mode: "zen_mode" }
 
   include NewRecordInformable
   include DeviseTweakable
