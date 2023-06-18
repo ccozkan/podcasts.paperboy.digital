@@ -8,13 +8,24 @@
             updates every wednesday🦦
         </p>
         <p class="is-size-7">
-            last updated at
-            <%= "#{Episode.last_week_time_period[:ending_at].to_s(:short)}" %>
-            <br>
-            showing posts published since
-            <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
-            🇬🇧time
-            <br>
+            <% case @porch_preference %>
+            <% when 'zen_mode' %>
+                last updated at
+                <%= "#{Episode.last_week_time_period[:ending_at].to_s(:short)}" %>
+                <br>
+                showing posts published since
+                <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
+                🇬🇧time
+                <br>
+            <% when 'fresh_daily' %>
+                last updated at
+                <%= "#{Date.today.to_s(:short)}" %>
+                <br>
+                showing posts published since
+                <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
+                🇬🇧time
+                <br>
+            <% end  %>
             <%= link_to @porch_preference, '/settings' %>
         </p>
         <p>
