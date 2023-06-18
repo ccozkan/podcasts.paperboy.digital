@@ -36,7 +36,7 @@ class User < ApplicationRecord
   # TODO: move preferebces to lib and use activerecod validations
   DEFAULT_PREFERENCES = {
     porch_update_interval_mode: "zen_mode",
-  }.freeze
+  }
 
   validates :provider, inclusion: { in: AVAILABLE_PROVIDERS }
 
