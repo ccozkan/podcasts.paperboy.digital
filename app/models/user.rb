@@ -66,11 +66,6 @@ class User < ApplicationRecord
     errors.add :preferences, :invalid_porch_update_interval_mode, message: "is invalid preference"
   end
 
-  def change_preference_porch_update_interval_mode(val)
-    preferences["porch_update_interval_mode"] = val
-    save!
-  end
-
   def send_weekly_digest
     DigestMailer.weekly(id).deliver_later
   end
