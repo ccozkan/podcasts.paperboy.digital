@@ -30,10 +30,17 @@ class User < ApplicationRecord
   validates_uniqueness_of :email, case_sensitive: true, scope: :provider
   validates_presence_of :provider
 
+  validate :preference_porch_update_interval_has_valid_values
+
   AVAILABLE_PROVIDERS = %w(email github facebook google_oauth2).freeze
+  DEFAULT_PREFERENCES = {
+    porch_update_interval_mode: 'zen_mode',
+  }.freeze
+
   validates :provider, inclusion: { in: AVAILABLE_PROVIDERS }
 
   attribute :provider, default: "email"
+  attribute :preferences, default: DEFAULT_PREFERENCES
 
   include NewRecordInformable
   include DeviseTweakable
@@ -52,6 +59,18 @@ class User < ApplicationRecord
     end
   end
 
+  def preference_porch_update_interval_has_valid_values
+    pref = preferences['porch_update_interval_mode']
+    return if ['zen_mode', 'fresh_daily'].include? pref
+
+    errors.add :preferences, :invalid_porch_update_interval_mode, message: "is invalid preference"
+  end
+
+  def change_preference_porch_update_interval_mode(val)
+    preferences['porch_update_interval_mode'] = val
+    save!
+  end
+
   def send_weekly_digest
     DigestMailer.weekly(id).deliver_later
   end
@@ -65,11 +84,19 @@ class User < ApplicationRecord
   end
 
   def porch_episodes
-    Episode.where("published_at > ?", Episode.last_week_time_period[:starting_at]).
-      where("published_at < ?", Episode.last_week_time_period[:ending_at]).
-      where.not(id: interactions.where(dismissed: true).pluck(:episode_id)).
-      where(feed_id: subscriptions.pluck(:feed_id)).
-      includes(:feed)
+    case preferences['porch_update_interval_mode']
+    when "zen_mode"
+      Episode.where("published_at > ?", Episode.last_week_time_period[:starting_at]).
+        where("published_at < ?", Episode.last_week_time_period[:ending_at]).
+        where.not(id: interactions.where(dismissed: true).pluck(:episode_id)).
+        where(feed_id: subscriptions.pluck(:feed_id)).
+        includes(:feed)
+    when "fresh_daily"
+      Episode.where("published_at > ?", Episode.last_week_time_period[:starting_at]).
+        where.not(id: interactions.where(dismissed: true).pluck(:episode_id)).
+        where(feed_id: subscriptions.pluck(:feed_id)).
+        includes(:feed)
+    end
   end
 
   def listen_it_later_interactions_ordered
