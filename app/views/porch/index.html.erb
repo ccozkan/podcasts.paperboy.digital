@@ -14,6 +14,8 @@
             showing posts published since
             <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
             🇬🇧time
+            <br>
+            <%= link_to @porch_preference, '/settings' %>
         </p>
         <p>
         </p>

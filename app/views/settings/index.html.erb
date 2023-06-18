@@ -21,10 +21,10 @@
                 change porch update period
             </h1>
 
-            wip
-            <%= form_with url: "/contact", method: :post, data: { turbo: false } do |form| %>
+            <%= form_with url: preferences_path, method: :put, data: { turbo: false } do |form| %>
                 <div class="select is-multiple">
-                    <%= form.select :desired_attribute, ['zen-mode', 'fresh-daily', 'uncool-mode']%>
+                    <%= form.select :porch_update_interval_mode, ['zen_mode', 'fresh_daily'], selected: current_user.preferences["porch_update_interval_mode"] %>
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
                 </div>
                 <%= form.submit "save", class: 'button is-link' %>
             <% end %>
@@ -41,12 +41,6 @@
                     fresh-daily:
                 </span>
                 gets updated everyday, doesn't show episode if it's older than two 2 wednesdays
-            </p>
-            <p>
-                <span class="has-text-weight-semibold">
-                    uncool-mode
-                </span>
-                gets updated everyday, shows everything
             </p>
             </p>
         </div>

@@ -9,9 +9,14 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_uniqueness_of(:email).scoped_to(:provider) }
     it { is_expected.to validate_presence_of(:password) }
     it { is_expected.to validate_presence_of(:email) }
+    let(:user) { create(:user) }
     it do
-      user = create(:user)
       user.provider = "foo"
+      expect(user.valid?).to eq false
+    end
+
+    it do
+      user.preferences["porch_update_interval_mode"] = "foo"
       expect(user.valid?).to eq false
     end
   end
