@@ -19,6 +19,12 @@ RSpec.describe User, type: :model do
       user.preferences["porch_update_interval_mode"] = "foo"
       expect(user.valid?).to eq false
     end
+
+    it "initial values" do
+      user = User.new
+      expect(user.provider).to eq "email"
+      expect(user.preferences["porch_update_interval_mode"]).to eq "zen_mode"
+    end
   end
 
   describe ".find_or_create_from_provider_data" do
