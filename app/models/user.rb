@@ -33,6 +33,7 @@ class User < ApplicationRecord
   validate :preference_porch_update_interval_has_valid_value
 
   AVAILABLE_PROVIDERS = %w(email github facebook google_oauth2).freeze
+  # TODO: move preferebces to lib and use activerecod validations
   DEFAULT_PREFERENCES = {
     porch_update_interval_mode: "zen_mode",
   }.freeze
