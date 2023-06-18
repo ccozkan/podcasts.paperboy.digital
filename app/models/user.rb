@@ -30,7 +30,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :email, case_sensitive: true, scope: :provider
   validates_presence_of :provider
 
-  validate :preference_porch_update_interval_has_valid_values
+  validate :preference_porch_update_interval_has_valid_value
 
   AVAILABLE_PROVIDERS = %w(email github facebook google_oauth2).freeze
   DEFAULT_PREFERENCES = {
@@ -59,7 +59,7 @@ class User < ApplicationRecord
     end
   end
 
-  def preference_porch_update_interval_has_valid_values
+  def preference_porch_update_interval_has_valid_value
     pref = preferences["porch_update_interval_mode"]
     return if ["zen_mode", "fresh_daily"].include? pref
 
