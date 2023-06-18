@@ -11,6 +11,8 @@ class PreferencesController < ApplicationController
     end
   end
 
+  private
+
   def permitted_params
     params.permit(:porch_update_interval_mode)
   end
