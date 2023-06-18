@@ -85,7 +85,7 @@ class User < ApplicationRecord
 
   def porch_episodes
     case preferences["porch_update_interval_mode"]
-    when "zen_mode"
+    when "zen_mode" || nil
       Episode.where("published_at > ?", Episode.last_week_time_period[:starting_at]).
         where("published_at < ?", Episode.last_week_time_period[:ending_at]).
         where.not(id: interactions.where(dismissed: true).pluck(:episode_id)).
