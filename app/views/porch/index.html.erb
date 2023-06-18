@@ -4,12 +4,12 @@
             🗞️
             porch
         </h1>
-        <p class="subtitle">
-            updates every wednesday🦦
-        </p>
-        <p class="is-size-7">
-            <% case @porch_preference %>
-            <% when 'zen_mode' %>
+        <% case @porch_preference %>
+        <% when 'zen_mode' %>
+            <p class="subtitle">
+                updates every wednesday🦦
+            </p>
+            <p class="is-size-7">
                 last updated at
                 <%= "#{Episode.last_week_time_period[:ending_at].to_s(:short)}" %>
                 <br>
@@ -17,7 +17,12 @@
                 <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
                 🇬🇧time
                 <br>
-            <% when 'fresh_daily' %>
+            </p>
+        <% when 'fresh_daily' %>
+            <p class="subtitle">
+                updates every day🦦
+            </p>
+            <p class="is-size-7">
                 last updated at
                 <%= "#{Date.today.to_s(:short)}" %>
                 <br>
@@ -25,8 +30,9 @@
                 <%= "#{Episode.last_week_time_period[:starting_at].to_s(:short)}" %>
                 🇬🇧time
                 <br>
-            <% end  %>
-            <%= link_to @porch_preference, '/settings' %>
+            </p>
+        <% end  %>
+        <%= link_to @porch_preference, '/settings' %>
         </p>
         <p>
         </p>
