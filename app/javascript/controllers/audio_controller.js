@@ -4,11 +4,13 @@ export default class extends Controller {
     static values = {
         url: String,
         text: String,
+        episodeUrl: String,
     }
 
     handleChange(){
         this.play();
         this.updateText();
+        this.updateLink();
     }
 
     play() {
@@ -19,8 +21,12 @@ export default class extends Controller {
 
     updateText() {
         var text = document.getElementById("currentlyPlaying");
-        console.log(this.textValue);
         text.innerHTML = this.textValue;
+    }
+
+    updateLink() {
+        var link = document.getElementById("currentlyPlayingEpisodeLink");
+        link.setAttribute("href", this.episodeUrlValue);
     }
 
     fastForward() {

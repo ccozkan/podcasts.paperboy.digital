@@ -26,6 +26,10 @@
                      <button class="button is-primary is-small" type="submit" data-action="click->audio#fastForward" title="+15 secs fast forward">
                          <i class="fa-solid fa-forward-fast"></i>
                      </button>
+
+                     <%= link_to '#', class: "button is-link is-small", id: 'currentlyPlayingEpisodeLink' do %>
+                         <i class="fa-solid fa-circle-info"></i>
+                     <% end %>
                  </div>
              </div>
              <div class="column is-hidden-mobile"></div>

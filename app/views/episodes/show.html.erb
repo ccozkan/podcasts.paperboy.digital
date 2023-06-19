@@ -18,7 +18,10 @@
                     <%= "@ #{@episode.published_at.to_formatted_s(:long)}" %>
                 </p>
 
-                <div data-controller="audio buttons" data-audio-url-value="<%= @episode.audio_url %>" data-audio-text-value="<%= @episode.player_text %>" class="buttons">
+                <div data-controller="audio buttons" data-audio-url-value="<%= @episode.audio_url %>"
+                     data-audio-text-value="<%= @episode.player_text %>"
+                     data-audio-episode-url-value="<%= episode_path(@episode.slug) %>"
+                     class="buttons">
                     <button data-action="click->audio#handleChange" class="button is-link">
                         <i class="fa-regular fa-circle-play"></i>
                         play
