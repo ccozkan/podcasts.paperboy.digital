@@ -7,7 +7,6 @@
      </div>
      <div class="container is-align-content-center">
          <div class="columns is-flex is-two-thirds is-centered">
-             <div class="column is-hidden-mobile"></div>
              <div class="column align-right is-centered is-two-thirds">
                  <audio
                      controls
@@ -27,12 +26,11 @@
                          <i class="fa-solid fa-forward-fast"></i>
                      </button>
 
-                     <%= link_to '#', class: "button is-link is-small", id: 'currentlyPlayingEpisodeLink' do %>
+                     <a href="#" data-turbo-permanent id="currentlyPlayingEpisodeLink" class="button is-link is-small">
                          <i class="fa-solid fa-circle-info"></i>
-                     <% end %>
+                     </a>
                  </div>
              </div>
-             <div class="column is-hidden-mobile"></div>
          </div>
  </footer>
  </section>
