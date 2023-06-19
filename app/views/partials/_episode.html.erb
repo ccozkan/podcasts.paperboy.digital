@@ -29,7 +29,12 @@
                 <% end %>
             </div>
             <div class="column is-two-fifths">
-                <div data-controller="audio buttons" data-audio-url-value="<%= item.audio_url %>" data-audio-text-value="<%= item.player_text %>" class="buttons">
+                <div data-controller="audio buttons"
+                     data-audio-url-value="<%= item.audio_url %>"
+                     data-audio-episode-url-value="<%= episode_path(item.slug) %>"
+                     data-audio-text-value="<%= item.player_text %>"
+                     class="buttons">
+
                     <button data-action="click->audio#handleChange" class="button is-primary">
                         <i class="fa-regular fa-circle-play"></i>
                         play
