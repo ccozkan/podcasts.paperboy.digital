@@ -16,6 +16,12 @@ class EpisodesReceiverWorker
 
     feeds.each do |feed|
       Rails.logger.info("~~ running for #{feed.id} id feed")
+
+      # if feed.subscriptions&.empty?
+      #   Rails.logger.info("~~ skipping #{feed.id} id feed since has no subscriptions")
+      #   next
+      # end
+
       episodes = EpisodesReceiverService.new(feed.rss_url).call
 
       feed.update(last_check_error: episodes.error,

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get '/peek' => 'peek_feeds#show'
   get '/peekable' => 'peek_feeds#peekable'
   get '/peeking' => 'peek_feeds#peeking'
+  post '/start_peeking' => 'peek_feeds#start_peeking'
 
   resources :settings, only: [:index]
   resources :subscriptions, only: [:index, :create]
