@@ -4,12 +4,11 @@ class PeekFeedsController < ApplicationController
     @items = @feed.episodes.limit(5)
   end
 
-  def peeking
-  end
+  def peeking; end
 
   def peekable
     status = Feed.find_by(external_id: permitted_params[:feed_external_id])&.episodes&.empty?
-    render json: { status: status }.to_json
+    render json: { status: }.to_json
   end
 
   def start_peeking
@@ -29,6 +28,5 @@ class PeekFeedsController < ApplicationController
     params.permit(:external_id, :feed_rss_url, :name, :pic_url, :rss_url, :provider)
   end
 
-  def find_feed
-  end
+  def find_feed; end
 end
