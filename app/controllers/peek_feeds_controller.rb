@@ -9,13 +9,11 @@ class PeekFeedsController < ApplicationController
 
   def peekable
     status = Feed.find_by(external_id: permitted_params[:feed_external_id])&.episodes&.empty?
-    sleep 5
     render json: { status: status }.to_json
   end
 
   def start_peeking
     feed = Feed.find_by(external_id: permitted_params[:external_id]) || Feed.new(permitted_params)
-    byebug
 
     if feed.new_record?
       # feed.only_peek

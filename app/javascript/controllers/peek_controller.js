@@ -10,11 +10,9 @@ export default class extends Controller {
     }
 
     startInterval() {
-        this.askPeekable();
-
         this.interval = setInterval(() => {
             this.askPeekable();
-        }, 2000);
+        }, 4200);
     }
 
     stopInterval() {
