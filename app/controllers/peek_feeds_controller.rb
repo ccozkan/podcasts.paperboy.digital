@@ -1,5 +1,5 @@
 class PeekFeedsController < ApplicationController
-  before_action :find_feed, only: %i[show peekable start_peeking]
+  before_action :find_feed, only: %i[show start_peeking]
 
   def show
     @items = @feed.episodes.limit(5)
@@ -8,7 +8,8 @@ class PeekFeedsController < ApplicationController
   def peeking; end
 
   def peekable
-    status = @feed&.healthy.nil? ? false : true
+    feed = Feed.find_by(external_id: permitted_params[:external_id])
+    status = feed&.healthy.nil? ? false : true
 
     render json: { status: status }.to_json
   end
