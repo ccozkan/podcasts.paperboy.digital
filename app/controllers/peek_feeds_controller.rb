@@ -8,8 +8,7 @@ class PeekFeedsController < ApplicationController
   def peeking; end
 
   def peekable
-    feed = Feed.find_by(external_id: permitted_params[:external_id])
-    status = feed&.healthy.nil? ? false : true
+    status = @feed&.healthy.nil? ? false : true
 
     render json: { status: status }.to_json
   end
