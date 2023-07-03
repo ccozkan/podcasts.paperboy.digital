@@ -8,7 +8,8 @@ class PeekFeedsController < ApplicationController
   def peeking; end
 
   def peekable
-    status = @feed&.episodes&.empty?
+    feed = Feed.find_by(external_id: permitted_params[:external_id])
+    status = feed&.healthy.nil? ? false : true
 
     render json: { status: status }.to_json
   end
@@ -17,7 +18,6 @@ class PeekFeedsController < ApplicationController
     feed = @feed || Feed.new(permitted_params)
 
     if feed.new_record?
-      # feed.only_peek
       feed.save!
     end
 

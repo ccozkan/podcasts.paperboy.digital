@@ -16,9 +16,37 @@
                 </p>
             </div>
             <div class="column">
-                <%= button_to "subscribe", { controller: :subscriptions, action: :create, external_id: @feed.external_id, name: @feed.name, pic_url: @feed.pic_url, rss_url: @feed.rss_url, provider: @feed.provider }, method: :post, type: 'submit', class: 'button is-primary', disabled: @already_subscribed&.include?(item[:external_id]) %>
+                <div class="buttons">
+                    <% if current_user && @feed.user_has_subscribed?(current_user.id) %>
+                        <%= button_to unsubscription_path(@feed.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button is-danger' do %>
+                            unsubscribe
+                        <% end %>
+                    <% else %>
+                        <%= button_to "subscribe", { controller: :subscriptions, action: :create, external_id: @feed.external_id, name: @feed.name, pic_url: @feed.pic_url, rss_url: @feed.rss_url, provider: @feed.provider }, method: :post, type: 'submit', class: 'button is-primary', disabled: @already_subscribed&.include?(item[:external_id]) %>
+                    <% end %>
+                </div>
             </div>
         </div>
+
+        <%= form_with(url: feed_path(@feed.slug), method: :get) do |form| %>
+            <div class="columns is-pulled-left">
+                <div class="column">
+                    <div class="control has-icons-left has-icons-right">
+                        <%= form.text_field :query, class: 'input is-info is-small', placeholder: 'search' %>
+                        <span class="icon is-small is-left">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                    </div>
+                    <div class="buttons mt-1">
+                        <%= form.submit 'search', name: nil, class: 'button is-secondary is-dark is-small' %>
+                    </div>
+                </div>
+            </div>
+            <br>
+        <% end %>
+
+        <br>
+        <hr/>
 
         <div class="notification is-info">
             This is peeking mode. <strong>You can only listen 5 episodes in this mode.</strong> Subscribe to feed if you want to access all episodes.

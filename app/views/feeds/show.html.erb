@@ -17,11 +17,14 @@
             </div>
             <div class="column">
                 <div class="buttons">
-                    <%= button_to unsubscription_path(@feed.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button is-danger' do %>
-                        unsubscribe
+                    <% if current_user && @feed.user_has_subscribed?(current_user.id) %>
+                        <%= button_to unsubscription_path(@feed.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button is-danger' do %>
+                            unsubscribe
+                        <% end %>
+                    <% else %>
+                        <%= button_to "subscribe", { controller: :subscriptions, action: :create, external_id: @feed.external_id, name: @feed.name, pic_url: @feed.pic_url, rss_url: @feed.rss_url, provider: @feed.provider }, method: :post, type: 'submit', class: 'button is-primary', disabled: @already_subscribed&.include?(item[:external_id]) %>
                     <% end %>
                 </div>
-                </p>
             </div>
         </div>
         <%= form_with(url: feed_path(@feed.slug), method: :get) do |form| %>

@@ -12,7 +12,7 @@ export default class extends Controller {
     startInterval() {
         this.interval = setInterval(() => {
             this.askPeekable();
-        }, 4200);
+        }, 2000);
     }
 
     stopInterval() {
@@ -26,7 +26,7 @@ export default class extends Controller {
         };
 
         const queryString = new URLSearchParams(params).toString();
-        const requestUrl = url + '?external_id=' + queryString;
+        const requestUrl = url + '?' + queryString;
 
         fetch(requestUrl)
             .then(response => response.json())
