@@ -14,16 +14,19 @@ Rails.application.routes.draw do
 
   get '/about' => 'pages#about'
   get '/privacy' => 'pages#privacy'
-  get '/loading' => 'pages#loading'
 
   get '/contact' => 'feedbacks#new', as: 'contact_me'
   post '/contact' => 'feedbacks#create'
 
   get '/play/:slug' => 'play_episodes#show', as: 'player'
-  #put '/dismiss/:episode_id' => 'dismiss_episodes#update', as: 'dismiss'
 
   get '/search' => 'search_feeds#index'
   get '/porch' => 'porch#index'
+
+  get '/peek' => 'peek_feeds#show'
+  get '/peekable' => 'peek_feeds#peekable'
+  get '/peeking' => 'peek_feeds#peeking'
+  post '/start_peeking' => 'peek_feeds#start_peeking'
 
   resources :settings, only: [:index]
   resources :subscriptions, only: [:index, :create]

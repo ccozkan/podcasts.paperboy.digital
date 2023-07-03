@@ -26,6 +26,8 @@
                     <% if @already_subscribed&.include?(item[:external_id]) %>
                         <!-- TODO: add unsub button -->
                     <% end %>
+
+                    <%= button_to "peek 👀", { controller: :peek_feeds, action: :start_peeking, external_id: item[:external_id], name: item[:name], pic_url: item[:pic_url], rss_url: item[:rss_url], provider: item[:provider]  }, method: :post, type: 'submit', class: 'button is-link' %>
                 </div>
                 </div>
             <br/>

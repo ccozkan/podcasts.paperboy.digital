@@ -30,4 +30,8 @@ class Feed < ApplicationRecord
   def catch_up_episodes
     EpisodesReceiverWorker.perform_async(id)
   end
+
+  def user_has_subscribed?(user_id)
+    user_ids.include? user_id
+  end
 end
