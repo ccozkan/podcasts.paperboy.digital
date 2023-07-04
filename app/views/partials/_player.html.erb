@@ -26,6 +26,10 @@
                      <a href="#" data-turbo-permanent id="currentlyPlayingEpisodeLink" class="button is-link is-small">
                          <i class="fa-solid fa-circle-info"></i>
                      </a>
+
+                     <%= button_to root_path, class:"button is-warning is-small", method: :put, id: 'bookmarkerButton', data: { action: 'click->audio#handleBookmarking' } do %>
+                         <i class="fa-solid fa-bookmark"></i>
+                     <% end %>
                  </div>
              </div>
          </div>

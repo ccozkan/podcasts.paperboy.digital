@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_18_184426) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_04_210849) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_184426) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "listen_it_latered_at"
+    t.integer "bookmarked_at_second", default: 0
     t.index ["episode_id"], name: "index_interactions_on_episode_id"
     t.index ["user_id", "episode_id"], name: "index_interactions_on_user_id_and_episode_id", unique: true
     t.index ["user_id"], name: "index_interactions_on_user_id"
