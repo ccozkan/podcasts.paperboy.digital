@@ -8,13 +8,16 @@ export default class extends Controller {
     }
 
     connect() {
-        if (document.getElementById("player").paused == true) {
-            document.getElementById("awesomePlayer").style.display = "none";
+        var player = document.getElementById("player");
+
+        if (player?.src == '' || player?.paused == true) {
+            player.style.visibility = "hidden";
         }
     }
 
     handleChange(){
-        document.getElementById("awesomePlayer").style.display = "block";
+        this.player = document.getElementById("player");
+        this.player.style.visibility = "visible";
         this.play();
         this.updateText();
         this.updateLink();
