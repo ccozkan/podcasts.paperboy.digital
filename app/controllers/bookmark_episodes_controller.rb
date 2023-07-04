@@ -8,10 +8,14 @@ class BookmarkEpisodesController < ApplicationController
                                         current_user.id,
                                         permitted_params[:second].to_i)
 
-    redirect_to request.referer, notice: "Bookmarked🔖 at second #{interaction.bookmarked_at_second}"
+    redirect_to request.referer, notice: "Bookmarked🔖 at #{format_bookmarked_at_second(interaction.bookmarked_at_second)}"
   end
 
   private
+
+  def format_bookmarked_at_second(second)
+    Time.at(second).utc.strftime("%H:%M:%S")
+  end
 
   def permitted_params
     params.permit(:episode_id, :second)
