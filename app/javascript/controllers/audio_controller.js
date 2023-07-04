@@ -7,7 +7,12 @@ export default class extends Controller {
         episodeUrl: String,
     }
 
+    connect() {
+        document.getElementById("awesomePlayer").style.display = "none";
+    }
+
     handleChange(){
+        document.getElementById("awesomePlayer").style.display = "block";
         this.play();
         this.updateText();
         this.updateLink();
