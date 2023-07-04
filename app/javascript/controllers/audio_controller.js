@@ -6,6 +6,7 @@ export default class extends Controller {
         text: String,
         episodeUrl: String,
         episodeId: String,
+        bookmarkedAtSecond: Number,
     }
 
     connect() {
@@ -19,6 +20,7 @@ export default class extends Controller {
     handleChange(){
         this.player = document.getElementById("player");
         this.player.style.visibility = "visible";
+        this.player.currentTime = this.bookmarkedAtSecondValue;
         this.play();
         this.updateText();
         this.updateLink();

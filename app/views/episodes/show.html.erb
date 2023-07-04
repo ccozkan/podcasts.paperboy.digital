@@ -37,6 +37,10 @@
                     <%= button_to listen_it_later_episode_path(episode_id: @episode.id),class:"button is-primary", method: :put do %>
                         listen-it-later
                     <% end %>
+
+                    <%= button_to bookmark_episode_path(@episode.id), method: :put, class: "button is-info is-small", params: { second: 0 } do %>
+                        remove bookmark
+                    <% end %>
                 </div>
                 </p>
             </div>
