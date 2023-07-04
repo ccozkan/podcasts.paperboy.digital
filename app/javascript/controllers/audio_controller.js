@@ -8,7 +8,9 @@ export default class extends Controller {
     }
 
     connect() {
-        document.getElementById("awesomePlayer").style.display = "none";
+        if (document.getElementById("player").paused == true) {
+            document.getElementById("awesomePlayer").style.display = "none";
+        }
     }
 
     handleChange(){
