@@ -44,10 +44,8 @@ export default class extends Controller {
     }
 
     updateBookmarkLink() {
-        console.log(this.episodeIdValue);
         var button = document.getElementById("bookmarkerButton");
         var path = '/bookmark/' + this.episodeIdValue;
-        console.log(path);
         button.form.setAttribute("action", path);
     }
 
