@@ -31,10 +31,7 @@ export default class extends Controller {
         fetch(requestUrl)
             .then(response => response.json())
             .then(data => {
-                if (data.status === false) {
-                    console.log('false');
-                } else {
-                    console.log('true');
+                if (data.status === true) {
                     window.location.href = '/peek?external_id=' + this.externalIdValue;
                 }
             })

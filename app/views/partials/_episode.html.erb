@@ -23,7 +23,15 @@
                     <% end %>
                     <br>
                     <%= item.try(:duration) %>
+
+                    <% if current_user && Interaction.bookmarked_second(item.id, current_user.id) %>
+                        bookmarked at:
+                        <%= Interaction.bookmarked_at_pretty_time(item.id, current_user.id) %>
+                    <% end %>
+                    <br>
                 </p>
+
+
                 <%= link_to episode_path(slug: item.slug),class:"button is-info is-small", data: { turbo_frame: "_top" } do %>
                     details
                 <% end %>
@@ -33,6 +41,10 @@
                      data-audio-url-value="<%= item.audio_url %>"
                      data-audio-episode-url-value="<%= episode_path(item.slug) %>"
                      data-audio-text-value="<%= item.player_text %>"
+                     data-audio-episode-id-value="<%= item.id %>"
+                     <% if current_user %>
+                         data-audio-bookmarked-at-second-value="<%= Interaction.bookmarked_second(item.id, current_user.id) %>"
+                     <% end %>
                      class="buttons">
 
                     <button data-action="click->audio#handleChange" class="button is-primary">

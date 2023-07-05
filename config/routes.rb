@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   resources :episodes, only: [:show], param: :slug
   resources :dismiss_episodes, only: [:update], param: :episode_id
   resources :listen_it_later_episodes, only: [:index, :update], param: :episode_id, path: :later
+  resources :bookmark_episodes, only: [:update], param: :episode_id, path: :bookmark
   resources :unsubscriptions, only: [:destroy], param: :feed_id
 
   put 'preferences' => 'preferences#update', as: 'preferences'

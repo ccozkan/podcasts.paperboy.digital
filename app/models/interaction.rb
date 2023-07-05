@@ -21,6 +21,13 @@ class Interaction < ApplicationRecord
       @interaction.save!
     end
 
+    def bookmark!(episode_id, user_id, bookmark_time)
+      find_or_initialize_interaction(episode_id, user_id)
+      @interaction.bookmarked_at_second = bookmark_time
+      @interaction.save!
+      @interaction
+    end
+
     def toggle_from_listen_it_later!(episode_id, user_id)
       find_or_initialize_interaction(episode_id, user_id)
       @interaction.listen_it_latered_at = if @interaction.listen_it_latered_at?
@@ -29,6 +36,21 @@ class Interaction < ApplicationRecord
                                             @interaction.listen_it_latered_at = Time.current
                                           end
       @interaction.save!
+    end
+
+    def bookmarked_second(episode_id, user_id)
+      find_interaction(episode_id, user_id)
+      @interaction&.bookmarked_at_second || nil
+    end
+
+    def bookmarked_at_pretty_time(episode_id, user_id)
+      find_interaction(episode_id, user_id)
+      Time.at(@interaction.bookmarked_at_second).utc.strftime("%H:%M:%S") if @interaction
+    end
+
+    def find_interaction(episode_id, user_id)
+      @interaction = Interaction.find_by(episode_id:,
+                                         user_id:)
     end
 
     private

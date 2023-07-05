@@ -20,6 +20,11 @@
 
                 <div data-controller="audio buttons" data-audio-url-value="<%= @episode.audio_url %>"
                      data-audio-text-value="<%= @episode.player_text %>"
+
+                     data-audio-episode-id-value="<%= @episode.id %>"
+                    <% if current_user %>
+                        data-audio-bookmarked-at-second-value="<%= Interaction.bookmarked_second(@episode.id, current_user.id) %>"
+                    <% end %>
                      data-audio-episode-url-value="<%= episode_path(@episode.slug) %>"
                      class="buttons">
                     <button data-action="click->audio#handleChange" class="button is-link">
@@ -36,6 +41,15 @@
 
                     <%= button_to listen_it_later_episode_path(episode_id: @episode.id),class:"button is-primary", method: :put do %>
                         listen-it-later
+                    <% end %>
+
+                    <% if current_user && !Interaction.bookmarked_second(@episode.id, current_user.id).zero? %>
+                        bookmarked at:
+                        <%= Interaction.bookmarked_at_pretty_time(@episode.id, current_user.id) %>
+
+                        <%= button_to bookmark_episode_path(@episode.id), method: :put, class: "button is-info is-small", params: { second: 0 } do %>
+                            remove bookmark
+                        <% end %>
                     <% end %>
                 </div>
                 </p>
