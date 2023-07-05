@@ -8,7 +8,11 @@ class BookmarkEpisodesController < ApplicationController
                                         current_user.id,
                                         permitted_params[:second].to_i)
 
-    redirect_to request.referer, notice: "Bookmarked🔖 at #{format_bookmarked_at_second(interaction.bookmarked_at_second)}"
+    if permitted_params[:second] == '0'
+      redirect_to request.referer, alert: "Bookmark🔖 removed"
+    else
+      redirect_to request.referer, notice: "Bookmarked🔖 at #{format_bookmarked_at_second(interaction.bookmarked_at_second)}"
+    end
   end
 
   private

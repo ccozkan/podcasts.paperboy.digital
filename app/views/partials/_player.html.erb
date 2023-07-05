@@ -14,7 +14,7 @@
                      <code>audio</code> element.
                  </audio>
              </div>
-             <div class="column">
+             <div class="column" id="playerButtons">
                  <div data-controller="audio" class="buttons">
                      <button class="button is-primary is-small is-family-monospace" type="submit" data-action="click->audio#fastReverse" title="-15 secs fast reverse">
                          <i class="fa-solid fa-backward-fast"></i>
@@ -30,7 +30,7 @@
                      <%= form_with url: '#', method: :put,
                           id: 'bookmarkerForm', data: { turbo_permanent: true, action: 'click->audio#handleBookmarking' } do |f| %>
                          <%= f.hidden_field :second, data: { turbo: 'permanent' }, id: 'bookmarkerSecond' %>
-                         <%= f.submit "bkmrk", id: 'bookmarkerButton' %>
+                         <%= f.submit "b", id: 'bookmarkerButton', class: 'button is-small is-warning' %>
                      <% end %>
                  </div>
              </div>

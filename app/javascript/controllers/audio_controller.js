@@ -11,13 +11,17 @@ export default class extends Controller {
 
     connect() {
         var player = document.getElementById("player");
+        var buttons = document.getElementById("playerButtons");
 
         if (player?.src == '' || player?.paused == true) {
             player.style.visibility = "hidden";
+            buttons.style.visibility = "hidden";
         }
     }
 
     handleChange(){
+        var buttons = document.getElementById("playerButtons");
+        buttons.style.visibility = "visible";
         this.player = document.getElementById("player");
         this.player.style.visibility = "visible";
         this.player.currentTime = this.bookmarkedAtSecondValue;
@@ -25,6 +29,14 @@ export default class extends Controller {
         this.updateText();
         this.updateLink();
         this.updateBookmarkLink();
+    }
+
+    makeVisible(){
+        var buttons = document.getElementById("playerButtons");
+        var player = document.getElementById("player");
+
+        player.style.visibility = "visible";
+        buttons.style.visibility = "visible";
     }
 
     play() {
