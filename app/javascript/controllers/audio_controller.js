@@ -78,10 +78,4 @@ export default class extends Controller {
         this.player = document.getElementById("player");
         this.player.currentTime -= 15;
     }
-
-    updateBookmarkLink2() {
-        var button = document.getElementById("bookmarkCurrentlyPlayingEpisode");
-        var path = '/bookmark/' + this.episodeIdValue;
-        button.form.setAttribute("action", path);
-    }
 }
