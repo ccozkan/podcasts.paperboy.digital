@@ -25,7 +25,7 @@
                     <%= item.try(:duration) %>
 
                     <% if current_user && Interaction.bookmarked_second(item.id, current_user.id) %>
-                        bookmarked at:
+                        <i class="fa-solid fa-bookmark"></i>
                         <%= Interaction.bookmarked_at_pretty_time(item.id, current_user.id) %>
                     <% end %>
                     <br>

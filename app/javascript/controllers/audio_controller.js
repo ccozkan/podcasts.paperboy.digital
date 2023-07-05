@@ -11,13 +11,17 @@ export default class extends Controller {
 
     connect() {
         var player = document.getElementById("player");
+        var buttons = document.getElementById("playerButtons");
 
         if (player?.src == '' || player?.paused == true) {
             player.style.visibility = "hidden";
+            buttons.style.visibility = "hidden";
         }
     }
 
     handleChange(){
+        var buttons = document.getElementById("playerButtons");
+        buttons.style.visibility = "visible";
         this.player = document.getElementById("player");
         this.player.style.visibility = "visible";
         this.player.currentTime = this.bookmarkedAtSecondValue;
@@ -25,6 +29,14 @@ export default class extends Controller {
         this.updateText();
         this.updateLink();
         this.updateBookmarkLink();
+    }
+
+    makeVisible(){
+        var buttons = document.getElementById("playerButtons");
+        var player = document.getElementById("player");
+
+        player.style.visibility = "visible";
+        buttons.style.visibility = "visible";
     }
 
     play() {
@@ -47,19 +59,13 @@ export default class extends Controller {
         var button = document.getElementById("bookmarkerButton");
         var path = '/bookmark/' + this.episodeIdValue;
         button.form.setAttribute("action", path);
+        button.form.setAttribute("method", "put");
     }
 
     handleBookmarking() {
-        const form = document.getElementById("bookmarkerButton").form;
-        const hiddenField = document.createElement('input');
-
-        hiddenField.type = 'hidden';
-        hiddenField.name = 'second';
-
+        const hiddenField = document.getElementById("bookmarkerSecond");
         this.player = document.getElementById("player");
         hiddenField.value = this.player.currentTime;
-
-        form.appendChild(hiddenField);
     }
 
 
@@ -71,11 +77,5 @@ export default class extends Controller {
     fastReverse() {
         this.player = document.getElementById("player");
         this.player.currentTime -= 15;
-    }
-
-    updateBookmarkLink2() {
-        var button = document.getElementById("bookmarkCurrentlyPlayingEpisode");
-        var path = '/bookmark/' + this.episodeIdValue;
-        button.form.setAttribute("action", path);
     }
 }
