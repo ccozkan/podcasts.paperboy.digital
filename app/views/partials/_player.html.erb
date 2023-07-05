@@ -30,6 +30,13 @@
                      <%= button_to root_path, class:"button is-warning is-small", method: :put, id: 'bookmarkerButton', data: { action: 'click->audio#handleBookmarking' } do %>
                          <i class="fa-solid fa-bookmark"></i>
                      <% end %>
+                     <%= turbo_frame_tag "cagri" do %>
+                         <%= form_with url: '#', method: :get,
+                          id: 'cagri-form', data: { turbo_permanent: true } do |f| %>
+                             <%= f.text_field :query, data: { turbo: 'permanent' } %>
+                             <%= f.submit "kaboom" %>
+                         <% end %>
+                     <% end %>
                  </div>
              </div>
          </div>
