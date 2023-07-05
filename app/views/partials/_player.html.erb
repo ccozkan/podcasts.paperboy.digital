@@ -27,15 +27,10 @@
                          <i class="fa-solid fa-circle-info"></i>
                      </a>
 
-                     <%= button_to root_path, class:"button is-warning is-small", method: :put, id: 'bookmarkerButton', data: { action: 'click->audio#handleBookmarking' } do %>
-                         <i class="fa-solid fa-bookmark"></i>
-                     <% end %>
-                     <%= turbo_frame_tag "cagri" do %>
-                         <%= form_with url: '#', method: :get,
-                          id: 'cagri-form', data: { turbo_permanent: true } do |f| %>
-                             <%= f.text_field :query, data: { turbo: 'permanent' } %>
-                             <%= f.submit "kaboom" %>
-                         <% end %>
+                     <%= form_with url: '#', method: :put,
+                          id: 'bookmarkerForm', data: { turbo_permanent: true, action: 'click->audio#handleBookmarking' } do |f| %>
+                         <%= f.hidden_field :second, data: { turbo: 'permanent' }, id: 'bookmarkerSecond' %>
+                         <%= f.submit "bkmrk", id: 'bookmarkerButton' %>
                      <% end %>
                  </div>
              </div>

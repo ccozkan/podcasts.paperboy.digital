@@ -47,19 +47,13 @@ export default class extends Controller {
         var button = document.getElementById("bookmarkerButton");
         var path = '/bookmark/' + this.episodeIdValue;
         button.form.setAttribute("action", path);
+        button.form.setAttribute("method", "put");
     }
 
     handleBookmarking() {
-        const form = document.getElementById("bookmarkerButton").form;
-        const hiddenField = document.createElement('input');
-
-        hiddenField.type = 'hidden';
-        hiddenField.name = 'second';
-
+        const hiddenField = document.getElementById("bookmarkerSecond");
         this.player = document.getElementById("player");
         hiddenField.value = this.player.currentTime;
-
-        form.appendChild(hiddenField);
     }
 
 
