@@ -20,15 +20,15 @@ RSpec.describe Episode, type: :model do
     it { is_expected.to have_many(:interactions) }
   end
 
-  describe '.random_episode' do
-    let(:subject) { Episode.random_episode(feed.slug)}
+  describe ".random_episode" do
+    let(:subject) { Episode.random_episode(feed.slug) }
 
     before do
       feed
       episode
     end
 
-    it 'returns an episode' do
+    it "returns an episode" do
       expect(subject.class).to be Episode
     end
   end
