@@ -27,6 +27,11 @@
                 </div>
             </div>
         </div>
+
+        <%= link_to 'random', random_episode_path(feed_slug: @feed.slug), class: 'button is-small is-secondary is-success' %>
+        <br>
+        <br>
+
         <%= form_with(url: feed_path(@feed.slug), method: :get) do |form| %>
             <div class="columns is-pulled-left">
                 <div class="column">
