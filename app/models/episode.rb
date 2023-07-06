@@ -30,6 +30,10 @@ class Episode < ApplicationRecord
     "#{title} ~ #{feed.name}"
   end
 
+  def self.random_episode(feed_slug)
+    Episode.find(Episode.where(feed_id: Feed.find_by(slug: feed_slug)).pluck(:id).sample)
+  end
+
   # move this to lib
   def self.this_week_time_period
     last_week = last_week_time_period
