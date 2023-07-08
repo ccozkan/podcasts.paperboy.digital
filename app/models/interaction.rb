@@ -40,7 +40,8 @@ class Interaction < ApplicationRecord
 
     def bookmarked_second(episode_id, user_id)
       find_interaction(episode_id, user_id)
-      @interaction&.bookmarked_at_second || nil
+      output = @interaction&.bookmarked_at_second || nil
+      output&.zero? ? nil : output
     end
 
     def bookmarked_at_pretty_time(episode_id, user_id)
