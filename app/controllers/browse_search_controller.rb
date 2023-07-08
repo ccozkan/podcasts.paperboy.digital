@@ -18,7 +18,7 @@ class BrowseSearchController < SearchFeedsController
     sports: "Sports",
     technology: "Technology",
     true_crime: "True Crime",
-  }
+  }.freeze
   ALLOWED_CATEGORIES = CATEGORY_MAP.keys
 
   before_action :ensure_category_allowed, only: :show
