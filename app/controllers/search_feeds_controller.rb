@@ -2,10 +2,11 @@ class SearchFeedsController < ApplicationController
   include Pagy::Backend
 
   def index
+    @categories = BrowseSearchController::CATEGORY_MAP
     @query = permitted_params[:query]
     return unless @query
 
-    search_results = retrieve_search_results
+    search_results = retrieve_search_results(@query)
     if search_results.empty?
       @no_results_found = true
     else
@@ -16,8 +17,8 @@ class SearchFeedsController < ApplicationController
 
   private
 
-  def retrieve_search_results
-    service = FeedSearcherService.new(permitted_params[:query]).call
+  def retrieve_search_results(param)
+    service = FeedSearcherService.new(param).call
 
     if service.success?
       service.payload

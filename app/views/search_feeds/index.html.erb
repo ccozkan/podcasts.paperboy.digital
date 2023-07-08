@@ -8,16 +8,24 @@
         <div class="columns">
             <div class="column is-half">
                 <%= form_tag(search_path, method: :get) do %>
-                    <%= text_field_tag(:query, params[:query], class: "input is-primary") %>
+                    <%= text_field_tag(:query, params[:query], class: "input is-primary", id: 'searchField') %>
                 <% end %>
             </div>
             <div class="column"></div>
             <div class="column"></div>
         </div>
+        <div class="columns">
+            <div class="column is-half">
+                <div class="buttons">
+                    <% @categories.each do |cat| %>
+                        <a class="button is-warning is-small" href="<%= browse_search_path(cat[0]) %>"><%= cat[1].downcase.html_safe %></a>
+                    <% end %>
+                </div>
+            </div>
+        </div>
     </div>
     <hr>
-    <div class="container">
-    </div>
+
 </section>
 
 <div class="container">
