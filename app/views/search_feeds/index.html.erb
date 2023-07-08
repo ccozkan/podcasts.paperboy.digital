@@ -8,7 +8,7 @@
         <div class="columns">
             <div class="column is-half">
                 <%= form_tag(search_path, method: :get) do %>
-                    <%= text_field_tag(:query, params[:query], class: "input is-primary", id: 'searchField') %>
+                    <%= text_field_tag(:query, params[:query], class: "input is-primary") %>
                 <% end %>
             </div>
             <div class="column"></div>
@@ -25,7 +25,6 @@
         </div>
     </div>
     <hr>
-
 </section>
 
 <div class="container">
