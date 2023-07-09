@@ -3,7 +3,6 @@ class EpisodesReceiverWorker
 
   def perform(feed_id = nil, backfill = false)
     Rails.logger.info('~~ EpisodesReceiverService has started ~~')
-    Rails.logger.info("~~ feed_id is #{feed_id} backfill is #{backfill} ~~")
     start_time = Time.now.to_i
 
     feeds = if feed_id.nil?
@@ -15,6 +14,7 @@ class EpisodesReceiverWorker
     Rails.logger.info("~~ running for #{feeds.count} feeds")
 
     feeds.each do |feed|
+      Rails.logger.info("~~ feed_id is #{feed_id} backfill is #{backfill} ~~")
       Rails.logger.info("~~ running for #{feed.id} id feed")
 
       # if feed.subscriptions&.empty?
