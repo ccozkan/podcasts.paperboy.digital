@@ -40,7 +40,10 @@
         <p class="subtitle">
             unhealthy feeds: <%= @unhealthy_feeds.count %>
             <% @unhealthy_feeds.each do |f| %>
+                <%=
                 "id: #{f.id}, name: #{f.name}, #{f.last_check_error}"
+                %>
+                <br>
             <% end %>
         </p>
     </div>
