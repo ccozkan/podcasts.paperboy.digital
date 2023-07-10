@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
 
+  namespace :admin do
+    resources :dashboard, only: [:index]
+  end
+
   root 'pages#home'
 
   get '/about' => 'pages#about'

@@ -1,0 +1,47 @@
+<section class="section">
+    <div class="container">
+        <h2 class="title is-2">
+            admin
+        </h2>
+
+        <div class="buttons">
+            <%= link_to 'sidekiq', '/admin/sidekiq', class: 'button is-primary' %>
+            <%= link_to 'maintenance-tasks', '/admin/maintenance=tasks', class: 'button is-primary' %>
+            <%= link_to 'analytics', '/admin/analytics', class: 'button is-primary' %>
+        </div>
+        <hr>
+
+        <h2 class="title is-3">
+            stats
+        </h2>
+        <p class="subtitle">
+        </p>
+
+        <p class="subtitle">
+            total users: <%= @user_count %>
+            <br>
+            last_created_at: <%= @last_user.created_at %>
+            <br>
+            last_user_subscriptions: <%= @last_user.subscriptions.count %>
+            <br>
+            <br>
+
+            total feeds: <%= @feed_count %>
+            <br>
+            last_created_at: <%= @last_feed.created_at %>
+            <br>
+            <br>
+
+            total episodes: <%= @episodes_count %>
+            <br>
+            last_created_at: <%= @last_episode.created_at %>
+            <br>
+        </p>
+        <p class="subtitle">
+            unhealthy feeds
+            <% @unhealthy_feeds.each do |f| %>
+                "id: #{f.id}, name: #{f.name}, #{f.last_check_error}"
+            <% end %>
+        </p>
+    </div>
+</section>

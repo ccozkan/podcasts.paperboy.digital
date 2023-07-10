@@ -16,6 +16,13 @@
   <div id="navbarBasicExample" class="navbar-menu">
       <% if current_user %>
           <div class="navbar-start">
+
+              <% if current_user.admin? %>
+                  <a class="navbar-item" href="/admin/dashboard">
+                      [ADMIN]
+                  </a>
+              <% end %>
+
               <a class="navbar-item" href="/porch">
                   Porch🗞️
               </a>

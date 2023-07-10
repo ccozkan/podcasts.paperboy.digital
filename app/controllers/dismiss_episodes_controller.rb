@@ -1,6 +1,7 @@
 class DismissEpisodesController < ApplicationController
   before_action :authenticate_user!
 
+  authenticate_user!
   def update
     Interaction.dismiss!(permitted_params[:episode_id], current_user.id)
     turbofied_remove && return if request_is_from_porch?
