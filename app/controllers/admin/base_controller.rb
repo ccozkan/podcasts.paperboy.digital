@@ -1,3 +1,4 @@
+# rubocop: disable Rails/ApplicationController
 module Admin
   class BaseController < ActionController::Base
     before_action :check_if_user_admin?
@@ -10,3 +11,4 @@ module Admin
     end
   end
 end
+# rubocop: enable Rails/ApplicationController
