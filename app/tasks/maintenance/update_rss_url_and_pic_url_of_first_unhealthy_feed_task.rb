@@ -17,8 +17,8 @@ module Maintenance
 
         raise dummy_service.error.to_s + "STOPPED! dummy service failed for #{feed.id} id, #{feed.name} error: #{dummy_service.error}" unless dummy_service.success?
 
-        feed.pic_url = search_result[:rss_url]
-        feed.rss_url = search_result[:pic_url]
+        feed.pic_url = search_result[:pic_url]
+        feed.rss_url = search_result[:rss_url]
         feed.healthy = true
         feed.save!
       else
