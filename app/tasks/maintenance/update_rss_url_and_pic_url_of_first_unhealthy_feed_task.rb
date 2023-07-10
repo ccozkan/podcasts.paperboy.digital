@@ -3,7 +3,7 @@
 module Maintenance
   class UpdateRssUrlAndPicUrlOfFirstUnhealthyFeedTask < MaintenanceTasks::Task
     def collection
-      unhealthy_first_feed_id = Feed.where(healthy: false).first.id
+      unhealthy_first_feed_id = Feed.where(healthy: false).sample.id
       Feed.where(id: unhealthy_first_feed_id)
     end
 
