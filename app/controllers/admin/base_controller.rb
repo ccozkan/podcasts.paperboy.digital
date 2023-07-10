@@ -1,7 +1,7 @@
 module Admin
   class BaseController < ActionController::Base
     before_action :check_if_user_admin?
-    layout 'application'
+    layout "application"
 
     private
 
