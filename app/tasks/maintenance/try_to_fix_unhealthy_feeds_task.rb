@@ -26,7 +26,7 @@ module Maintenance
           feed.rss_url = search_result[:rss_url]
           feed.healthy = true
         else
-          feed.last_check_error = "FailedToFix: external_id's did not match for for #{feed.id} id, #{feed.name} error: #{dummy_service.error}"
+          feed.last_check_error = "FailedToFix: external_id's did not match for for #{feed.id} id, #{feed.name}"
         end
       end
 
