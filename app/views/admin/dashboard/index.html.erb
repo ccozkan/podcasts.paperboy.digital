@@ -42,7 +42,7 @@
             <br>
             <% @unhealthy_feeds.each do |f| %>
                 <%=
-                "id: #{f.id}, name: #{f.name}, #{f.last_check_error}"
+                "#{f.last_check_error}, #{f.id}, #{f.last_check_error}"
                 %>
                 <br>
             <% end %>
