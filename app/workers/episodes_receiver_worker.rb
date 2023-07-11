@@ -22,6 +22,10 @@ class EpisodesReceiverWorker
         next
       end
 
+      if feed.healthy == false && !!feed.last_check_error&.starts_with?('FailedToFix:')
+        next
+      end
+
       episodes = EpisodesReceiverService.new(feed.rss_url).call
 
       feed.update(last_check_error: episodes.error,
