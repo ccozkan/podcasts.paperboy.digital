@@ -99,6 +99,19 @@ class User < ApplicationRecord
       order(listen_it_latered_at: :desc)
   end
 
+  def like_interactions_ordered
+    interactions.
+      includes(episode: :feed).
+      where.not(liked_at: nil).
+      order(liked_at: :desc)
+  end
+
+  def like_episode_ids_plucked
+    interactions.
+      where.not(liked_at: nil).
+      pluck(:episode_id)
+  end
+
   def listen_it_later_episode_ids_plucked
     interactions.
       where.not(listen_it_latered_at: nil).

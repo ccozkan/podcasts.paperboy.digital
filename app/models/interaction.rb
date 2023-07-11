@@ -38,6 +38,16 @@ class Interaction < ApplicationRecord
       @interaction.save!
     end
 
+    def toggle_from_like!(episode_id, user_id)
+      find_or_initialize_interaction(episode_id, user_id)
+      @interaction.liked_at = if @interaction.liked_at?
+                                nil
+                              else
+                                @interaction.liked_at = Time.current
+                              end
+      @interaction.save!
+    end
+
     def bookmarked_second(episode_id, user_id)
       find_interaction(episode_id, user_id)
       output = @interaction&.bookmarked_at_second || nil
