@@ -70,14 +70,8 @@
                     <% end %>
 
 
-                    <% if @archieved %>
-                        <%= button_to dismiss_episode_path(@episode.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button is-danger' do %>
-                            archieved
-                        <% end %>
-                    <% else %>
-                        <%= button_to dismiss_episode_path(@episode.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button is-danger' do %>
-                            archieve
-                        <% end %>
+                    <%= button_to dismiss_episode_path(@episode.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button is-danger' do %>
+                        archieve
                     <% end %>
                 </div>
                 </p>

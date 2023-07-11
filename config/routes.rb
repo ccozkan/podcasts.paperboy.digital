@@ -2,8 +2,6 @@ require 'sidekiq/web'
 require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
-  get 'like_episodes/index'
-  get 'like_episodes/update'
   authenticate :user, lambda { |u| u.admin?  } do
     mount MaintenanceTasks::Engine => "/admin/maintenance-tasks"
     mount Sidekiq::Web => "/admin/sidekiq"
