@@ -11,6 +11,7 @@ class ListenItLaterEpisodesController < ApplicationController
   def index
     interactions = current_user.listen_it_later_interactions_ordered
     @override_litl = true
+    @dont_show_like = true
 
     if interactions.present?
       @pagy, @items = pagy(interactions)

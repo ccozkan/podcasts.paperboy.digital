@@ -52,24 +52,26 @@
                         play
                     </button>
                     <% unless @dont_show_litl %>
-                    <% if @override_litl || @listen_it_latereds&.include?(item.id) %>
+                        <% if @override_litl || @listen_it_latereds&.include?(item.id) %>
                             <%= button_to listen_it_later_episode_path(episode_id: item.id),class:"button is-dark", method: :put do %>
                                 un-later
                             <% end %>
-                    <% else %>
+                        <% else %>
                             <%= button_to listen_it_later_episode_path(episode_id: item.id),class:"button is-warning", method: :put do %>
                                 listen-it-later
                             <% end %>
-                    <% end %>
+                        <% end %>
                     <% end %>
 
-                    <% if @override_liked || @likeds&.include?(item.id) %>
-                        <%= button_to like_episode_path(episode_id: item.id),class:"button is-info", method: :put do %>
-                            <i class="fa-solid fa-heart"></i>
-                        <% end %>
-                    <% else %>
-                        <%= button_to like_episode_path(episode_id: item.id),class:"button is-info", method: :put do %>
-                            <i class="fa-regular fa-heart"></i>
+                    <% unless @dont_show_like %>
+                        <% if @override_liked || @likeds&.include?(item.id) %>
+                            <%= button_to like_episode_path(episode_id: item.id),class:"button is-info", method: :put do %>
+                                <i class="fa-solid fa-heart"></i>
+                            <% end %>
+                        <% else %>
+                            <%= button_to like_episode_path(episode_id: item.id),class:"button is-info", method: :put do %>
+                                <i class="fa-regular fa-heart"></i>
+                            <% end %>
                         <% end %>
                     <% end %>
                 </div>
