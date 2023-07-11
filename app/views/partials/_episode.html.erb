@@ -51,6 +51,7 @@
                         <i class="fa-regular fa-circle-play"></i>
                         play
                     </button>
+                    <% unless @dont_show_litl %>
                     <% if @override_litl || @listen_it_latereds&.include?(item.id) %>
                             <%= button_to listen_it_later_episode_path(episode_id: item.id),class:"button is-dark", method: :put do %>
                                 un-later
@@ -60,6 +61,8 @@
                                 listen-it-later
                             <% end %>
                     <% end %>
+                    <% end %>
+
                     <% if @override_liked || @likeds&.include?(item.id) %>
                         <%= button_to like_episode_path(episode_id: item.id),class:"button is-info", method: :put do %>
                             <i class="fa-solid fa-heart"></i>

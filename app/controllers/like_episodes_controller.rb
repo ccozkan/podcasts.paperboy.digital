@@ -11,6 +11,7 @@ class LikeEpisodesController < ApplicationController
   def index
     interactions = current_user.like_interactions_ordered
     @override_liked = true
+    @dont_show_litl = true
 
     if interactions.present?
       @pagy, @items = pagy(interactions)
