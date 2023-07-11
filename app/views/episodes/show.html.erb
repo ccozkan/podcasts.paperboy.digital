@@ -48,14 +48,37 @@
             </div>
             <div class="column">
                 <div class="buttons">
-                    <%= button_to dismiss_episode_path(@episode.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button is-danger' do %>
-                        archieve
+                    <% if @liked %>
+                        <%= button_to like_episode_path(episode_id: @episode.id),class:"button is-info", method: :put do %>
+                            <i class="fa-solid fa-heart"></i>
+                        <% end %>
+                    <% else %>
+                        <%= button_to like_episode_path(episode_id: @episode.id),class:"button is-info", method: :put do %>
+                            <i class="fa-regular fa-heart"></i>
+                        <% end %>
                     <% end %>
 
-                    <%= button_to listen_it_later_episode_path(episode_id: @episode.id),class:"button is-primary", method: :put do %>
-                        listen-it-later
+                    <% if @listen_it_latered %>
+                        <%= button_to listen_it_later_episode_path(episode_id: @episode.id),class:"button is-dark", method: :put do %>
+                            un-later
+                        <% end %>
+                    <% else %>
+
+                        <%= button_to listen_it_later_episode_path(episode_id: @episode.id),class:"button is-primary", method: :put do %>
+                            listen-it-later
+                        <% end %>
                     <% end %>
 
+
+                    <% if @archieved %>
+                        <%= button_to dismiss_episode_path(@episode.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button is-danger' do %>
+                            archieved
+                        <% end %>
+                    <% else %>
+                        <%= button_to dismiss_episode_path(@episode.id), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'button is-danger' do %>
+                            archieve
+                        <% end %>
+                    <% end %>
                 </div>
                 </p>
             </div>

@@ -32,7 +32,7 @@
                 </p>
 
 
-                <%= link_to episode_path(slug: item.slug),class:"button is-info is-small", data: { turbo_frame: "_top" } do %>
+                <%= link_to episode_path(slug: item.slug),class:"button is-link is-small", data: { turbo_frame: "_top" } do %>
                     details
                 <% end %>
             </div>
@@ -59,6 +59,15 @@
                             <%= button_to listen_it_later_episode_path(episode_id: item.id),class:"button is-warning", method: :put do %>
                                 listen-it-later
                             <% end %>
+                    <% end %>
+                    <% if @override_liked || @likeds&.include?(item.id) %>
+                        <%= button_to like_episode_path(episode_id: item.id),class:"button is-info", method: :put do %>
+                            <i class="fa-solid fa-heart"></i>
+                        <% end %>
+                    <% else %>
+                        <%= button_to like_episode_path(episode_id: item.id),class:"button is-info", method: :put do %>
+                            <i class="fa-regular fa-heart"></i>
+                        <% end %>
                     <% end %>
                 </div>
                 <% if show_dismiss_button %>
