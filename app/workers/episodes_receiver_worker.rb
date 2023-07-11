@@ -27,10 +27,7 @@ class EpisodesReceiverWorker
       feed.update(last_check_error: episodes.error,
                   healthy: !episodes.error.present?)
 
-      unless episodes.success?
-        Honeybadger.notify("not process stopping error: #{episodes.error}")
-        next
-      end
+      next unless episodes.success?
 
       episodes.payload.each do |episode_remote|
         episode = Episode.find_by(external_id: episode_remote[:external_id])
