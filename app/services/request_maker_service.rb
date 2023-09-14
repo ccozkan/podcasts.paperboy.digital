@@ -8,8 +8,8 @@ class RequestMakerService
   def call
     result = HTTParty.get(@url)
   rescue StandardError => e
-    ServiceResponse.new(error: e)
+    ServiceResponse.new(payload: nil, error: e)
   else
-    ServiceResponse.new(payload: result)
+    ServiceResponse.new(payload: result, error: nil)
   end
 end

@@ -10,12 +10,10 @@ class FeedSearcherService
     return response unless response.success?
 
     result = format_payload(response.payload)
-
-    Honeybadger.notify("new search: #{@query}")
   rescue StandardError => e
-    ServiceResponse.new(error: e)
+    ServiceResponse.new(payload: nil, error: e)
   else
-    ServiceResponse.new(payload: result)
+    ServiceResponse.new(payload: result, error: nil)
   end
 
   private
