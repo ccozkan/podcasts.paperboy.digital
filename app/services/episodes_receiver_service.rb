@@ -46,14 +46,14 @@ class EpisodesReceiverService
                  'duration': format_duration(e.itunes_duration),
                  'title': e.title,
                  'summary': e.summary }
-      next unless valid?(result)
+      next unless episode_hash_valid?(result)
 
       results << result
     end
     results
   end
 
-  def valid?(hash)
+  def episode_hash_valid?(hash)
     return false if hash.except(:duration, :summary).value? nil
 
     true
