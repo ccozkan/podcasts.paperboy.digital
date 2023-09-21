@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.2"
 
 gem "pg", "~> 1.4"
-gem "puma", "~> 6.0"
+gem "puma", "~> 6.4"
 gem "rails", "~> 7.0.3.1"
 gem "sass-rails", ">= 6"
 gem "sprockets-rails", require: "sprockets/railtie"
